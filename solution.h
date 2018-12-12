@@ -1,0 +1,281 @@
+#ifndef _SOLUTION_
+#define _SOLUTION_
+/*this class contains solutions of problems in leetcode*/
+/*after each declaration, there is an explain include problem number, difficulty and short description*/
+class solution {
+  //define solution functions
+public:
+  vector<vector<string>> groupAnagrams(vector<string>& strs);//No 49, medium
+  //49. Group Anagrams: Given an array of strings, group anagrams together.
+
+  double myPow(double x, int n);//No 50, medium
+  //50. Pow(x, n): Implement pow(x, n), which calculates x raised to the power n (xn).
+
+  vector<int> spiralOrder(vector<vector<int>>& matrix);
+  //54. Spiral Matrix: Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+
+  bool canJump(vector<int>& nums);
+  //55. Jump Game: Given an array of non-negative integers, you are initially positioned at the first index of the array.Each element in the array represents your maximum jump length at that position.
+  //Determine if you are able to reach the last index.
+
+  vector<Interval> merge(vector<Interval>& intervals);
+  //56. Merge Intervals: Given a collection of intervals, merge all overlapping intervals.
+
+  vector<vector<int>> generateMatrix(int n);
+  //59. Spiral Matrix II: Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
+
+  string getPermutation(int n, int k);
+  //60. Permutation Sequence: 1-n permytation find kth
+
+  ListNode* rotateRight(ListNode* head, int k);
+  //61. Rotate List: Given a linked list, rotate the list to the right by k places, where k is non-negative.
+
+  int uniquePaths(int m, int n);
+  //62. Unique Paths: A robot is located at the top-left corner of a m x n grid
+  //The robot can only move either down or right at any point in time
+  //How many possible unique paths are there?
+
+  int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid);
+  //63. Unique Paths II
+
+  int minPathSum(vector<vector<int>>& grid);
+  //64. Minimum Path Sum: Given a m x n grid filled with non-negative numbers, 
+  //find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+
+  string simplifyPath(string path);
+  //71. Simplify Path: Given an absolute path for a file (Unix-style), simplify it. 
+
+  void setZeroes(vector<vector<int>>& matrix);
+  //73. Set Matrix Zeroes: Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do it in-place.
+
+  bool searchMatrix(vector<vector<int>>& matrix, int target);
+  //74. Search a 2D Matrix: Write an efficient algorithm that searches for a value in an m x n matrix.
+  //Integers in each row are sorted from left to right; The first integer of each row is greater than the last integer of the previous row.
+
+  void sortColors(vector<int>& nums);
+  //75. Sort Colors: Given an array with n objects colored red, white or blue, sort them in-place so that objects of the same color are adjacent, 
+  //with the colors in the order red, white and blue.
+
+  vector<vector<int>> combine(int n, int k);
+  //77. Combinations: Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
+
+  vector<vector<int>> subsets(vector<int>& nums);
+  //78. Subsets: Given a set of distinct integers, nums, return all possible subsets (the power set).
+
+  bool exist(vector<vector<char>>& board, string word);
+  //79. Word Search: Given a 2D board and a word, find if the word exists in the grid.
+
+  int removeDuplicates(vector<int>& nums);
+  //80. Remove Duplicates from Sorted Array II: Given a sorted array nums, remove the duplicates in-place such that duplicates appeared at most twice and return the new length.
+
+  bool search(vector<int>& nums, int target);
+  //81. Search in Rotated Sorted Array II: Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+  //You are given a target value to search. If found in the array return true, otherwise return false.
+
+  ListNode* deleteDuplicates(ListNode* head);
+  //82. Remove Duplicates from Sorted List II: Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
+
+  int largestRectangleArea(vector<int>& heights);
+  //84. Largest Rectangle in Histogram: Given n non-negative integers representing the histogram's bar height where the width of each bar is 1, 
+  //find the area of largest rectangle in the histogram.
+
+  int maximalRectangle(vector<vector<char>>& matrix);
+  //85. Maximal Rectangle: Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.
+
+  ListNode* partition(ListNode* head, int x);
+  //86. Partition List: Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+  //You should preserve the original relative order of the nodes in each of the two partitions.
+
+  vector<int> grayCode(int n);
+  //89. Gray Code: The gray code is a binary numeral system where two successive values differ in only one bit.
+
+  vector<vector<int>> subsetsWithDup(vector<int>& nums);
+  //90. Subsets II: Given a collection of integers that might contain duplicates, nums, return all possible subsets (the power set).
+
+  int numDecodings(string s);
+  //91. Decode Ways: Given a non-empty string containing only digits, determine the total number of ways to decode it.
+
+  ListNode* reverseBetween(ListNode* head, int m, int n);
+  //92. Reverse Linked List II: Reverse a linked list from position m to n. Do it in one-pass.
+
+  vector<string> restoreIpAddresses(string s);
+  //93. Restore IP Addresses: Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+
+  vector<int> inorderTraversal(TreeNode* root);
+  //94. Binary Tree Inorder Traversal: Given a binary tree, return the inorder traversal of its nodes' values.
+
+  vector<TreeNode*> generateTrees(int n);
+  //95. Unique Binary Search Trees II: Given an integer n, generate all structurally unique BST's (binary search trees) that store values 1 ... n.
+
+  int numTrees(int n);
+  //96. Unique Binary Search Trees: Given n, how many structurally unique BST's (binary search trees) that store values 1 ... n?
+
+  bool isValidBST(TreeNode* root);
+  //98. Validate Binary Search Tree: Given a binary tree, determine if it is a valid binary search tree (BST).
+
+  vector<vector<int>> levelOrder(TreeNode* root);
+  //102. Binary Tree Level Order Traversal: Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+
+  vector<vector<int>> zigzagLevelOrder(TreeNode* root);
+  //103. Binary Tree Zigzag Level Order Traversal: Given a binary tree, return the zigzag level order traversal of its nodes' values.
+  //(ie, from left to right, then right to left for the next level and alternate between).
+
+  TreeNode* buildTree_preIn(vector<int>& preorder, vector<int>& inorder);
+  //105. Construct Binary Tree from Preorder and Inorder Traversal: Given preorder and inorder traversal of a tree, construct the binary tree.
+
+  TreeNode* buildTree_inPos(vector<int>& inorder, vector<int>& postorder);
+  //106. Construct Binary Tree from Inorder and Postorder Traversal: Given inorder and postorder traversal of a tree, construct the binary tree.
+
+  TreeNode* sortedListToBST(ListNode* head);
+  //109. Convert Sorted List to Binary Search Tree: Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
+
+  vector<vector<int>> pathSum(TreeNode* root, int sum);
+  //113. Path Sum II: Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
+
+  void flatten(TreeNode* root);
+  //114. Flatten Binary Tree to Linked List: Given a binary tree, flatten it to a linked list in-place.
+
+  void connect(TreeLinkNode *root);
+  //116. Populating Next Right Pointers in Each Node: Populate each next pointer to point to its next right node. 
+  //If there is no next right node, the next pointer should be set to NULL.
+
+  void connect_nonPerfect(TreeLinkNode *root);
+  //117. Populating Next Right Pointers in Each Node II: Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+
+  int minimumTotal(vector<vector<int>>& triangle);
+  //120. Triangle: Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
+
+  int ladderLength(string beginWord, string endWord, vector<string>& wordList);
+  //127. Word Ladder: Given two words (beginWord and endWord), and a dictionary's word list, find the length of shortest transformation sequence from beginWord to endWord
+
+  int sumNumbers(TreeNode* root);
+  //129. Sum Root to Leaf Numbers: Find the total sum of all root-to-leaf numbers.
+  
+  void solveSurronded(vector<vector<char>>& board);
+  //130. Surrounded Regions: Given a 2D board containing 'X' and 'O' (the letter O), capture all regions surrounded by 'X'.
+
+  vector<vector<string>> partition(string s);
+  //131. Palindrome Partitioning: Given a string s, partition s such that every substring of the partition is a palindrome.
+  //Return all possible palindrome partitioning of s.
+
+  UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node);
+  //133. Clone Graph: Given the head of a graph, return a deep copy (clone) of the graph.
+
+  int canCompleteCircuit(vector<int>& gas, vector<int>& cost);
+  //134. Gas Station: There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
+  //You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). 
+  //You begin the journey with an empty tank at one of the gas stations.
+  //Return the starting gas station's index if you can travel around the circuit once in the clockwise direction, otherwise return -1.
+
+  int singleNumber(vector<int>& nums);
+  //137. Single Number II: Given a non-empty array of integers, every element appears three times except for one, which appears exactly once. Find that single one.
+
+  RandomListNode *copyRandomList(RandomListNode *head);
+  //138. Copy List with Random Pointer
+
+  bool wordBreak(string s, vector<string>& wordDict);
+  //139. Word Break: Given a non-empty string s and a dictionary wordDict containing a list of non-empty words,
+  //determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+  bool hasCycle(ListNode *head);
+  //141. Linked List Cycle: Given a linked list, determine if it has a cycle in it. 
+
+  ListNode *detectCycle(ListNode *head);
+  //142. Linked List Cycle II: Given a linked list, return the node where the cycle begins. If there is no cycle, return null. 
+
+  void reorderList(ListNode* head);
+  //143. Reorder List: Given a singly linked list L: L0¡úL1¡ú¡­¡úLn-1¡úLn, reorder it to : L0¡úLn¡úL1¡úLn - 1¡úL2¡úLn - 2¡ú¡­
+
+  vector<int> preorderTraversal(TreeNode* root);
+  //144. Binary Tree Preorder Traversal: Given a binary tree, return the preorder traversal of its nodes' values.
+
+  vector<int> postorderTraversal(TreeNode* root);
+  //145. Binary Tree Postorder Traversal: Given a binary tree, return the postorder traversal of its nodes' values.
+
+  ListNode* insertionSortList(ListNode* head);
+  //147. Insertion Sort List: Sort a linked list using insertion sort.
+
+  ListNode* sortList(ListNode* head);
+  //148. Sort List: Sort a linked list in O(n log n) time using constant space complexity.
+
+  int evalRPN(vector<string>& tokens);
+  //150. Evaluate Reverse Polish Notation: 
+
+  void reverseWords(string &s);
+  //151. Reverse Words in a String: Given an input string, reverse the string word by word.
+
+  int maxProduct(vector<int>& nums);
+  //152. Maximum Product Subarray: Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product.
+
+  int findMin(vector<int>& nums);
+  //153. Find Minimum in Rotated Sorted Array: Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand. Find the minimum element.
+
+  ListNode *getIntersectionNode(ListNode *headA, ListNode *headB);
+  //160. Intersection of Two Linked Lists: Write a program to find the node at which the intersection of two singly linked lists begins.
+
+  int findPeakElement(vector<int>& nums);
+  //162. Find Peak Element: A peak element is an element that is greater than its neighbors.
+  //Given an input array nums, where nums[i] ¡Ù nums[i + 1], find a peak element and return its index.
+
+  int compareVersion(string version1, string version2);
+  //165. Compare Version Numbers: Compare two version numbers version1 and version2. If version1 > version2 return 1; if version1 < version2 return -1;otherwise return 0.
+
+  string fractionToDecimal(int numerator, int denominator);
+  //166. Fraction to Recurring Decimal: Given two integers representing the numerator and denominator of a fraction, return the fraction in string format.
+  //If the fractional part is repeating, enclose the repeating part in parentheses.
+
+  vector<int> twoSum(vector<int>& numbers, int target);
+  //167. Two Sum II - Input array is sorted: Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
+  //The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.
+
+  string convertToTitle(int n);
+  //168. Excel Sheet Column Title: Given a positive integer, return its corresponding column title as appear in an Excel sheet.
+
+  int majorityElement(vector<int>& nums);
+  //169. Majority Element: Given an array of size n, find the majority element. The majority element is the element that appears more than n/2 times.
+  //You may assume that the array is non - empty and the majority element always exist in the array.
+
+  int titleToNumber(string s);
+  //171. Excel Sheet Column Number: Given a column title as appear in an Excel sheet, return its corresponding column number.
+
+  int trailingZeroes(int n);
+  //172. Factorial Trailing Zeroes: Given an integer n, return the number of trailing zeroes in n!.
+
+  void rotate(vector<int>& nums, int k);
+  //189. Rotate Array: Given an array, rotate the array to the right by k steps, where k is non-negative.
+
+  uint32_t reverseBits(uint32_t n);
+  //190. Reverse Bits
+
+  int hammingWeight(uint32_t n);
+  //191. Number of 1 Bits: Write a function that takes an unsigned integer and returns the number of '1' bits it has (also known as the Hamming weight).
+
+  int rob(vector<int>& nums);
+  //198. House Robber: Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.
+  
+  vector<int> rightSideView(TreeNode* root);
+  //199. Binary Tree Right Side View: Given a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.
+
+  int numIslands(vector<vector<char>>& grid);
+  //200. Number of Islands: Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. 
+  //You may assume all four edges of the grid are all surrounded by water.
+
+private:
+  bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
+  void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
+  vector<TreeNode*> generateTreesDfs(int left, int right);
+  void inorderBinaryTree(TreeNode* root, vector<int> &vals);
+  TreeNode * buildTreeRes_preIn(vector<int>& preorder, int preStart, int preEnd, vector<int>& inorder, int inStart, int inEnd);
+  TreeNode * buildTreeRes_inPos(vector<int>& inorder, int inStart, int inEnd, vector<int>& postorder, int posStart, int posEnd);
+  TreeNode * buildBST(ListNode *& list, int start, int end);
+  void pathSumDfs(vector<vector<int>> ans, vector<int> tmp, TreeNode* root, int sum);
+  int sumNumbersRes(TreeNode* root, int curSum);
+  void solveSurrondedDfs(vector<vector<char>>& board, int i, int j);
+  bool isValidPali(string s, int start, int end);
+  void partitionDfs(vector<vector<string>> &ans, vector<string>out, string s, int start);
+  UndirectedGraphNode* cloneGraphHelper(UndirectedGraphNode *node, unordered_map<int, UndirectedGraphNode*> &umap);
+  ListNode* mergeSortedList(ListNode *list1, ListNode *list2);
+  void rightSVdfs(TreeNode* root, int deep, vector<int>& ans);
+};
+#endif // !_SOLUTION_
+
