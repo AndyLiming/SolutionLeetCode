@@ -3,7 +3,7 @@
 #include "test.h"
 
 int main() {
-  test t;
+  test te;
   solution solu;
   /*int l,m,n;
   vector<Interval> intervals, ans;
@@ -21,11 +21,8 @@ int main() {
   }
   cout << "]"<<endl;*/
   //int k;
-  vector<int> nums;
-  //cin >> k;
-  t.inputVector(nums);
-  //solu.rotate(nums, k);
-  //t.outputVector(nums);
-  cout << solu.rob(nums) << endl;
+  string s,t;
+  cin >> s>>t;
+  cout << solu.isIsomorphic(s, t) << endl;
   return 0;
 }

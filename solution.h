@@ -260,6 +260,27 @@ public:
   //200. Number of Islands: Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. 
   //You may assume all four edges of the grid are all surrounded by water.
 
+  int rangeBitwiseAnd(int m, int n);
+  //201. Bitwise AND of Numbers Range: Given a range [m, n] where 0 <= m <= n <= 2147483647, return the bitwise AND of all numbers in this range, inclusive.
+
+  bool isHappy(int n);
+  //202. Happy Number: Write an algorithm to determine if a number is "happy". A happy number is a number defined by the following process : Starting with any positive integer, 
+  //replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), 
+  //or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.
+
+  ListNode* removeElements(ListNode* head, int val);
+  //203. Remove Linked List Elements: Remove all elements from a linked list of integers that have value val.
+
+  int countPrimes(int n);
+  //204. Count Primes: Count the number of prime numbers less than a non-negative number, n.
+
+  bool isIsomorphic(string s, string t);
+  //205. Isomorphic Strings: Given two strings s and t, determine if they are isomorphic. Two strings are isomorphic if the characters in s can be replaced to get t.
+  //All occurrences of a character must be replaced with another character while preserving the order of characters.No two characters may map to the same character but a character may map to itself.
+
+  ListNode* reverseList(ListNode* head);
+  //206. Reverse Linked List: Reverse a singly linked list.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -276,6 +297,8 @@ private:
   UndirectedGraphNode* cloneGraphHelper(UndirectedGraphNode *node, unordered_map<int, UndirectedGraphNode*> &umap);
   ListNode* mergeSortedList(ListNode *list1, ListNode *list2);
   void rightSVdfs(TreeNode* root, int deep, vector<int>& ans);
+  void DfsNumIslands(vector<vector<char>>& grid, int row, int col);
+  bool isPrime(int x, vector<int> primes);
 };
 #endif // !_SOLUTION_
 

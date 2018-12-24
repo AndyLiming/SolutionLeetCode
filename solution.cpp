@@ -1648,8 +1648,136 @@ void solution::rightSVdfs(TreeNode * root, int deep, vector<int> &ans)
   rightSVdfs(root->left, deep + 1, ans);
 }
 
-//N0 200 Number of Islands
+
+//No 200 Number of Islands
 int solution::numIslands(vector<vector<char>>& grid)
 {
-  return 0;
+  if (grid.empty()) return 0;
+  int num = 0;
+  for (int i = 0;i < grid.size();++i) {
+    for (int j = 0;j < grid[0].size();++j) {
+      if (grid[i][j] == '1') {
+        DfsNumIslands(grid, i, j);
+        num++;
+      }
+    }
+  }
+  return num;
+}
+
+void solution::DfsNumIslands(vector<vector<char>>& grid, int row, int col)
+{
+  if (row < 0 || row >= grid.size() || col < 0 || col >= grid[0].size() || grid[row][col] == '0') return;
+  grid[row][col] = '0';
+  DfsNumIslands(grid, row + 1, col);
+  DfsNumIslands(grid, row - 1, col);
+  DfsNumIslands(grid, row, col + 1);
+  DfsNumIslands(grid, row, col - 1);
+}
+
+
+//No 201 Bitwise AND of Numbers Range
+int solution::rangeBitwiseAnd(int m, int n)
+{
+  int count = 0;
+  while (n != m) {
+    n >>= 1;
+    m >>= 1;
+    count++;
+  }
+  return (m << count);
+}
+
+//No 202 Happy Number
+bool solution::isHappy(int n)
+{
+  set<int> squSumSet;
+  while (n != 1) {
+    int t = 0;
+    while (n) {
+      t = t + (n % 10)*(n % 10);
+      n = n / 10;
+    }
+    n = t;
+    if (squSumSet.count(t) != 0) break;
+    else squSumSet.insert(t);
+  }
+  return n == 1;
+}
+
+//No 203 Remove Linked List Elements
+ListNode * solution::removeElements(ListNode * head, int val)
+{
+  if (head == nullptr) return head;
+  ListNode * helper = new ListNode(0);
+  helper->next = head;
+  ListNode *p = helper;
+  while (p->next) {
+    if (p->next->val == val) p->next = p->next->next;
+    else p = p->next;
+  }
+  return helper->next;
+}
+
+//No 204 Count Primes
+int solution::countPrimes(int n)
+{
+  if (n <= 2) return 0;
+  vector<bool> notPrimes(n,false);
+  int count = 1;
+  for (int x = 3;x*x <n;x=x+2) {
+    if (notPrimes[x]) {
+      continue;
+    }
+    else{
+      for (int j = x * x;j < n;j = j+2 * x) {
+        notPrimes[j] = true;
+      }
+    }
+  }
+  for (int x = 3;x < n;x=x+2) {
+    if (!notPrimes[x]) count++;
+  }
+  return count;
+}
+
+bool solution::isPrime(int x, vector<int> primes)
+{
+  for (int i = 0;primes[i]* primes[i] <= x;++i) {
+    if (x%primes[i] == 0) return false;
+  }
+  return true;
+}
+
+//No 205 Isomorphic Strings
+bool solution::isIsomorphic(string s, string t)
+{
+  if (s.size()!=t.size()) return false;
+  unordered_map<char, vector<int>> hashS;
+  unordered_map<char, vector<int>> hashT;
+  for (int i = 0;i < s.size();++i) {
+    hashS[s[i]].push_back(i);
+    hashT[t[i]].push_back(i);
+  }
+  for (int i = 0;i < s.size();++i) {
+    if (hashS[s[i]].size() == 1 && hashT[t[i]].size() == 1) continue;
+    if (hashS[s[i]] != hashT[t[i]]) return false;
+  }
+  return true;
+}
+
+//No 206 Reverse Linked List
+ListNode * solution::reverseList(ListNode * head)
+{
+  if (!head || !head->next) return head;
+  ListNode *p = head;
+  ListNode *q = head;
+  p = p->next;
+  while (p) {
+    q->next = p->next;
+    p->next = head;
+    head = p;
+    p = q->next;
+  }
+  return head;
 }
