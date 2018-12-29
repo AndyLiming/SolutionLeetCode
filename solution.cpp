@@ -1781,3 +1781,93 @@ ListNode * solution::reverseList(ListNode * head)
   }
   return head;
 }
+
+//No 207 Course Schedule
+bool solution::canFinish(int numCourses, vector<pair<int, int>>& prerequisites)
+{
+  vector<int> heads(numCourses, -1);
+  vector<int> enDegree(numCourses, 0);
+  vector<int> points, args;
+  pair<int,int> p;
+  int from, to, count = 0, len = prerequisites.size();
+  for (int i = 0;i < len;++i) {
+    p = prerequisites[i];
+    from = p.second;
+    to = p.first;
+    ++enDegree[to];
+    args.push_back(heads[from]);
+    points.push_back(to);
+    heads[from] = count++;
+  }
+  queue<int> q;
+  for (int i = 0;i < numCourses;++i) {
+    if (enDegree[i] == 0) q.push(i);
+  }
+  while (!q.empty()) {
+    from = q.front();
+    q.pop();
+    to = heads[from];
+    while (to != -1) {
+      if (--enDegree[points[to]]==0) q.push(points[to]);
+      to = args[to];
+    }
+  }
+  for (int i = 0;i < numCourses;++i) {
+    if (enDegree[i] > 0) return false;
+  }
+  return true;
+}
+
+//No 209 Minimum Size Subarray Sum
+int solution::minSubArrayLen(int s, vector<int>& nums)
+{
+  if(nums.empty()) return 0;
+  int left = 0, right = 0, sum = 0, res = nums.size() + 1;
+  while (right<nums.size()) {
+    while (sum < s&&right < nums.size()) {
+      sum += nums[right++];
+    }
+    while (sum >= s) {
+      res = min(res, right - left);
+      sum -= nums[left++];
+    }
+  }
+  return res == nums.size() + 1 ? 0 : res;
+}
+
+//No 210 Course Schedule II
+vector<int> solution::findOrder(int numCourses, vector<pair<int, int>>& prerequisites)
+{
+  vector<int> heads(numCourses, -1);
+  vector<int> enDegree(numCourses, 0);
+  vector<int> points, args, ans;
+  pair<int, int> p;
+  int from, to, count = 0, len = prerequisites.size();
+  for (int i = 0;i < len;++i) {
+    p = prerequisites[i];
+    from = p.second;
+    to = p.first;
+    ++enDegree[to];
+    args.push_back(heads[from]);
+    points.push_back(to);
+    heads[from] = count++;
+  }
+  queue<int> q;
+  for (int i = 0;i < numCourses;++i) {
+    if (enDegree[i] == 0) q.push(i);
+  }
+  while (!q.empty()) {
+    from = q.front();
+    ans.push_back(from);
+    q.pop();
+    to = heads[from];
+    while (to != -1) {
+      if (--enDegree[points[to]] == 0) q.push(points[to]);
+      to = args[to];
+    }
+  }
+  for (int i = 0;i < numCourses;++i) {
+    if (enDegree[i] > 0) return vector<int>();
+  }
+  return ans;
+}

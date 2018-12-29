@@ -281,6 +281,17 @@ public:
   ListNode* reverseList(ListNode* head);
   //206. Reverse Linked List: Reverse a singly linked list.
 
+  bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites);
+  //207. Course Schedule: There are a total of n courses you have to take, labeled from 0 to n-1. Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair : [0, 1]
+  //Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses ?
+
+  int minSubArrayLen(int s, vector<int>& nums);
+  //209. Minimum Size Subarray Sum: Given an array of n positive integers and a positive integer s, find the minimal length of a contiguous subarray of which the sum ¡Ý s. If there isn't one, return 0 instead.
+
+  vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites);
+  //210. Course Schedule II: There are a total of n courses you have to take, labeled from 0 to n-1. Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair : [0, 1]
+  //Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses. There may be multiple correct orders, you just need to return one of them.If it is impossible to finish all courses, return an empty array.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
