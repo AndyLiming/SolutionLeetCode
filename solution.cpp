@@ -1749,6 +1749,7 @@ bool solution::isPrime(int x, vector<int> primes)
   return true;
 }
 
+
 //No 205 Isomorphic Strings
 bool solution::isIsomorphic(string s, string t)
 {
@@ -1869,5 +1870,83 @@ vector<int> solution::findOrder(int numCourses, vector<pair<int, int>>& prerequi
   for (int i = 0;i < numCourses;++i) {
     if (enDegree[i] > 0) return vector<int>();
   }
+  return ans;
+}
+
+//No 213 House Robber II
+int solution::rob2(vector<int>& nums)
+{
+  if (nums.size() == 0) return 0;
+  if (nums.size() == 1) return nums[0];
+  vector<int> tmp1(nums.begin(), nums.end() - 1);
+  vector<int> tmp2(nums.begin() + 1, nums.end());
+  return max(robPlan(tmp1), robPlan(tmp2));
+}
+
+int solution::robPlan(vector<int>& nums)
+{
+  vector<int> dp(nums.size(), 0);
+  dp[0] = nums[0];
+  dp[1] = max(nums[0],nums[1]);
+  dp[2] = max(nums[1],nums[0]+nums[2]);
+  for (int i = 3;i < nums.size();++i) {
+    dp[i] = max(dp[i - 3] + nums[i - 1], dp[i - 2] + nums[i]);
+  }
+  return max(dp[nums.size() - 1], dp[nums.size() - 2]);
+}
+
+//implementation of KMP
+int solution::KMP(string s, string t)
+{
+  vector<int> next(t.length(), -1);
+  int k = -1;
+  //calculate vector next
+  for (int q = 1;q < t.length();++q) {
+    while (k > -1 && t[k + 1] != t[q]) {
+      k = next[k];
+    }
+    if (t[k + 1] == t[q]) {
+      k++;
+    }
+    next[q] = k;
+  }
+  //for (int p = 0;p < next.size();++p) {
+  //  cout << next[p] << " ";
+  //}
+  //kmp
+  int i = 0,j = 0;
+  int lenS = s.size(), lenT = t.size();
+  while (i < lenS && j < lenT) {
+    if (j == -1 || s[i] == t[j]) {
+      i++;
+      j++;
+    }
+    else {
+      j = next[j];
+    }
+  }
+  return j == t.length() ? i - j : -1;
+}
+
+//No 214 Shortest Palindrome: KMP based solution
+string solution::shortestPalindrome(string s)
+{
+  string revS=s;
+  reverse(revS.begin(), revS.end());
+  string t = s+'#'+revS;
+  vector<int>next(t.size(), -1);
+  int k = -1;
+  //calculate vector next
+  for (int q = 1;q < t.length();++q) {
+    while (k > -1 && t[k + 1] != t[q]) {
+      k = next[k];
+    }
+    if (t[k + 1] == t[q]) {
+      k++;
+    }
+    next[q] = k;
+  }
+  cout << next[t.size() - 1] << endl;
+  string ans = revS.substr(0, revS.size() - next[t.size() - 1]-1) + s;
   return ans;
 }

@@ -292,6 +292,14 @@ public:
   //210. Course Schedule II: There are a total of n courses you have to take, labeled from 0 to n-1. Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair : [0, 1]
   //Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses. There may be multiple correct orders, you just need to return one of them.If it is impossible to finish all courses, return an empty array.
 
+  int rob2(vector<int>& nums);
+  //213. House Robber II: You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place are arranged in a circle.
+  //That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
+  //Given a list of non - negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.
+  int KMP(string s, string t);//find matching position of t in s
+
+  string shortestPalindrome(string s);
+  //214. Shortest Palindrome: Given a string s, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -310,6 +318,7 @@ private:
   void rightSVdfs(TreeNode* root, int deep, vector<int>& ans);
   void DfsNumIslands(vector<vector<char>>& grid, int row, int col);
   bool isPrime(int x, vector<int> primes);
+  int robPlan(vector<int>& nums);
 };
 #endif // !_SOLUTION_
 

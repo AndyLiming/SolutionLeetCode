@@ -21,8 +21,11 @@ int main() {
   }
   cout << "]"<<endl;*/
   //int k;
-  string s,t;
-  cin >> s>>t;
-  cout << solu.isIsomorphic(s, t) << endl;
+  //vector<int> nums;
+  //te.inputVector(nums);
+  //cout << solu.rob2(nums) << endl;
+  string s;
+  cin >> s;
+  cout << solu.shortestPalindrome(s)<< endl;
   return 0;
 }
