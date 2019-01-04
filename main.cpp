@@ -20,12 +20,12 @@ int main() {
     cout << " [" << ans[i].start << "," << ans[i].end << "]" << endl;
   }
   cout << "]"<<endl;*/
-  //int k;
-  //vector<int> nums;
+  int k;
+  cin >> k;
+  vector<int> nums;
   //te.inputVector(nums);
   //cout << solu.rob2(nums) << endl;
-  string s;
-  cin >> s;
-  cout << solu.shortestPalindrome(s)<< endl;
+  te.inputVector(nums);
+  cout << solu.containsNearbyDuplicate(nums,k) << endl;
   return 0;
 }

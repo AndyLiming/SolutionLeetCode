@@ -300,6 +300,19 @@ public:
 
   string shortestPalindrome(string s);
   //214. Shortest Palindrome: Given a string s, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.
+  
+  int findKthLargest(vector<int>& nums, int k);
+  //215. Kth Largest Element in an Array: Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
+
+  vector<vector<int>> combinationSum3(int k, int n);
+  //216. Combination Sum III: Find all possible combinations of k numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.
+
+  bool containsDuplicate(vector<int>& nums);
+  //217. Contains Duplicate:Given an array of integers, find if the array contains any duplicates.¡¡Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
+
+  bool containsNearbyDuplicate(vector<int>& nums, int k);
+  //219. Contains Duplicate II: Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -319,6 +332,7 @@ private:
   void DfsNumIslands(vector<vector<char>>& grid, int row, int col);
   bool isPrime(int x, vector<int> primes);
   int robPlan(vector<int>& nums);
+  void combinationSum3Dfs(int k,int n,int level, vector<int>&out,vector<vector<int>>& ans);
 };
 #endif // !_SOLUTION_
 

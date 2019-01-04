@@ -1895,6 +1895,7 @@ int solution::robPlan(vector<int>& nums)
   return max(dp[nums.size() - 1], dp[nums.size() - 2]);
 }
 
+
 //implementation of KMP
 int solution::KMP(string s, string t)
 {
@@ -1949,4 +1950,60 @@ string solution::shortestPalindrome(string s)
   cout << next[t.size() - 1] << endl;
   string ans = revS.substr(0, revS.size() - next[t.size() - 1]-1) + s;
   return ans;
+}
+
+//No 215 Kth Largest Element in an Array
+int solution::findKthLargest(vector<int>& nums, int k)
+{
+  sort(nums.begin(), nums.end());
+  return nums[nums.size() - k];
+}
+
+//No 216 Combination Sum III
+vector<vector<int>> solution::combinationSum3(int k, int n)
+{
+  vector<vector<int>> ans;
+  vector<int> out;
+  combinationSum3Dfs(k, n, 1, out, ans);
+  return ans;
+}
+
+void solution::combinationSum3Dfs(int k, int n, int level, vector<int>& out, vector<vector<int>>& ans)//&
+{
+  if (n < 0||out.size()>k) return;
+  if (n == 0 && out.size() == k) ans.push_back(out);
+  for (int i = level;i <= 9;++i) {
+    out.push_back(i);
+    combinationSum3Dfs(k, n - i, i + 1, out, ans);
+    out.pop_back();
+  }
+}
+
+//No 217 Contains Duplicate
+bool solution::containsDuplicate(vector<int>& nums)
+{
+  set<int>numSet;
+  for (int i = 0;i < nums.size();++i) {
+    if (numSet.find(nums[i]) != numSet.end()) return true;
+    else {
+      numSet.insert(nums[i]);
+    }
+  }
+  return false;
+}
+
+//No 219 Contains Duplicate II
+bool solution::containsNearbyDuplicate(vector<int>& nums, int k)
+{
+  map<int, int>numMap;
+  for (int i = 0;i < nums.size();++i) {
+    if (numMap.find(nums[i]) != numMap.end()) {
+      if ((i - numMap[nums[i]]) <= k) return true;
+      else numMap[nums[i]] = i;
+    }
+    else {
+      numMap.insert(pair<int, int>(nums[i], i));//map must insert a pair<key_type,value_type>
+    }
+  }
+  return false;
 }
