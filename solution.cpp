@@ -2007,3 +2007,37 @@ bool solution::containsNearbyDuplicate(vector<int>& nums, int k)
   }
   return false;
 }
+
+//No 220 Contains Duplicate III
+bool solution::containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t)
+{
+  set<long> numSet;
+  long lt = t;
+  for (int i = 0;i < nums.size();++i) {
+    if (i > k) numSet.erase(nums[i - k - 1]);
+    set<long>::iterator it = numSet.lower_bound(nums[i] - lt);
+    if (it != numSet.end() && (*it) - nums[i] <= lt) return true;
+    numSet.insert(nums[i]);
+  }
+  return false;
+}
+
+//No 221 Maximal Square
+int solution::maximalSquare(vector<vector<char>>& matrix)//must be square
+{
+  if(matrix.empty()) return 0;
+  int ans = 0;
+  vector<vector<int>> dp (matrix.size(), vector<int>(matrix[0].size(), 0));
+  for (int i = 0;i < matrix.size();++i) {
+    for (int j = 0;j < matrix[0].size();++j) {
+      if (i > 0 && j > 0 && matrix[i][j] == '1') {
+        dp[i][j] = min(min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;
+      }
+      else {
+        dp[i][j] = matrix[i][j] - '0';
+      }
+      ans = max(ans, dp[i][j]);
+    }
+  }
+  return ans*ans;
+}

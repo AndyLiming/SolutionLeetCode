@@ -313,6 +313,12 @@ public:
   bool containsNearbyDuplicate(vector<int>& nums, int k);
   //219. Contains Duplicate II: Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k.
 
+  bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t);
+  //220. Contains Duplicate III: Given an array of integers, find out whether there are two distinct indices i and j in the array such that the absolute difference between nums[i] and nums[j] is at most t and the absolute difference between i and j is at most k.
+
+  int maximalSquare(vector<vector<char>>& matrix);
+  //221. Maximal Square: Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
