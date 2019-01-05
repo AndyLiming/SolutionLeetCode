@@ -319,6 +319,9 @@ public:
   int maximalSquare(vector<vector<char>>& matrix);
   //221. Maximal Square: Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.
 
+  int countNodes(TreeNode* root);
+  //222. Count Complete Tree Nodes:¡¡Given a complete binary tree, count the number of nodes.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
