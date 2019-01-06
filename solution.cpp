@@ -2045,16 +2045,36 @@ int solution::maximalSquare(vector<vector<char>>& matrix)//must be square
 //No 222 Count Complete Tree Nodes
 int solution::countNodes(TreeNode * root)
 {
+  if (!root) return 0;
   int hLeft = 0, hRight = 0;
   TreeNode *pLeft = root, *pRight = root;
   while (pLeft) {
-    ++hLeft;
+    hLeft++;
     pLeft = pLeft->left;
   }
   while (pLeft) {
-    ++hRight;
+    hRight++;
     pRight = pRight->right;
   }
   if (hLeft == hRight) return pow(2, hLeft) - 1;
-  return countNodes(root->left) + countNodes(root->right) + 1;
+  return 1+countNodes(root->left) + countNodes(root->right);
+
+  //if (!root) return 0;
+  //int hl = 0, hr = 0;
+  //TreeNode *l = root, *r = root;
+  //while (l) { hl++;l = l->left; }
+  //while (r) { hr++;r = r->right; }
+  //if (hl == hr) return pow(2, hl) - 1;
+  //return 1 + countNodes(root->left) + countNodes(root->right);
+}
+
+//No 223 Rectangle Area
+int solution::computeArea(int A, int B, int C, int D, int E, int F, int G, int H)
+{
+  long crossLeft = max(A, E);
+  long crossRight = min(C, G);
+  long crossUp = min(D, H);
+  long crossBottom = max(B, F);
+  int overLap = max(0L, crossRight - crossLeft) * max(0L, crossUp - crossBottom);
+  return (C - A)*(D - B) + (G-E)*(H-F) - overLap;
 }
