@@ -325,6 +325,9 @@ public:
   int computeArea(int A, int B, int C, int D, int E, int F, int G, int H);
   //223. Rectangle Area: Find the total area covered by two rectilinear rectangles in a 2D plane. Each rectangle is defined by its bottom left corner and top right corner as shown in the figure.
 
+  TreeNode* invertTree(TreeNode* root);
+  //226. Invert Binary Tree: Invert a binary tree.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

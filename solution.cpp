@@ -2045,7 +2045,7 @@ int solution::maximalSquare(vector<vector<char>>& matrix)//must be square
 //No 222 Count Complete Tree Nodes
 int solution::countNodes(TreeNode * root)
 {
-  if (!root) return 0;
+  if (root == nullptr) return 0;
   int hLeft = 0, hRight = 0;
   TreeNode *pLeft = root, *pRight = root;
   while (pLeft) {
@@ -2077,4 +2077,16 @@ int solution::computeArea(int A, int B, int C, int D, int E, int F, int G, int H
   long crossBottom = max(B, F);
   int overLap = max(0L, crossRight - crossLeft) * max(0L, crossUp - crossBottom);
   return (C - A)*(D - B) + (G-E)*(H-F) - overLap;
+}
+
+//No 226 Invert Binary Tree
+TreeNode * solution::invertTree(TreeNode * root)
+{
+  if (root == nullptr) return nullptr;
+  TreeNode * tmp = root->left;
+  root->left = root->right;
+  root->right = tmp;
+  invertTree(root->left);
+  invertTree(root->right);
+  return root;
 }
