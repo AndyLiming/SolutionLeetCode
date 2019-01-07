@@ -2183,6 +2183,7 @@ int solution::kthSmallest(TreeNode * root, int k)
 //No 231 Power of Two
 bool solution::isPowerOfTwo(int n)
 {
+  if (n <= 0) return false;
   while (n>1) {
     if (n % 2 == 1)return false;
     n /= 2;
