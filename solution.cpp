@@ -1979,6 +1979,7 @@ void solution::combinationSum3Dfs(int k, int n, int level, vector<int>& out, vec
   }
 }
 
+
 //No 217 Contains Duplicate
 bool solution::containsDuplicate(vector<int>& nums)
 {
@@ -2089,4 +2090,60 @@ TreeNode * solution::invertTree(TreeNode * root)
   invertTree(root->left);
   invertTree(root->right);
   return root;
+}
+
+//No 227 Basic Calculator II
+int solution::calculate(string s)
+{
+  int ans = 0,temp=0;
+  char op = '+';
+  stack<int> st;
+  for (int i = 0;i < s.size();++i) {
+    if (s[i] >= '0'&&s[i] <= '9') {
+      temp = temp * 10 + (s[i] - '0');
+    }
+    if((s[i]<'0'||s[i]>'9')&&s[i]!=' ' || i==s.size()-1) {
+      if (op == '+') {
+        st.push(temp);
+      }
+      else if (op == '-') {
+        st.push(-temp);
+      }
+      else if (op == '*') {
+        int num = st.top();
+        st.pop();
+        st.push(num*temp);
+      }
+      else if(op=='/'){
+        int num = st.top();
+        st.pop();
+        st.push(num/temp);
+      }
+      op = s[i];
+      temp = 0;
+    }
+  }
+  while (!st.empty()) {
+    ans += st.top();
+    st.pop();
+  }
+  return ans;
+}
+
+//No 228 Summary Ranges
+vector<string> solution::summaryRanges(vector<int>& nums)
+{
+  vector<string> ans;
+  string out;
+  if (nums.empty()) return ans;
+  int index = 0, range=1;
+  while (index < nums.size()) {
+    range = 1;
+    while (index + range < nums.size() && nums[index + range] - nums[index] == range) ++range;
+    if (range <= 1) out = to_string(nums[index]);
+    else out = to_string(nums[index]) + "->" + to_string(nums[index + range - 1]);
+    ans.push_back(out);
+    index += range;
+  }
+  return ans;
 }

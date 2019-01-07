@@ -20,12 +20,19 @@ int main() {
     cout << " [" << ans[i].start << "," << ans[i].end << "]" << endl;
   }
   cout << "]"<<endl;*/
-  int k;
-  cin >> k;
-  vector<int> nums;
+  //int k;
+  //cin >> k;
+  //vector<int> nums;
   //te.inputVector(nums);
   //cout << solu.rob2(nums) << endl;
+
+  //string s;
+  //cin >> s;
+  //cout << solu.calculate(s) << endl;
+  vector<int> nums;
   te.inputVector(nums);
-  cout << solu.containsNearbyDuplicate(nums,k) << endl;
+  vector<string> ans = solu.summaryRanges(nums);
+  te.outputVector(ans);
+
   return 0;
 }

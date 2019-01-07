@@ -328,6 +328,13 @@ public:
   TreeNode* invertTree(TreeNode* root);
   //226. Invert Binary Tree: Invert a binary tree.
 
+  int calculate(string s);
+  //227. Basic Calculator II: Implement a basic calculator to evaluate a simple expression string.
+  //The expression string contains only non - negative integers, +, -, *, / operators and empty spaces.The integer division should truncate toward zero.
+
+  vector<string> summaryRanges(vector<int>& nums);
+  //228. Summary Ranges: Given a sorted integer array without duplicates, return the summary of its ranges.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
