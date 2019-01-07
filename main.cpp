@@ -31,8 +31,8 @@ int main() {
   //cout << solu.calculate(s) << endl;
   vector<int> nums;
   te.inputVector(nums);
-  vector<string> ans = solu.summaryRanges(nums);
+  //vector<string> ans = solu.summaryRanges(nums);
+  vector<int> ans = solu.majorityElement2(nums);
   te.outputVector(ans);
-
   return 0;
 }

@@ -335,6 +335,9 @@ public:
   vector<string> summaryRanges(vector<int>& nums);
   //228. Summary Ranges: Given a sorted integer array without duplicates, return the summary of its ranges.
 
+  vector<int> majorityElement2(vector<int>& nums);
+  //229. Majority Element II: Given an integer array of size n, find all elements that appear more than [n/3]_ times. Note: The algorithm should run in linear time and in O(1) space.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

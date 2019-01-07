@@ -2147,3 +2147,25 @@ vector<string> solution::summaryRanges(vector<int>& nums)
   }
   return ans;
 }
+
+//No 229 Majority Element II
+vector<int> solution::majorityElement2(vector<int>& nums)
+{
+  /*used map, not sure if it runs in O(1) space*/
+  vector<int> ans;
+  map<int, int>countMap;
+  int th = nums.size() / 3;
+  for (int i = 0;i < nums.size();++i) {
+    if (countMap.find(nums[i]) != countMap.end()) {
+      countMap[nums[i]]++;
+    }
+    else {
+      countMap[nums[i]] = 1;
+    }
+  }
+  for (map<int, int>::iterator it = countMap.begin();it != countMap.end();++it) {
+    if (it->second > th) ans.push_back(it->first);
+  }
+  return ans;
+  /********************************************/
+}
