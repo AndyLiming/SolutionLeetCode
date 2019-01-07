@@ -338,6 +338,12 @@ public:
   vector<int> majorityElement2(vector<int>& nums);
   //229. Majority Element II: Given an integer array of size n, find all elements that appear more than [n/3]_ times. Note: The algorithm should run in linear time and in O(1) space.
 
+  int kthSmallest(TreeNode* root, int k);
+  //230. Kth Smallest Element in a BST: Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
+  
+  bool isPowerOfTwo(int n);
+  //231. Power of Two: Given an integer, write a function to determine if it is a power of two.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

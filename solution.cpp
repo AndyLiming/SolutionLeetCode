@@ -2169,3 +2169,23 @@ vector<int> solution::majorityElement2(vector<int>& nums)
   return ans;
   /********************************************/
 }
+
+//No 230 Kth Smallest Element in a BST
+int solution::kthSmallest(TreeNode * root, int k)
+{
+  vector<int> val;
+  inorderBinaryTree(root, val);//The in-order traversal of the binary search tree is in ascending order
+  //defined in line 735
+  return val[k-1];
+}
+
+
+//No 231 Power of Two
+bool solution::isPowerOfTwo(int n)
+{
+  while (n>1) {
+    if (n % 2 == 1)return false;
+    n /= 2;
+  }
+  return true;
+}

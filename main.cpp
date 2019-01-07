@@ -29,10 +29,8 @@ int main() {
   //string s;
   //cin >> s;
   //cout << solu.calculate(s) << endl;
-  vector<int> nums;
-  te.inputVector(nums);
-  //vector<string> ans = solu.summaryRanges(nums);
-  vector<int> ans = solu.majorityElement2(nums);
-  te.outputVector(ans);
+  int k;
+  cin >> k;
+  cout << solu.isPowerOfTwo(k) << endl;
   return 0;
 }
