@@ -344,6 +344,9 @@ public:
   bool isPowerOfTwo(int n);
   //231. Power of Two: Given an integer, write a function to determine if it is a power of two.
 
+  bool isPalindrome(ListNode* head);
+  //234. Palindrome Linked List: Given a singly linked list, determine if it is a palindrome.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
