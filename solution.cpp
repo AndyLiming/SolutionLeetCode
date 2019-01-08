@@ -2190,3 +2190,27 @@ bool solution::isPowerOfTwo(int n)
   }
   return true;
 }
+
+//No 234 Palindrome Linked List
+bool solution::isPalindrome(ListNode * head)
+{
+  if(head==nullptr||head->next==nullptr) return true;
+  ListNode* fast = head, *slow = head;
+  while (fast->next && fast->next->next) {
+    fast = fast->next->next;
+    slow = slow->next;
+  }
+  ListNode *last = slow->next,*pre=head;
+  while (last->next) {
+    ListNode *tmp = last->next;
+    last->next = tmp->next;
+    tmp->next = slow->next;
+    slow->next = tmp;
+  }
+  while (slow->next) {
+    slow = slow->next;
+    if (pre->val != slow->val) return false;
+    pre = pre->next;
+  }
+  return true;
+}
