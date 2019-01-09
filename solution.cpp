@@ -2222,3 +2222,35 @@ TreeNode * solution::lowestCommonAncestor(TreeNode * root, TreeNode * p, TreeNod
   if (root->val < p->val&&root->val < q->val) return lowestCommonAncestor(root->right, p, q);
   return root;
 }
+
+//No 236 Lowest Common Ancestor of a Binary Tree
+TreeNode * solution::lowestCommonAncestor2(TreeNode * root, TreeNode * p, TreeNode * q)
+{
+  if (root == nullptr || root == p || root == q) return root;
+  TreeNode *left = lowestCommonAncestor2(root->left, p, q);
+  TreeNode *right = lowestCommonAncestor2(root->right, p, q);
+  if (left != nullptr && right != nullptr) return root;
+  return left == nullptr ? right : left;
+}
+
+//No 237 Delete Node in a Linked List
+void solution::deleteNode(ListNode * node)
+{
+  node->val = node->next->val;
+  node->next = node->next->next;
+}
+
+//No 238 Product of Array Except Self
+vector<int> solution::productExceptSelf(vector<int>& nums)
+{
+  int len = nums.size();
+  vector<int> ans(len,1);
+  int fromBegin = 1, fromLast = 1;
+  for (int i = 0;i < nums.size();++i) {
+    ans[i] *= fromBegin;
+    fromBegin *= nums[i];
+    ans[len - 1 - i] *= fromLast;
+    fromLast *= nums[len - 1 - i];
+  }
+  return ans;
+}

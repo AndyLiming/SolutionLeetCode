@@ -350,6 +350,15 @@ public:
   TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q);
   //235. Lowest Common Ancestor of a Binary Search Tree:¡¡Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
 
+  TreeNode* lowestCommonAncestor2(TreeNode* root, TreeNode* p, TreeNode* q);
+  //236. Lowest Common Ancestor of a Binary Tree: Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
+
+  void deleteNode(ListNode* node);
+  //237. Delete Node in a Linked List: Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.
+
+  vector<int> productExceptSelf(vector<int>& nums);
+  //238. Product of Array Except Self: Given an array nums of n integers where n > 1,  return an array output such that output[i] is equal to the product of all the elements of nums except nums[i].
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
