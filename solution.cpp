@@ -2214,3 +2214,11 @@ bool solution::isPalindrome(ListNode * head)
   }
   return true;
 }
+
+//No 235 Lowest Common Ancestor of a Binary Search Tree
+TreeNode * solution::lowestCommonAncestor(TreeNode * root, TreeNode * p, TreeNode * q)
+{
+  if (root->val > p->val&&root->val > q->val) return lowestCommonAncestor(root->left, p, q);
+  if (root->val < p->val&&root->val < q->val) return lowestCommonAncestor(root->right, p, q);
+  return root;
+}

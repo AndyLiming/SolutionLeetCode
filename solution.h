@@ -347,6 +347,9 @@ public:
   bool isPalindrome(ListNode* head);
   //234. Palindrome Linked List: Given a singly linked list, determine if it is a palindrome.
 
+  TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q);
+  //235. Lowest Common Ancestor of a Binary Search Tree:¡¡Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
