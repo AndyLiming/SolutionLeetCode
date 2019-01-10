@@ -2280,3 +2280,60 @@ bool solution::searchMatrix2(vector<vector<int>>& matrix, int target)
   }
   return false;
 }
+
+//No 241 Different Ways to Add Parentheses
+vector<int> solution::diffWaysToCompute(string input)
+{
+  vector<int> ans;
+  for (int i = 0;i < input.size();++i) {
+    char c = input[i];
+    if (c > '9' || c < '0') {
+      for (int a : diffWaysToCompute(input.substr(0, i))) {
+        for(int b : diffWaysToCompute(input.substr(i+1)))
+          switch (c)
+          {
+          case '+':
+            ans.push_back(a + b);
+            break;
+          case '-':
+            ans.push_back(a - b);
+            break;
+          case '*':
+            ans.push_back(a * b);
+            break;
+          default:
+            break;
+          }
+      }
+    }
+  }
+  if (ans.empty()) ans.push_back(stoi(input));
+  return ans;
+}
+
+//No 242 Valid Anagram
+bool solution::isAnagram(string s, string t)
+{
+  if (s.length() != t.length()) return false;
+  unordered_map<char, int> letterHash;
+  for (char c : s) {
+    if (letterHash.find(c) == letterHash.end()) {
+      letterHash.insert(pair<char,int>(c, 1));
+    }
+    else {
+      letterHash.find(c)->second++;
+    }
+  }
+  for (char c : t) {
+    if (letterHash.find(c) == letterHash.end() || letterHash.find(c)->second <= 0) {
+      return false;
+    }
+    else {
+      letterHash.find(c)->second--;
+    }
+  }
+  for (auto letter : letterHash) {
+    if (letter.second > 0) return false;
+  }
+  return true;
+}

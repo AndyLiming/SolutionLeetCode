@@ -20,17 +20,19 @@ int main() {
     cout << " [" << ans[i].start << "," << ans[i].end << "]" << endl;
   }
   cout << "]"<<endl;*/
-  vector<int> nums;
-  te.inputVector(nums);
+  //vector<int> nums;
+  //te.inputVector(nums);
   //cout << solu.rob2(nums) << endl;
 
-  //string s;
-  //cin >> s;
+  string s;
+  cin >> s;
   //cout << solu.calculate(s) << endl;
   //int k;
   //cin >> k;
   //cout << solu.isPowerOfTwo(k) << endl;
-  vector<int> ans = solu.productExceptSelf(nums);
+  //vector<int> ans = solu.productExceptSelf(nums);
+  //te.outputVector(ans);
+  vector<int> ans = solu.diffWaysToCompute(s);
   te.outputVector(ans);
   return 0;
 }

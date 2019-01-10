@@ -363,6 +363,12 @@ public:
   //240. Search a 2D Matrix II: Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
   //Integers in each row are sorted in ascending from left to right. Integers in each column are sorted in ascending from top to bottom.
 
+  vector<int> diffWaysToCompute(string input);
+  //241. Different Ways to Add Parentheses: Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are +, - and *.
+
+  bool isAnagram(string s, string t);
+  //242. Valid Anagram: Given two strings s and t , write a function to determine if t is an anagram of s.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
