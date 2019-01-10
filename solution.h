@@ -359,6 +359,10 @@ public:
   vector<int> productExceptSelf(vector<int>& nums);
   //238. Product of Array Except Self: Given an array nums of n integers where n > 1,  return an array output such that output[i] is equal to the product of all the elements of nums except nums[i].
 
+  bool searchMatrix2(vector<vector<int>>& matrix, int target);
+  //240. Search a 2D Matrix II: Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+  //Integers in each row are sorted in ascending from left to right. Integers in each column are sorted in ascending from top to bottom.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

@@ -2254,3 +2254,29 @@ vector<int> solution::productExceptSelf(vector<int>& nums)
   }
   return ans;
 }
+
+//No 240 Search a 2D Matrix II
+bool solution::searchMatrix2(vector<vector<int>>& matrix, int target)
+{
+  //binary search
+  if (matrix.empty() || matrix[0].empty()) return false;
+  int rows = matrix.size(), cols = matrix[0].size();
+  int rup = 0, rdown = rows - 1, cleft = 0, cright = cols - 1;
+  int rmid, cmid;
+  while (rup <= rdown) {
+    rmid = (rup + rdown) / 2;
+    if (matrix[rmid][0] == target) return true;
+    else if (matrix[rmid][0] < target) rup = rmid + 1;
+    else rdown = rmid - 1;
+  }
+  for (int i = 0;i <= rmid;++i) {
+    cleft = 0, cright = cols - 1;
+    while (cleft <= cright) {
+      cmid = (cleft + cright) / 2;
+      if (matrix[i][cmid] == target) return true;
+      else if (matrix[i][cmid] < target) cleft = cmid + 1;
+      else cright = cmid - 1;
+    }
+  }
+  return false;
+}
