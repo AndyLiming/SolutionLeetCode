@@ -369,6 +369,12 @@ public:
   bool isAnagram(string s, string t);
   //242. Valid Anagram: Given two strings s and t , write a function to determine if t is an anagram of s.
 
+  vector<string> binaryTreePaths(TreeNode* root);
+  //257. Binary Tree Paths: Given a binary tree, return all root-to-leaf paths.
+
+  int addDigits(int num);
+  //258. Add Digits: Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -389,6 +395,7 @@ private:
   bool isPrime(int x, vector<int> primes);
   int robPlan(vector<int>& nums);
   void combinationSum3Dfs(int k,int n,int level, vector<int>&out,vector<vector<int>>& ans);
+  void serchBtPaths(TreeNode* root, vector<string> &ans, string out);
 };
 #endif // !_SOLUTION_
 

@@ -1980,6 +1980,7 @@ void solution::combinationSum3Dfs(int k, int n, int level, vector<int>& out, vec
 }
 
 
+
 //No 217 Contains Duplicate
 bool solution::containsDuplicate(vector<int>& nums)
 {
@@ -2336,4 +2337,39 @@ bool solution::isAnagram(string s, string t)
     if (letter.second > 0) return false;
   }
   return true;
+}
+
+//No 257 Binary Tree Paths
+vector<string> solution::binaryTreePaths(TreeNode * root)
+{
+  /*recursive solution*/
+  vector<string>ans; 
+  if (root == nullptr) return ans;
+  string out;
+  serchBtPaths(root, ans, out);
+  return ans;
+  /*****************/
+}
+/*recursive solution*/
+void solution::serchBtPaths(TreeNode * root, vector<string>& ans, string out)
+{
+  if (root->left == nullptr &&root->right == nullptr) {
+    out = out + to_string(root->val);
+    ans.push_back(out);
+  }
+  if(root->left!=nullptr) serchBtPaths(root->left, ans, out+ to_string(root->val) + "->");
+  if(root->right != nullptr) serchBtPaths(root->right, ans, out + to_string(root->val) + "->");
+}
+/*****************/
+
+//No 258 Add Digits
+int solution::addDigits(int num)
+{
+  if (num <= 9) return num;
+  int dSum = 0;
+  while (num) {
+    dSum += num % 10;
+    num = num / 10;
+  }
+  return addDigits(dSum);
 }
