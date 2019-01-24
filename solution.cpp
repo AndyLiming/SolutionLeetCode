@@ -2373,3 +2373,40 @@ int solution::addDigits(int num)
   }
   return addDigits(dSum);
 }
+
+//No 260 Single Number III
+vector<int> solution::singleNumber3(vector<int>& nums)
+{
+  map<int, int> m;
+  map<int, int>::iterator mit;
+  vector<int> ans;
+  for (int i = 0;i < nums.size();++i) {
+    mit = m.find(nums[i]);
+    if (mit == m.end()) {
+      m.insert(pair<int, int>(nums[i], 1));
+    }
+    else {
+      mit->second++;
+    }
+  }
+  for (mit = m.begin();mit != m.end();++mit) {
+    if (mit->second == 1) ans.push_back(mit->first);
+  }
+  return ans;
+}
+
+//No 263 Ugly Number
+bool solution::isUgly(int num)
+{
+  if (num <= 0) return false;
+  if (num == 1) return true;
+  while (num > 1) {
+    if (num % 2 != 0 && num % 3 != 0&& num % 5 != 0) return false;
+    else {
+      if (num % 2 == 0) num /= 2;
+      if (num % 3 == 0) num /= 3;
+      if (num % 5 == 0) num /= 5;
+    }
+  }
+  return true;
+}

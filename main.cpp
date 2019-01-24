@@ -36,6 +36,6 @@ int main() {
   //te.outputVector(ans);
   int num;
   cin >> num;
-  cout << solu.addDigits(num) << endl;
+  cout << solu.isUgly(num) << endl;
   return 0;
 }
