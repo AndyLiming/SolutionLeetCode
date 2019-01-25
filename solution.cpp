@@ -2426,3 +2426,15 @@ int solution::nthUglyNumber(int n)
   }
   return dp[n - 1];
 }
+
+//No 268 Missing Number
+int solution::missingNumber(vector<int>& nums)
+{
+  int len = nums.size();
+  long long sumAll = len*(len + 1) / 2;
+  long long sum = 0;
+  for (int i = 0;i < len;++i) {
+    sum += nums[i];
+  }
+  return sumAll - sum;
+}
