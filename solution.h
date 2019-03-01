@@ -387,6 +387,10 @@ public:
   int missingNumber(vector<int>& nums);
   //268. Missing Number: Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
 
+  bool isAdditiveNumber(string num);
+  //306. Additive Number: Additive number is a string whose digits can form additive sequence. A valid additive sequence should contain at least three numbers.Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two.
+  //Given a string containing only digits '0' - '9', write a function to determine if it's an additive number.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -408,6 +412,7 @@ private:
   int robPlan(vector<int>& nums);
   void combinationSum3Dfs(int k,int n,int level, vector<int>&out,vector<vector<int>>& ans);
   void serchBtPaths(TreeNode* root, vector<string> &ans, string out);
+  bool additiveNumBacktrack(long long num1, long long num2, string s, int start);
 };
 #endif // !_SOLUTION_
 

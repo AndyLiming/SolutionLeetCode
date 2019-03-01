@@ -2438,3 +2438,32 @@ int solution::missingNumber(vector<int>& nums)
   }
   return sumAll - sum;
 }
+
+//No 306 Additive Number
+bool solution::isAdditiveNumber(string num)
+{
+  if (num.size() < 3)return false;
+  for (int l1 = 1;l1 < num.size();++l1) {
+    string s1 = num.substr(0, l1);
+    if (s1[0] == '0'&& l1 > 1) break;
+    long long num1 = stoll(s1);
+    for (int l2 = l1 + 1;l2 < num.size() - l1;++l2) {
+      string s2 = num.substr(l1, l2);
+      if (s2[0] == '0'&& l2 > 1) break;
+      long long num2 = stoll(s2);
+      if(additiveNumBacktrack(num1, num2, num, l1 + l2)) return true;
+    }
+  }
+  return false;
+}
+bool solution::additiveNumBacktrack(long long num1, long long num2, string s, int start)
+{
+  if (start == s.size()) return true;
+  for (int l3 = 1;l3 <= s.size() - start;++l3) {
+    string s3 = s.substr(start, l3);
+    if (s3[0] == '0'&& l3 > 1) break;
+    long long num3 = stoll(s3);
+    if (num1 + num2 == num3 && additiveNumBacktrack(num2, num3, s, start + l3)) return true;
+  }
+  return false;
+}

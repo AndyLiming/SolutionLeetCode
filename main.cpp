@@ -24,8 +24,8 @@ int main() {
   //te.inputVector(nums);
   //cout << solu.rob2(nums) << endl;
 
-  //string s;
-  //cin >> s;
+  string num;
+  cin >> num;
   //cout << solu.calculate(s) << endl;
   //int k;
   //cin >> k;
@@ -34,8 +34,9 @@ int main() {
   //te.outputVector(ans);
   //vector<int> ans = solu.diffWaysToCompute(s);
   //te.outputVector(ans);
-  int num;
-  cin >> num;
-  cout << solu.isUgly(num) << endl;
+  //int num;
+  //cin >> num;
+  //cout << solu.isUgly(num) << endl;
+  cout << solu.isAdditiveNumber(num) << endl;
   return 0;
 }
