@@ -391,6 +391,13 @@ public:
   //306. Additive Number: Additive number is a string whose digits can form additive sequence. A valid additive sequence should contain at least three numbers.Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two.
   //Given a string containing only digits '0' - '9', write a function to determine if it's an additive number.
 
+  int nthSuperUglyNumber(int n, vector<int>& primes);
+  //313. Super Ugly Number: Write a program to find the nth super ugly number.
+  //Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k.
+
+  bool isPowerOfThree(int n);
+  //326. Power of Three: Given an integer, write a function to determine if it is a power of three.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -413,6 +420,43 @@ private:
   void combinationSum3Dfs(int k,int n,int level, vector<int>&out,vector<vector<int>>& ans);
   void serchBtPaths(TreeNode* root, vector<string> &ans, string out);
   bool additiveNumBacktrack(long long num1, long long num2, string s, int start);
+};
+//No 303 Range Sum Query - Immutable
+class NumArray {
+public:
+  NumArray(vector<int> nums) {
+    sumDp = nums;
+    for (int i = 1;i < nums.size();++i) {
+      sumDp[i] += sumDp[i - 1];
+    }
+  }
+
+  int sumRange(int i, int j) {
+    if (i == 0) return sumDp[j];
+    else return sumDp[j] - sumDp[i - 1];
+  }
+private:
+  vector<int>sumDp;
+};
+
+//No 304 Range Sum Query 2D - Immutable
+class NumMatrix {
+public:
+  NumMatrix(vector<vector<int>> matrix) {
+    if (matrix.empty() || matrix[0].empty()) return;
+    sumDp.resize(matrix.size() + 1, vector<int>(matrix[0].size() + 1, 0));
+    for (int i = 1;i <= matrix.size();++i) {
+      for (int j = 1;j <= matrix[0].size();++j) {
+        sumDp[i][j] = sumDp[i][j - 1] + sumDp[i - 1][j] - sumDp[i - 1][j - 1]+ matrix[i-1][j-1];
+      }
+    }
+  }
+
+  int sumRegion(int row1, int col1, int row2, int col2) {
+    return sumDp[row2 + 1][col2 + 1] - sumDp[row1][col2 + 1] - sumDp[row2 + 1][col1] + sumDp[row1][col1];
+  }
+private :
+  vector<vector<int>> sumDp;
 };
 #endif // !_SOLUTION_
 

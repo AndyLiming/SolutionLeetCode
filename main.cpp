@@ -20,12 +20,14 @@ int main() {
     cout << " [" << ans[i].start << "," << ans[i].end << "]" << endl;
   }
   cout << "]"<<endl;*/
-  //vector<int> nums;
-  //te.inputVector(nums);
+  vector<int> primes;
+  int n,tmp;
+  cin >> n;
+  te.inputVector(primes);
   //cout << solu.rob2(nums) << endl;
 
-  string num;
-  cin >> num;
+  //string num;
+  //cin >> num;
   //cout << solu.calculate(s) << endl;
   //int k;
   //cin >> k;
@@ -37,6 +39,9 @@ int main() {
   //int num;
   //cin >> num;
   //cout << solu.isUgly(num) << endl;
-  cout << solu.isAdditiveNumber(num) << endl;
+  //cout << solu.isAdditiveNumber(num) << endl;
+  for (int i = 1;i <= n;++i) {
+    cout << solu.nthSuperUglyNumber(i, primes) << endl;
+  }
   return 0;
 }

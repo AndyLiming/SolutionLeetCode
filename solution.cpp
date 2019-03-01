@@ -2467,3 +2467,41 @@ bool solution::additiveNumBacktrack(long long num1, long long num2, string s, in
   }
   return false;
 }
+//No 313 Super Ugly Number
+int solution::nthSuperUglyNumber(int n, vector<int>& primes)
+{
+  if (n <= 1) return 1;
+  sort(primes.begin(), primes.end());
+  vector<int>count(primes.size(), 0);
+  vector<int> dp(n);
+  dp[0] = 1;
+  for (int i = 1;i < n;++i) {
+    int tmp = dp[count[0]] * primes[0];
+    int id = 0;
+    for (int j = 1;j < primes.size();++j) {
+      if (dp[count[j]] * primes[j] < tmp) {
+        tmp = dp[count[j]] * primes[j];
+        id = j;
+      }
+    }
+    dp[i] = tmp;
+    for (int j = 0;j < primes.size();++j) {
+      if (dp[i]== dp[count[j]] * primes[j]) {
+        count[j]++;
+      }
+    }
+  }
+  return dp[n - 1];
+}
+//No 326  Power of Three
+bool solution::isPowerOfThree(int n)
+{
+  if(n<=0) return false;
+  while (n > 1) {
+    if (n % 3 != 0) return false;
+    else {
+      n = n / 3;
+    }
+  }
+  return true;
+}
