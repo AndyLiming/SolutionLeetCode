@@ -406,6 +406,18 @@ public:
   //328. Odd Even Linked List: Given a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.
   //You should try to do it in place.The program should run in O(1) space complexity and O(nodes) time complexity.
 
+  int bulbSwitch(int n);
+  //319. Bulb Switcher: There are n bulbs that are initially off. You first turn on all the bulbs. Then, you turn off every second bulb. On the third round, you toggle every third bulb (turning on if it's off or turning off if it's on).
+  //For the i-th round, you toggle every i bulb. For the n-th round, you only toggle the last bulb. Find how many bulbs are on after n rounds.
+
+  int rob3(TreeNode* root);
+  //337. House Robber III: all houses in this place forms a binary tree. It will automatically contact the police if two directly-linked houses were broken into on the same night.
+  //Determine the maximum amount of money the thief can rob tonight without alerting the police.
+
+  int coinChange(vector<int>& coins, int amount);
+  //322. Coin Change: You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount.
+  //If that amount of money cannot be made up by any combination of the coins, return -1.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -428,6 +440,7 @@ private:
   void combinationSum3Dfs(int k,int n,int level, vector<int>&out,vector<vector<int>>& ans);
   void serchBtPaths(TreeNode* root, vector<string> &ans, string out);
   bool additiveNumBacktrack(long long num1, long long num2, string s, int start);
+  vector<int>rob3Dfs(TreeNode* root);
 };
 
 //No 303 Range Sum Query - Immutable

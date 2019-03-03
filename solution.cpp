@@ -2467,6 +2467,7 @@ bool solution::additiveNumBacktrack(long long num1, long long num2, string s, in
   }
   return false;
 }
+
 //No 313 Super Ugly Number
 int solution::nthSuperUglyNumber(int n, vector<int>& primes)
 {
@@ -2545,4 +2546,60 @@ ListNode * solution::oddEvenList(ListNode * head)
   oddP->next = evenHelper->next;
   evenHelper->next = nullptr;
   return head;
+}
+
+//No 319 Bulb Switcher
+int solution::bulbSwitch(int n)
+{
+  if(n<=0) return 0;
+  if (n == 1) return 1;
+  int bulbsOnNum = 0;
+  for (int i  = 1;i*i<= n;++i) {
+    bulbsOnNum++;
+  }
+  return bulbsOnNum;
+  //Time Limit Exceeded
+  //int bulbsOnNum = 1;
+  //for (int i = 2;i <= n;++i) {
+  //  int count = 0;
+  //  for (int j = 2;j <= i/2;++j) {
+  //    if (i%j == 0) count++;
+  //  }
+  //  if (count % 2 == 1) bulbsOnNum++;
+  //}
+  //return bulbsOnNum;
+  /**************************/
+
+}
+
+//No 337 House Robber III
+int solution::rob3(TreeNode * root)
+{
+  vector<int> ans = rob3Dfs(root);
+  return max(ans[0], ans[1]);
+}
+vector<int> solution::rob3Dfs(TreeNode * root)
+{
+  if(!root) return vector<int>(2,0);
+  vector<int>left = rob3Dfs(root->left);
+  vector<int>right = rob3Dfs(root->right);
+  vector<int>res (2, 0);
+  res[0] = max(left[0], left[1]) + max(right[0], right[1]);
+  res[1] = left[0] + right[0] + root->val;
+  return res;
+}
+
+//No 322 Coin Change
+int solution::coinChange(vector<int>& coins, int amount)
+{
+  vector<int> coinDp(amount + 1, amount + 1);
+  coinDp[0] = 0;
+  for (int i = 1;i <= amount;++i) {
+    for (int j = 0;j < coins.size();++j) {
+      if (coins[j] <= i) {
+        coinDp[i] = min(coinDp[i], coinDp[i - coins[j]] + 1);
+      }
+    }
+  }
+  return coinDp[amount] > amount ? -1 : coinDp[amount];
 }

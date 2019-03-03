@@ -21,8 +21,8 @@ int main() {
   }
   cout << "]"<<endl;*/
   //vector<int> primes;
-  //int n,tmp;
-  //cin >> n;
+  int n;
+  cin >> n;
   //te.inputVector(primes);
   //cout << solu.rob2(nums) << endl;
 
@@ -43,7 +43,7 @@ int main() {
   //for (int i = 1;i <= n;++i) {
   //  cout << solu.nthSuperUglyNumber(i, primes) << endl;
   //}
-  ListNode * head = new ListNode(1);
+  /*ListNode * head = new ListNode(1);
   ListNode *p = head;
   for (int i = 2;i <= 8;++i) {
     p->next = new ListNode(i);
@@ -54,6 +54,7 @@ int main() {
   while (p != nullptr) {
     cout << p->val << " ";
     p = p->next;
-  }
+  }*/
+  cout << solu.bulbSwitch(n) << endl;
   return 0;
 }
