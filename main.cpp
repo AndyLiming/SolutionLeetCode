@@ -20,10 +20,10 @@ int main() {
     cout << " [" << ans[i].start << "," << ans[i].end << "]" << endl;
   }
   cout << "]"<<endl;*/
-  vector<int> primes;
-  int n,tmp;
-  cin >> n;
-  te.inputVector(primes);
+  //vector<int> primes;
+  //int n,tmp;
+  //cin >> n;
+  //te.inputVector(primes);
   //cout << solu.rob2(nums) << endl;
 
   //string num;
@@ -40,8 +40,20 @@ int main() {
   //cin >> num;
   //cout << solu.isUgly(num) << endl;
   //cout << solu.isAdditiveNumber(num) << endl;
-  for (int i = 1;i <= n;++i) {
-    cout << solu.nthSuperUglyNumber(i, primes) << endl;
+  //for (int i = 1;i <= n;++i) {
+  //  cout << solu.nthSuperUglyNumber(i, primes) << endl;
+  //}
+  ListNode * head = new ListNode(1);
+  ListNode *p = head;
+  for (int i = 2;i <= 8;++i) {
+    p->next = new ListNode(i);
+    p = p->next;
+  }
+  ListNode *ans = solu.oddEvenList(head);
+  p = ans;
+  while (p != nullptr) {
+    cout << p->val << " ";
+    p = p->next;
   }
   return 0;
 }

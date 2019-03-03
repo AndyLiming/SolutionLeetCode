@@ -398,6 +398,14 @@ public:
   bool isPowerOfThree(int n);
   //326. Power of Three: Given an integer, write a function to determine if it is a power of three.
 
+  int maxProductWordLength(vector<string>& words);
+  //318. Maximum Product of Word Lengths: Given a string array words, find the maximum value of length(word[i]) * length(word[j]) where the two words do not share common letters. 
+  //You may assume that each word will contain only lower case letters. If no such two words exist, return 0.
+
+  ListNode* oddEvenList(ListNode* head);
+  //328. Odd Even Linked List: Given a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.
+  //You should try to do it in place.The program should run in O(1) space complexity and O(nodes) time complexity.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -421,6 +429,7 @@ private:
   void serchBtPaths(TreeNode* root, vector<string> &ans, string out);
   bool additiveNumBacktrack(long long num1, long long num2, string s, int start);
 };
+
 //No 303 Range Sum Query - Immutable
 class NumArray {
 public:

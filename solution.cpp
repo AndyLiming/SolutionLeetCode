@@ -2493,6 +2493,7 @@ int solution::nthSuperUglyNumber(int n, vector<int>& primes)
   }
   return dp[n - 1];
 }
+
 //No 326  Power of Three
 bool solution::isPowerOfThree(int n)
 {
@@ -2504,4 +2505,44 @@ bool solution::isPowerOfThree(int n)
     }
   }
   return true;
+}
+
+//No 318 Maximum Product of Word Lengths
+int solution::maxProductWordLength(vector<string>& words)
+{
+  if (words.size() <= 1) return 0;
+  vector<int>mask(words.size(), 0);
+  long long res = 0;
+  for (int i = 0;i < words.size();++i) {
+    for (auto c : words[i]) {
+      mask[i] |= (1 << (c - 'a'));
+    }
+    for (int j = 0;j < i;++j) {
+      if (!(mask[i] & mask[j])) {
+        res = max(res, (long long)(words[i].size()*words[j].size()));
+      }
+    }
+  }
+  return res;
+}
+
+//No 328 Odd Even Linked List
+ListNode * solution::oddEvenList(ListNode * head)
+{
+  if (head == nullptr || head->next == nullptr || head->next->next == nullptr) return head;
+  ListNode * evenHelper = new ListNode(0);
+  ListNode *oddP = head, *evenP = head->next, *helperP=evenHelper;
+  while (evenP != nullptr && oddP != nullptr) {
+    oddP->next = evenP->next;
+    helperP->next = evenP;
+    helperP = helperP->next;
+    evenP->next = nullptr;
+    if(oddP->next) oddP = oddP->next;
+    else break;
+    if(oddP->next)evenP = oddP->next;
+    else break;
+  }
+  oddP->next = evenHelper->next;
+  evenHelper->next = nullptr;
+  return head;
 }
