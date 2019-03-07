@@ -418,6 +418,12 @@ public:
   //322. Coin Change: You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount.
   //If that amount of money cannot be made up by any combination of the coins, return -1.
 
+  bool isPowerOfFour(int num);
+  //342. Power of Four: Given an integer (signed 32 bits), write a function to check whether it is a power of 4.
+
+  vector<int> countBits(int num);
+  //338. Counting Bits: Given a non negative integer number num. For every numbers i in the range 0 ¡Ü i ¡Ü num calculate the number of 1's in their binary representation and return them as an array.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

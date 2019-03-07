@@ -2603,3 +2603,27 @@ int solution::coinChange(vector<int>& coins, int amount)
   }
   return coinDp[amount] > amount ? -1 : coinDp[amount];
 }
+
+//No 342 Power of Four
+bool solution::isPowerOfFour(int num)
+{
+  if (num <= 0)return false;
+  while (num > 1) {
+    if (num % 4 != 0) return false;
+    else {
+      num /=4;
+    }
+  }
+  return true;
+}
+
+//No 338 Counting Bits
+vector<int> solution::countBits(int num)
+{
+  vector<int> ans(num+1,0);
+  for (int i = 1;i <= num;++i) {
+    if (i % 2 == 0) ans[i] = ans[i >> 1];
+    else ans[i] = ans[i >> 1] + 1;
+  }
+  return ans;
+}

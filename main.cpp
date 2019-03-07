@@ -55,6 +55,6 @@ int main() {
     cout << p->val << " ";
     p = p->next;
   }*/
-  cout << solu.bulbSwitch(n) << endl;
+  cout << solu.isPowerOfFour(n) << endl;
   return 0;
 }
