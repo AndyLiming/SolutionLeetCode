@@ -2770,7 +2770,7 @@ bool solution::increasingTriplet(vector<int>& nums)
   int len = nums.size();
   if(len<3) return false;
   int m1 = INT_MAX, m2 = INT_MAX;
-  for (int i = 0;i < len - 2;++i) {
+  for (int i = 0;i < len;++i) {
     if (m1 >= nums[i]) m1 = nums[i];
     else if (m2 >= nums[i]) m2 = nums[i];
     else return true;
