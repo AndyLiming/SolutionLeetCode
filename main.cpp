@@ -20,29 +20,13 @@ int main() {
     cout << " [" << ans[i].start << "," << ans[i].end << "]" << endl;
   }
   cout << "]"<<endl;*/
-  //vector<int> primes;
-  int n;
-  cin >> n;
-  //te.inputVector(primes);
-  //cout << solu.rob2(nums) << endl;
-
-  //string num;
-  //cin >> num;
-  //cout << solu.calculate(s) << endl;
-  //int k;
-  //cin >> k;
-  //cout << solu.isPowerOfTwo(k) << endl;
-  //vector<int> ans = solu.productExceptSelf(nums);
-  //te.outputVector(ans);
-  //vector<int> ans = solu.diffWaysToCompute(s);
-  //te.outputVector(ans);
-  //int num;
-  //cin >> num;
-  //cout << solu.isUgly(num) << endl;
-  //cout << solu.isAdditiveNumber(num) << endl;
-  //for (int i = 1;i <= n;++i) {
-  //  cout << solu.nthSuperUglyNumber(i, primes) << endl;
-  //}
+  vector<int> nums;
+  te.inputVector(nums);
+  cout << solu.increasingTriplet(nums) << endl;
+  //solu.wiggleSort(nums);
+  //te.outputVector(nums);
+  //cout << solu.countRangeSum(nums,l,u) << endl;
+  //cout << solu.integerBreak(n) << endl;
   /*ListNode * head = new ListNode(1);
   ListNode *p = head;
   for (int i = 2;i <= 8;++i) {
@@ -55,6 +39,8 @@ int main() {
     cout << p->val << " ";
     p = p->next;
   }*/
-  cout << solu.isPowerOfFour(n) << endl;
+  //string s;
+  //cin >> s;
+  //cout << solu.reverseVowels(s) << endl;
   return 0;
 }

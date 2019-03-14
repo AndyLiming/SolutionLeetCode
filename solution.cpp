@@ -2627,3 +2627,153 @@ vector<int> solution::countBits(int num)
   }
   return ans;
 }
+
+//No 309 Best Time to Buy and Sell Stock with Cooldown
+int solution::maxProfit(vector<int>& prices)
+{
+  int sell = 0,sellPre = 0,buy = 999999999,sellOld = 0;
+  for (int i = 0;i < prices.size();++i) {
+    buy = min(buy, prices[i] - sellOld);
+    sellOld = sell;
+    sell = max(sellOld, prices[i] - buy);
+  }
+  return sell;
+}
+
+//No 327 Count of Range Sum
+int solution::countRangeSum(vector<int>& nums, int lower, int upper)
+{
+  int ans = 0;
+  long long sum = 0;
+  multiset<long long>sums;
+  sums.insert(0);
+  for (int i = 0;i < nums.size();++i) {
+    sum += nums[i];
+    ans += distance(sums.lower_bound(sum - upper), sums.upper_bound(sum - lower));
+    sums.insert(sum);
+  }
+  return ans;
+}
+
+//No 343 Integer Break
+int solution::integerBreak(int n)
+{
+  if (n < 4) return n - 1;
+  int ans = 1;
+  while (n > 4) {
+    n -= 3;
+    ans *= 3;
+  }
+  ans *= n;
+  return ans;
+}
+
+//No 324 Wiggle Sort II
+void solution::wiggleSort(vector<int>& nums)
+{
+  vector<int>helper(nums.begin(), nums.end());
+  sort(helper.begin(), helper.end());
+  int i = 0, j = (helper.size() - 1) / 2, k = helper.size()-1;
+  while (i < nums.size()) {
+    if (i % 2 == 0) {
+      nums[i] = helper[j];
+      j--;
+    }
+    else {
+      nums[i] = helper[k];
+      k--;
+    }
+    i++;
+  }
+}
+
+//No 344 Reverse String
+void solution::reverseString(vector<char>& s)
+{
+  int len = s.size();
+  if (len <= 1) return;
+  for (int i = 0;i < len / 2;++i) {
+    swap(s[i], s[len - 1 - i]);
+  }
+}
+
+//No 345 Reverse Vowels of a String
+string solution::reverseVowels(string s)
+{
+  int len = s.size();
+  int i = 0, j = len - 1;
+  while (i < j) {
+    if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U') {
+      if (s[j] == 'a' || s[j] == 'e' || s[j] == 'i' || s[j] == 'o' || s[j] == 'u'|| s[j] == 'A' || s[j] == 'E' || s[j] == 'I' || s[j] == 'O' || s[j] == 'U') {
+        swap(s[i], s[j]);
+        i++;
+        j--;
+      }
+      else j--;
+    }
+    else i++;
+  }
+  return s;
+}
+
+
+//No 347 Top K Frequent Elements
+vector<int> solution::topKFrequent(vector<int>& nums, int k)
+{
+  vector<int>ans;
+  unordered_map<int, int>m;
+  for (auto n : nums) ++m[n];
+  priority_queue<pair<int, int>> heap;//by a heap
+  for (auto i : m) heap.push({ i.second, i.first });//the frequency of appearance
+  for (int i = 0;i < k;++i) {
+    ans.push_back(heap.top().second);
+    heap.pop();
+  }
+  return ans;
+}
+
+//No 349 Intersection of Two Arrays
+vector<int> solution::intersection(vector<int>& nums1, vector<int>& nums2)
+{
+  vector<int> ans;
+  unordered_map<int, int>m;
+  for (auto n1 : nums1) m[n1] = 1;
+  for (auto n2 : nums2) {
+    if (m.find(n2) != m.end()) {
+      m.erase(n2);
+      ans.push_back(n2);
+    }
+  }
+  return ans;
+}
+
+//No 350 Intersection of Two Arrays II
+vector<int> solution::intersect(vector<int>& nums1, vector<int>& nums2)
+{
+  vector<int> ans;
+  unordered_map<int, int>m;
+  for (auto n1 : nums1) m[n1]++;
+  for (auto n2 : nums2) {
+    if (m.find(n2) != m.end()) {
+      if (m[n2] > 0) {
+        ans.push_back(n2);
+        m[n2]--;
+      }
+    }
+  }
+  return ans;
+}
+
+//No 334 Increasing Triplet Subsequence
+bool solution::increasingTriplet(vector<int>& nums)
+{
+  int len = nums.size();
+  if(len<3) return false;
+  int m1 = INT_MAX, m2 = INT_MAX;
+  for (int i = 0;i < len - 2;++i) {
+    if (m1 >= nums[i]) m1 = nums[i];
+    else if (m2 >= nums[i]) m2 = nums[i];
+    else return true;
+  }
+  return false;
+}

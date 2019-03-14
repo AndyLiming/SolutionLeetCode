@@ -424,6 +424,38 @@ public:
   vector<int> countBits(int num);
   //338. Counting Bits: Given a non negative integer number num. For every numbers i in the range 0 ¡Ü i ¡Ü num calculate the number of 1's in their binary representation and return them as an array.
 
+  int maxProfit(vector<int>& prices);
+  //309. Best Time to Buy and Sell Stock with Cooldown: Say you have an array for which the ith element is the price of a given stock on day i.
+  //Design an algorithm to find the maximum profit.You may complete as many transactions as you like(ie, buy one and sell one share of the stock multiple times) with the following restrictions :
+
+  int countRangeSum(vector<int>& nums, int lower, int upper);
+  //327. Count of Range Sum: Given an integer array nums, return the number of range sums that lie in [lower, upper] inclusive.
+  //Range sum S(i, j) is defined as the sum of the elements in nums between indices i and j(i ¡Ü j), inclusive.
+
+  int integerBreak(int n);
+  //343. Integer Break: Given a positive integer n, break it into the sum of at least two positive integers and maximize the product of those integers. Return the maximum product you can get.
+
+  void wiggleSort(vector<int>& nums);
+  //324. Wiggle Sort II: Given an unsorted array nums, reorder it such that nums[0] < nums[1] > nums[2] < nums[3]....
+
+  void reverseString(vector<char>& s);
+  //344. Reverse String
+
+  string reverseVowels(string s);
+  //345. Reverse Vowels of a String
+
+  vector<int> topKFrequent(vector<int>& nums, int k);
+  //347. Top K Frequent Elements: Given a non-empty array of integers, return the k most frequent elements.
+
+  vector<int> intersection(vector<int>& nums1, vector<int>& nums2);
+  //349. Intersection of Two Arrays: Given two arrays, write a function to compute their intersection.
+
+  vector<int> intersect(vector<int>& nums1, vector<int>& nums2);
+  //350. Intersection of Two Arrays II
+
+  bool increasingTriplet(vector<int>& nums);
+  //334. Increasing Triplet Subsequence: Given an unsorted array return whether an increasing subsequence of length 3 exists or not in the array
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
