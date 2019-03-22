@@ -20,9 +20,13 @@ int main() {
     cout << " [" << ans[i].start << "," << ans[i].end << "]" << endl;
   }
   cout << "]"<<endl;*/
-  vector<int> nums;
-  te.inputVector(nums);
-  cout << solu.increasingTriplet(nums) << endl;
+  int n;
+  cin >> n;
+  vector<pair<int, int>> enves(n);
+  for (int i = 0;i < n;++i) {
+    cin >> enves[i].first >> enves[i].second;
+  }
+  cout << solu.maxEnvelopes(enves) << endl;
   //solu.wiggleSort(nums);
   //te.outputVector(nums);
   //cout << solu.countRangeSum(nums,l,u) << endl;

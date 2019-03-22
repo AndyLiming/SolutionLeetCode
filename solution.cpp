@@ -2704,7 +2704,7 @@ string solution::reverseVowels(string s)
   int i = 0, j = len - 1;
   while (i < j) {
     if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U') {
-      if (s[j] == 'a' || s[j] == 'e' || s[j] == 'i' || s[j] == 'o' || s[j] == 'u'|| s[j] == 'A' || s[j] == 'E' || s[j] == 'I' || s[j] == 'O' || s[j] == 'U') {
+      if (s[j] == 'a' || s[j] == 'e' || s[j] == 'i' || s[j] == 'o' || s[j] == 'u' || s[j] == 'A' || s[j] == 'E' || s[j] == 'I' || s[j] == 'O' || s[j] == 'U') {
         swap(s[i], s[j]);
         i++;
         j--;
@@ -2768,7 +2768,7 @@ vector<int> solution::intersect(vector<int>& nums1, vector<int>& nums2)
 bool solution::increasingTriplet(vector<int>& nums)
 {
   int len = nums.size();
-  if(len<3) return false;
+  if (len < 3) return false;
   int m1 = INT_MAX, m2 = INT_MAX;
   for (int i = 0;i < len;++i) {
     if (m1 >= nums[i]) m1 = nums[i];
@@ -2776,4 +2776,61 @@ bool solution::increasingTriplet(vector<int>& nums)
     else return true;
   }
   return false;
+}
+
+//No 354 Russian Doll Envelopes
+//brute force DP
+//int solution::maxEnvelopes(vector<pair<int, int>>& envelopes)
+//{
+//  int n = envelopes.size();
+//  if (n <= 1) return n;
+//  sort(envelopes.begin(), envelopes.end(), comparePair);
+//  vector<int> dp(n, 1);
+//  int count = 1;
+//  int w = envelopes[0].first, h = envelopes[0].second;
+//  for (int i = 1;i < n;++i) {
+//    for (int j = 0;j < i;++j) {
+//      if (envelopes[i].first > envelopes[j].first && envelopes[i].second > envelopes[j].second) {
+//        dp[i] = max(dp[i], dp[j] + 1);
+//      }
+//    }
+//    count = max(count, dp[i]);
+//  }
+//  return count;
+//}
+//bool solution::comparePair(pair<int, int>& p1, pair<int, int>& p2)
+//{
+//  if (p1.first != p2.first) return p1.first < p2.first;
+//  else return p1.second < p2.second;
+//}
+/*****************************************************/
+int solution::maxEnvelopes(vector<pair<int, int>>& envelopes) {
+  int n = envelopes.size();
+  if (n <= 1) return n;
+  vector<int>dp;
+  sort(envelopes.begin(), envelopes.end(), [](const pair<int, int>&p1, const pair<int, int>&p2) {
+    return p1.first < p2.first || (p1.first == p2.first && p1.second > p2.second);
+  });
+  //for (auto p : envelopes) { cout << p.first << "," << p.second << endl; }
+  for (auto p : envelopes) {
+    auto it = lower_bound(dp.begin(), dp.end(), p.second);
+    if (it == dp.end()) dp.push_back(p.second);
+    else *it = p.second;
+  }
+  /*for (auto n : dp) { cout << n << " "; }
+  cout << endl;*/
+  return dp.size();
+}
+
+
+//No 357 Count Numbers with Unique Digits
+int solution::countNumbersWithUniqueDigits(int n)
+{
+  if (n == 0) return 1;
+  int ans = 10, cnt = 9;
+  for (int i = 2;i <= n;++i) {
+    cnt *= (11 - i);
+    ans += cnt;
+  }
+  return ans;
 }

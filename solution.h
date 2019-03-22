@@ -456,6 +456,13 @@ public:
   bool increasingTriplet(vector<int>& nums);
   //334. Increasing Triplet Subsequence: Given an unsorted array return whether an increasing subsequence of length 3 exists or not in the array
 
+  int maxEnvelopes(vector<pair<int, int>>& envelopes);
+  //354. Russian Doll Envelopes: You have a number of envelopes with widths and heights given as a pair of integers (w, h). One envelope can fit into another if and only if both the width and height of one envelope is greater than the width and height of the other envelope.
+  //What is the maximum number of envelopes can you Russian doll ? (put one inside other)
+
+  int countNumbersWithUniqueDigits(int n);
+  //357. Count Numbers with Unique Digits: Given a non-negative integer n, count all numbers with unique digits, x, where 0 ¡Ü x < 10n.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -479,6 +486,7 @@ private:
   void serchBtPaths(TreeNode* root, vector<string> &ans, string out);
   bool additiveNumBacktrack(long long num1, long long num2, string s, int start);
   vector<int>rob3Dfs(TreeNode* root);
+  bool comparePair(pair<int, int>& p1, pair<int, int>& p2);
 };
 
 //No 303 Range Sum Query - Immutable
