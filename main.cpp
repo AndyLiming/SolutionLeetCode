@@ -26,8 +26,6 @@ int main() {
   //for (int i = 0;i < n;++i) {
   //  cin >> enves[i].first >> enves[i].second;
   //}
-  vector<vector<int>> m{ vector<int>{1,0,1},vector<int>{0,-2,3},vector<int>{5,0,7} };
-  cout << solu.maxSumSubmatrix(m,8) << endl;
   //solu.wiggleSort(nums);
   //te.outputVector(nums);
   //cout << solu.countRangeSum(nums,l,u) << endl;
@@ -47,5 +45,8 @@ int main() {
   //string s;
   //cin >> s;
   //cout << solu.reverseVowels(s) << endl;
+  int x,y;
+  cin >> x>>y;
+  cout << solu.getSum(x,y) << endl;
   return 0;
 }

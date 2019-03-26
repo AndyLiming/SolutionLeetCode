@@ -2863,3 +2863,67 @@ int solution::maxSumSubmatrix(vector<vector<int>>& matrix, int k)
   }
   return ans;
 }
+
+//No 365 Water and Jug Problem
+bool solution::canMeasureWater(int x, int y, int z)
+{
+  //if such integer m and n exist to make z = m*x + n*y, we can get z litres water by those jugs
+  //according to The B¨¦zout's Identity, z=m*x+n*y has a solution if and only if z is a mutiple of the gcd(x,y)
+  if (z == 0)return true;
+  if (z<0 || z>x + y) return false;
+  if ((x == 0 && y != z) || (y == 0 && x != z)) return false;
+  //get gcd(x,y)
+  int l = max(x, y), s = min(x, y);
+  while (s > 0) {
+    int t = s;
+    s = l % s;
+    l = t;
+  }
+  if (z%l == 0) return true;
+  else return false;
+}
+
+//No 367 Valid Perfect Square
+bool solution::isPerfectSquare(int num)
+{
+  num = (long long)num;
+  if (num <= 0) return false;
+  long long i = 0;
+  while (i*i < num)++i;
+  return i*i == num;
+}
+
+//No 368 Largest Divisible Subset
+vector<int> solution::largestDivisibleSubset(vector<int>& nums)
+{
+  if (nums.empty()) return vector<int>();
+  sort(nums.begin(), nums.end());
+  vector<int>dp(nums.size(), 0), parent(nums.size(), 0), ans;
+  int mx = 0, mxIdx = 0;
+  for (int i = nums.size() - 1;i > -1;--i) {
+    for (int j = i;j < nums.size();++j) {
+      if (nums[j] % nums[i] == 0 && dp[i] < dp[j] + 1) {
+        dp[i] = dp[j] + 1;
+        parent[i] = j;
+        if (dp[i] > mx) {
+          mx = dp[i];
+          mxIdx = i;
+        }
+      }
+    }
+  }
+  for (int i = 0;i < mx;++i) {
+    ans.push_back(nums[mxIdx]);
+    mxIdx = parent[mxIdx];
+  }
+  return ans;
+}
+
+//No 371 Sum of Two Integers
+int solution::getSum(int a, int b)
+{
+  if (b == 0) return a;
+  int sum = a^b;
+  int carry = (a & b & 0x7FFFFFFF) << 1;
+  return getSum(sum, carry);
+}

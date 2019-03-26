@@ -466,6 +466,20 @@ public:
   int maxSumSubmatrix(vector<vector<int>>& matrix, int k);
   //363. Max Sum of Rectangle No Larger Than K: Given a non-empty 2D matrix matrix and an integer k, find the max sum of a rectangle in the matrix such that its sum is no larger than k.
 
+  bool canMeasureWater(int x, int y, int z);
+  //365. Water and Jug Problem: You are given two jugs with capacities x and y litres. There is an infinite amount of water supply available. You need to determine whether it is possible to measure exactly z litres using these two jugs.
+  //If z liters of water is measurable, you must have z liters of water contained within one or both buckets by the end.
+
+  bool isPerfectSquare(int num);
+  //367. Valid Perfect Square: Given a positive integer num, write a function which returns True if num is a perfect square else False.
+
+  vector<int> largestDivisibleSubset(vector<int>& nums);
+  //368. Largest Divisible Subset: Given a set of distinct positive integers, find the largest subset such that every pair (Si, Sj) of elements in this subset satisfies:
+  //Si % Sj = 0 or Sj % Si = 0. If there are multiple solutions, return any subset is fine.
+
+  int getSum(int a, int b);
+  //371. Sum of Two Integers: Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
