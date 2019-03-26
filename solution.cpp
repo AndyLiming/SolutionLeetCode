@@ -2834,3 +2834,32 @@ int solution::countNumbersWithUniqueDigits(int n)
   }
   return ans;
 }
+
+//No 363 Max Sum of Rectangle No Larger Than K
+int solution::maxSumSubmatrix(vector<vector<int>>& matrix, int k)
+{
+  if (matrix.empty() || matrix[0].empty()) return 0;
+  int row = matrix.size(), col = matrix[0].size(),ans = INT_MIN;
+  for (int i = 0;i < col;++i) {
+    vector<int>sum(row, 0);
+    for (int j = i;j < col;++j) {//col start from i, end to j
+      for (int r = 0;r < row;++r) {
+        sum[r] += matrix[r][j];
+      }
+      cout << j << ": sum";
+      for (auto sr : sum) cout << " "<<sr ;
+      cout << endl;
+      int curSum = 0, curMax = INT_MIN;
+      set<int>s{ 0 };
+      for (auto sr : sum) {
+        curSum += sr;
+        auto it = s.lower_bound(curSum-k);//S[i-j]=S[i]-S[j]<=k
+        if (it != s.end()) curMax = max(curMax, curSum - *it);//it==s.end()means curSum-k>0, this sum doesn't satisfy the requirment
+        s.insert(curSum);
+        cout << "curSum: " << curSum << endl;
+      }
+      ans = max(ans, curMax);
+    }
+  }
+  return ans;
+}

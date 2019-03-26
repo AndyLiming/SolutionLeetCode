@@ -20,13 +20,14 @@ int main() {
     cout << " [" << ans[i].start << "," << ans[i].end << "]" << endl;
   }
   cout << "]"<<endl;*/
-  int n;
-  cin >> n;
-  vector<pair<int, int>> enves(n);
-  for (int i = 0;i < n;++i) {
-    cin >> enves[i].first >> enves[i].second;
-  }
-  cout << solu.maxEnvelopes(enves) << endl;
+  //int n;
+  //cin >> n;
+  //vector<pair<int, int>> enves(n);
+  //for (int i = 0;i < n;++i) {
+  //  cin >> enves[i].first >> enves[i].second;
+  //}
+  vector<vector<int>> m{ vector<int>{1,0,1},vector<int>{0,-2,3},vector<int>{5,0,7} };
+  cout << solu.maxSumSubmatrix(m,8) << endl;
   //solu.wiggleSort(nums);
   //te.outputVector(nums);
   //cout << solu.countRangeSum(nums,l,u) << endl;

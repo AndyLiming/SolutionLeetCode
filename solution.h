@@ -463,6 +463,9 @@ public:
   int countNumbersWithUniqueDigits(int n);
   //357. Count Numbers with Unique Digits: Given a non-negative integer n, count all numbers with unique digits, x, where 0 ¡Ü x < 10n.
 
+  int maxSumSubmatrix(vector<vector<int>>& matrix, int k);
+  //363. Max Sum of Rectangle No Larger Than K: Given a non-empty 2D matrix matrix and an integer k, find the max sum of a rectangle in the matrix such that its sum is no larger than k.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
