@@ -480,6 +480,15 @@ public:
   int getSum(int a, int b);
   //371. Sum of Two Integers: Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
 
+  int superPow(int a, vector<int>& b);
+  //372. Super Pow: Your task is to calculate ab mod 1337 where a is a positive integer and b is an extremely large positive integer given in the form of an array.
+
+  vector<pair<int, int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k);
+  //373. Find K Pairs with Smallest Sums: You are given two integer arrays nums1 and nums2 sorted in ascending order and an integer k.
+  //Define a pair(u, v) which consists of one element from the first array and one element from the second array.
+  //Find the k pairs(u1, v1), (u2, v2) ...(uk, vk) with the smallest sums.
+
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -504,6 +513,7 @@ private:
   bool additiveNumBacktrack(long long num1, long long num2, string s, int start);
   vector<int>rob3Dfs(TreeNode* root);
   bool comparePair(pair<int, int>& p1, pair<int, int>& p2);
+  int powMod(int a, int k,int base);
 };
 
 //No 303 Range Sum Query - Immutable

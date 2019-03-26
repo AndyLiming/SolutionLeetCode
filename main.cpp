@@ -45,8 +45,10 @@ int main() {
   //string s;
   //cin >> s;
   //cout << solu.reverseVowels(s) << endl;
-  int x,y;
-  cin >> x>>y;
-  cout << solu.getSum(x,y) << endl;
+  int a,tmp;
+  cin >>a;
+  vector<int>b;
+  while (cin >> tmp) b.push_back(tmp);
+  cout << solu.superPow(a, b) << endl;
   return 0;
 }

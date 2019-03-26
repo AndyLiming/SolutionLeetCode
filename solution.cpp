@@ -2589,6 +2589,7 @@ vector<int> solution::rob3Dfs(TreeNode * root)
   return res;
 }
 
+
 //No 322 Coin Change
 int solution::coinChange(vector<int>& coins, int amount)
 {
@@ -2922,8 +2923,60 @@ vector<int> solution::largestDivisibleSubset(vector<int>& nums)
 //No 371 Sum of Two Integers
 int solution::getSum(int a, int b)
 {
-  if (b == 0) return a;
+  //if (b == 0) return a;
+  //int sum = a^b;
+  //int carry = (a & b & 0x7FFFFFFF) << 1;
+  //return getSum(sum, carry);
   int sum = a^b;
   int carry = (a & b & 0x7FFFFFFF) << 1;
-  return getSum(sum, carry);
+  while (carry) {
+    int t = sum;
+    sum = sum ^ carry;
+    carry = (t & carry & 0x7FFFFFFF)<<1;//overflow
+  }
+  return sum;
+}
+
+//No 372 Super Pow
+int solution::superPow(int a, vector<int>& b)
+{
+  int base = 1337;
+  if (a == 0) return 0;
+  if (b.empty()) return 1;
+  long long ans = 1;
+  for (auto n : b) {
+    ans = powMod(ans, 10, base) * powMod(a, n, base);
+  }
+  return ans % base;
+}
+
+int solution::powMod(int a, int k,int base)
+{
+  a %= base;
+  int result = 1;
+  for (int i = 0;i < k;++i) {
+    result = (result*a) % base;
+  }
+  return result;
+}
+
+//No 373 Find K Pairs with Smallest Sums
+vector<pair<int, int>> solution::kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k)
+{
+  //brute force
+  if (nums1.empty() || nums2.empty()) return vector<pair<int, int>>();
+  multimap<int, pair<int, int>> mm;
+  vector<pair<int, int>>ans;
+  for (int i = 0;i < min((int)nums1.size(), k);++i) {
+    for (int j = 0;j < min((int)nums2.size(), k);++j) {
+      mm.insert({ nums1[i] + nums2[j],{nums1[i],nums2[j]} });
+    }
+  }
+  auto itm = mm.begin();
+  while (k > 0 && itm!=mm.end()) {
+    ans.push_back(itm->second);
+    --k;
+    ++itm;
+  }
+  return ans;
 }
