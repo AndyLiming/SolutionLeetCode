@@ -2960,6 +2960,7 @@ int solution::powMod(int a, int k,int base)
   return result;
 }
 
+
 //No 373 Find K Pairs with Smallest Sums
 vector<pair<int, int>> solution::kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k)
 {
@@ -2977,6 +2978,40 @@ vector<pair<int, int>> solution::kSmallestPairs(vector<int>& nums1, vector<int>&
     ans.push_back(itm->second);
     --k;
     ++itm;
+  }
+  return ans;
+}
+
+//No 375 Guess Number Higher or Lower II
+int solution::getMoneyAmount(int n)
+{
+  vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
+  return moneyAcountHelper(1, n, dp);
+}
+int solution::moneyAcountHelper(int start, int end, vector<vector<int>>& dp)
+{
+  if (start >= end) return 0;
+  if (dp[start][end] > 0) return dp[start][end];
+  dp[start][end] = INT_MAX;
+  for (int i = start;i <= end;++i) {
+    int t = i + max(moneyAcountHelper(start, i - 1, dp), moneyAcountHelper(i + 1, end, dp));
+    dp[start][end] = min(dp[start][end], t);
+  }
+  return dp[start][end];
+}
+
+//No 376 Wiggle Subsequence
+int solution::wiggleMaxLength(vector<int>& nums)
+{
+  if (nums.size() <= 0) return nums.size();
+  int diff = nums[1] - nums[0];
+  int ans = 1;
+  if (diff != 0) ++ans;
+  for (int i = 2;i < nums.size();++i) {
+    if (nums[i] != nums[i - 1]) {
+      if (diff*(nums[i] - nums[i - 1]) < 0) ++ans;
+      diff = nums[i] - nums[i - 1];
+    }
   }
   return ans;
 }

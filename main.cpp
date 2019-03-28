@@ -50,5 +50,5 @@ int main() {
   vector<int>b;
   while (cin >> tmp) b.push_back(tmp);
   cout << solu.superPow(a, b) << endl;
-  return 0;
+  return 0; 
 }

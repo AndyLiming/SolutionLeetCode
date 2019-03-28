@@ -488,6 +488,13 @@ public:
   //Define a pair(u, v) which consists of one element from the first array and one element from the second array.
   //Find the k pairs(u1, v1), (u2, v2) ...(uk, vk) with the smallest sums.
 
+  int getMoneyAmount(int n);
+  //375. Guess Number Higher or Lower II: We are playing the Guess Game. The game is as follows: I pick a number from 1 to n.You have to guess which number I picked.
+  //Every time you guess wrong, I'll tell you whether the number I picked is higher or lower. However, when you guess a particular number x, and you guess wrong, you pay $x.You win the game when you guess the number I picked.
+
+  int wiggleMaxLength(vector<int>& nums);
+  //376. Wiggle Subsequence:A sequence of numbers is called a wiggle sequence if the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. 
+  //A sequence with fewer than two elements is trivially a wiggle sequence.
 
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
@@ -514,6 +521,7 @@ private:
   vector<int>rob3Dfs(TreeNode* root);
   bool comparePair(pair<int, int>& p1, pair<int, int>& p2);
   int powMod(int a, int k,int base);
+  int moneyAcountHelper(int start, int end, vector<vector<int>> &dp);
 };
 
 //No 303 Range Sum Query - Immutable
