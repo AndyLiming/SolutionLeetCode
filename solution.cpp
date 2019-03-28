@@ -3003,7 +3003,7 @@ int solution::moneyAcountHelper(int start, int end, vector<vector<int>>& dp)
 //No 376 Wiggle Subsequence
 int solution::wiggleMaxLength(vector<int>& nums)
 {
-  if (nums.size() <= 0) return nums.size();
+  if (nums.size() <= 1) return nums.size();
   int diff = nums[1] - nums[0];
   int ans = 1;
   if (diff != 0) ++ans;
@@ -3014,4 +3014,18 @@ int solution::wiggleMaxLength(vector<int>& nums)
     }
   }
   return ans;
+}
+
+
+//No 377 Combination Sum IV
+int solution::combinationSum4(vector<int>& nums, int target)
+{
+  vector<int>dp(target + 1, 0);
+  dp[0] = 1;
+  for (int i = 1;i <= target;++i) {
+    for (int j = 0;j < nums.size();++j) {
+      if(nums[j]<=i) dp[i] += dp[i - nums[j]];
+    }
+  }
+  return dp[target];
 }

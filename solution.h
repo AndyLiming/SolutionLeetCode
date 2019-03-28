@@ -496,6 +496,9 @@ public:
   //376. Wiggle Subsequence:A sequence of numbers is called a wiggle sequence if the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. 
   //A sequence with fewer than two elements is trivially a wiggle sequence.
 
+  int combinationSum4(vector<int>& nums, int target);
+  //377. Combination Sum IV: Given an integer array with all positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

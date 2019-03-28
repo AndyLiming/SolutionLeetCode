@@ -45,10 +45,10 @@ int main() {
   //string s;
   //cin >> s;
   //cout << solu.reverseVowels(s) << endl;
-  int a,tmp;
-  cin >>a;
-  vector<int>b;
-  while (cin >> tmp) b.push_back(tmp);
-  cout << solu.superPow(a, b) << endl;
+  int n,tmp;
+  cin >>n;
+  vector<int>nums;
+  while (cin >> tmp) nums.push_back(tmp);
+  cout << solu.combinationSum4(nums,n) << endl;
   return 0; 
 }
