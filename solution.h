@@ -499,6 +499,14 @@ public:
   int combinationSum4(vector<int>& nums, int target);
   //377. Combination Sum IV: Given an integer array with all positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target.
 
+  int kthSmallest(vector<vector<int>>& matrix, int k);
+  //378. Kth Smallest Element in a Sorted Matrix: Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.
+  //Note that it is the kth smallest element in the sorted order, not the kth distinct element.
+
+  bool canConstruct(string ransomNote, string magazine);
+  //383. Ransom Note: Given an arbitrary ransom note string and another string containing letters from all the magazines, write a function that will return true if the ransom note can be constructed from the magazines ; otherwise, it will return false. 
+  //Each letter in the magazine string can only be used once in your ransom note.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -565,4 +573,3 @@ private :
   vector<vector<int>> sumDp;
 };
 #endif // !_SOLUTION_
-

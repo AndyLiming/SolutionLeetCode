@@ -3029,3 +3029,52 @@ int solution::combinationSum4(vector<int>& nums, int target)
   }
   return dp[target];
 }
+
+//No 378 Kth Smallest Element in a Sorted Matrix
+int solution::kthSmallest(vector<vector<int>>& matrix, int k)
+{
+  //brute force by a heap
+  //priority_queue<int> heap;
+  //for (auto r : matrix) {
+  //  for (auto e : r) {
+  //    heap.emplace(e);
+  //    if (heap.size() > k) heap.pop();
+  //  }
+  //}
+  //return heap.top();
+
+  //binary search O(n*lgX) where X = max - min in the matrix
+  int low = matrix[0][0],high = matrix.back().back(),mid;
+  while (low < high) {
+    int t = 0;//mid is tth smallest element in the matrix 
+    int r = 0, c = matrix[0].size() - 1;//right-top
+    mid = low + (high - low) / 2;
+    while (r < matrix.size() && c >= 0) {
+      if (mid >= matrix[r][c]) {//every element in row r is smaller than mid
+        t += c + 1;
+        ++r;
+      }
+      else --c;//every element in column c is larger than mid
+    }
+    //cout << mid << " is No. " << t << endl;
+    if (t < k)low = mid + 1;//kth is larger than mid
+    else high = mid;//kth is smaller than mid
+  }
+  return low;
+}
+
+//No 383 Ransom Note
+bool solution::canConstruct(string ransomNote, string magazine)
+{
+  vector<int> m(26, 0);
+  for (auto c : magazine) {
+    ++m[c - 'a'];
+  }
+  for (auto c : ransomNote) {
+    --m[c - 'a'];
+  }
+  for (auto i : m) {
+    if (i < 0) return false;
+  }
+  return true;
+}

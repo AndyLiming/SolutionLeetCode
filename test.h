@@ -18,18 +18,18 @@ public:
   template<class T>
   void inputVectorVec(vector<vector<T>> &input) {
     /*int n, m;*/
-    int n;
+    int n,m;
     cin >> n;
-    //cin >> m;
+    cin >> m;
     vector<T> inputr;
     T tmp;
     for (int i = 0;i < n;++i) {
       inputr.clear();
-      /*for (int j = 0;j < m;++j) {
+      for (int j = 0;j < m;++j) {
         cin >> tmp;
         inputr.push_back(tmp);
-      }*/
-      while(cin>>tmp) inputr.push_back(tmp);
+      }
+      //while(cin>>tmp) inputr.push_back(tmp);
       input.push_back(inputr);
 
     }

@@ -45,10 +45,10 @@ int main() {
   //string s;
   //cin >> s;
   //cout << solu.reverseVowels(s) << endl;
-  int n,tmp;
-  cin >>n;
-  vector<int>nums;
-  while (cin >> tmp) nums.push_back(tmp);
-  cout << solu.combinationSum4(nums,n) << endl;
+  int k;
+  cin >> k;
+  vector<vector<int>>nums;
+  te.inputVectorVec(nums);
+  cout << solu.kthSmallest(nums,k) << endl;
   return 0; 
 }
