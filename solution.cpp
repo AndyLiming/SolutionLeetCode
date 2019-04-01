@@ -3078,3 +3078,46 @@ bool solution::canConstruct(string ransomNote, string magazine)
   }
   return true;
 }
+
+//No 386 Lexicographical Numbers
+vector<int> solution::lexicalOrder(int n)
+{
+  //vector<int> ans(n);
+  //for (int i = 0;i < n;++i) {
+  //  ans[i] = i + 1;
+  //}
+  //sort(ans.begin(), ans.end(), [](int a1, int a2) {return to_string(a1) < to_string(a2);});
+  //return ans;
+  vector<int>ans(n);
+  int cur = 1;
+  for (int i = 0;i < n;++i) {
+    ans[i] = cur;
+    if (cur * 10 <= n) cur *= 10;
+    else {
+      if (cur >= n) cur /= 10;
+      cur += 1;
+      while (cur % 10 == 0) cur /= 10;
+    }
+  }
+  return ans;
+}
+
+//No 387 First Unique Character in a String
+int solution::firstUniqChar(string s)
+{
+  vector<int> m(26,0);
+  for (auto c : s) ++m[c - 'a'];
+  for (int i = 0;i<s.size();++i) {
+    if (m[s[i] - 'a'] == 1) return i;
+  }
+  return -1;
+}
+
+//No 389 Find the Difference
+char solution::findTheDifference(string s, string t)
+{
+  char ans = 0;
+  for (auto c : s) ans ^= c;
+  for (auto c : t) ans ^= c;
+  return ans;
+}

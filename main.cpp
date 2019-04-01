@@ -45,10 +45,12 @@ int main() {
   //string s;
   //cin >> s;
   //cout << solu.reverseVowels(s) << endl;
-  int k;
-  cin >> k;
-  vector<vector<int>>nums;
-  te.inputVectorVec(nums);
-  cout << solu.kthSmallest(nums,k) << endl;
+  int n;
+  cin >> n;
+  //vector<vector<int>>nums;
+  //te.inputVectorVec(nums);
+  //cout << solu.kthSmallest(nums,k) << endl;
+  vector<int>ans = solu.lexicalOrder(n);
+  te.outputVector(ans);
   return 0; 
 }
