@@ -530,6 +530,9 @@ public:
   //Repeat the previous step again, but this time from right to left, remove the right most number and every other number from the remaining numbers.
   //We keep repeating the steps again, alternating left to right and right to left, until a single number remains. Find the last number that remains starting with a list of length n.
 
+  bool isSubsequence(string s, string t);
+  //Given a string s and a string t, check if s is subsequence of t.  You may assume that there is only lower case English letters in both s and t.t is potentially a very long(length ~= 500, 000) string, and s is a short string(<= 100).
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -556,6 +559,7 @@ private:
   bool comparePair(pair<int, int>& p1, pair<int, int>& p2);
   int powMod(int a, int k,int base);
   int moneyAcountHelper(int start, int end, vector<vector<int>> &dp);
+  int helpLastRemaining(int n, bool l2r);
 };
 
 //No 303 Range Sum Query - Immutable

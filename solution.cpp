@@ -405,6 +405,7 @@ bool solution::exist(vector<vector<char>>& board, string word)
   return false;
 }
 
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word)
 {
@@ -3158,4 +3159,14 @@ int solution::helpLastRemaining(int n, bool l2r)
   else {
     return 2 * helpLastRemaining(n / 2, true) - 1 + n % 2;
   }
+}
+
+//No 392 Is Subsequence
+bool solution::isSubsequence(string s, string t)
+{
+  int i = 0;
+  for (int j = 0;j < t.size() && i < s.size();++j) {
+    if (s[i] == t[j]) ++i;
+  }
+  return i == s.size();
 }
