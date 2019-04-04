@@ -3000,6 +3000,7 @@ int solution::moneyAcountHelper(int start, int end, vector<vector<int>>& dp)
   return dp[start][end];
 }
 
+
 //No 376 Wiggle Subsequence
 int solution::wiggleMaxLength(vector<int>& nums)
 {
@@ -3120,4 +3121,41 @@ char solution::findTheDifference(string s, string t)
   for (auto c : s) ans ^= c;
   for (auto c : t) ans ^= c;
   return ans;
+}
+
+//No 871 Minimum Number of Refueling Stops
+int solution::minRefuelStops(int target, int startFuel, vector<vector<int>>& stations)
+{
+  //greedy
+  if (startFuel >= target) return 0;
+  else if (stations.empty()) return -1;
+  int cur = startFuel;
+  priority_queue<int> f;
+  int next = 0;
+  int cnt = 0;
+  while (next < stations.size() && cur >= stations[next][0] || !f.empty()) {
+    //if the car can reach the next station, no need to refuel, save the fuel in a priority queue
+    while ((next < stations.size() && cur >= stations[next][0])) f.push(stations[next++][1]);
+    cur += f.top();
+    f.pop();
+    ++cnt;
+    if (cur >= target) return cnt;
+  }
+  return -1;
+}
+
+//No 390 Elimination Game
+int solution::lastRemaining(int n)
+{
+  return helpLastRemaining(n, true);
+}
+int solution::helpLastRemaining(int n, bool l2r)
+{
+  if (n == 1) return 1;
+  if (l2r) {
+    return 2 * helpLastRemaining(n / 2, false);
+  }
+  else {
+    return 2 * helpLastRemaining(n / 2, true) - 1 + n % 2;
+  }
 }
