@@ -406,6 +406,7 @@ bool solution::exist(vector<vector<char>>& board, string word)
 }
 
 
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word)
 {
@@ -3169,4 +3170,126 @@ bool solution::isSubsequence(string s, string t)
     if (s[i] == t[j]) ++i;
   }
   return i == s.size();
+}
+
+//No 394 Decode String
+string solution::decodeString(string s)
+{
+  string decodeRes = "";
+  string val = "";
+  //bool open = false;
+  stack<string> decodeStack;
+  for (int i = 0;i < s.size();++i) {
+    if (isdigit(s[i])) { val += s[i]; }
+    else if (s[i] == '[') {
+      decodeStack.push(val);
+      val = "";
+      decodeStack.push(string(1, s[i]));
+      //open = true;
+    }
+    else if (isalpha(s[i])) {
+      decodeStack.push(string(1, s[i]));
+    }
+    else if (s[i] == ']') {
+      string c = decodeStack.top();
+      decodeStack.pop();
+      string tmp = "";
+      while (!decodeStack.empty() && c != "[") {
+        tmp = c + tmp;
+        c= decodeStack.top();
+        decodeStack.pop();
+      }
+      c = decodeStack.top();
+      decodeStack.pop();
+      int multi = stoi(c);
+      for (int j = 0;j < multi;++j) {
+        decodeRes += tmp;
+      }
+      decodeStack.push(decodeRes);
+      decodeRes = "";
+      //open = false;
+    }
+  }
+  decodeRes = "";
+  while (!decodeStack.empty()) {
+    string tmp = decodeStack.top();
+    decodeStack.pop();
+    decodeRes = tmp + decodeRes;
+  }
+  return decodeRes;
+}
+
+//No 395 Longest Substring with At Least K Repeating Characters
+int solution::longestSubstring(string s, int k)
+{
+  int ans = 0, i = 0, n = s.size();
+  while (i + k <= n) {
+    vector<int> m(26, 0);
+    int mask = 0, maxIdx = 0;
+    for (int j = i;j < n;++j) {
+      int t = s[j] - 'a';
+      ++m[t];
+      if (m[t] < k) mask |= (1 << t);
+      else mask &= (~(1 << t));
+      if (mask == 0) {
+        ans = max(ans, j - i + 1);
+        maxIdx = j;
+      }
+    }
+    i = maxIdx + 1;
+  }
+  return ans;
+}
+
+//No 393 UTF-8 Validation
+bool solution::validUtf8(vector<int>& data)
+{
+  int cnt = 0;
+  for (auto d : data) {
+    if (cnt == 0) {
+      if ((d >> 5) == 0b110) cnt = 1;
+      else if ((d >> 4) == 0b1110) cnt = 2;
+      else if ((d >> 3) == 0b11110) cnt = 3;
+      else if (d >> 7) return false;
+    }
+    else {
+      if ((d >> 6) != 0b10) return false;
+      --cnt;
+    }
+  }
+  return cnt == 0;
+}
+
+//No 396 Rotate Function
+int solution::maxRotateFunction(vector<int>& A)
+{
+  long long F = 0, sum = 0, n = A.size();
+  for (int i = 0;i < n;++i) {
+    F += i*A[i];
+    sum += A[i];
+  }
+  //F(i) = F(i-1) + sum - n * A[n-i]
+  long long maxSum = F;
+  for (int i = 1;i < n;++i) {
+    F = F + sum - n*A[n - i];
+    maxSum = max(maxSum, F);
+  }
+  return maxSum;
+}
+
+//No 397 Integer Replacement
+int solution::integerReplacement(int n)
+{
+  if(n<=3) return n-1;
+  int cnt = 2;
+  while (n > 4) {
+    if (n % 2 == 0) n /= 2;
+    else if (n % 4 == 3) {
+      n = n/2 + 1;
+      ++cnt;
+    }
+    else n -= 1;
+    ++cnt;
+  }
+  return cnt;
 }

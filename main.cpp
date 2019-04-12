@@ -44,13 +44,14 @@ int main() {
   }*/
   //string s;
   //cin >> s;
-  //cout << solu.reverseVowels(s) << endl;
+  //cout << solu.decodeString(s) << endl;
   int n;
   cin >> n;
+  cout << solu.integerReplacement(n) << endl;
   //vector<vector<int>>nums;
   //te.inputVectorVec(nums);
   //cout << solu.kthSmallest(nums,k) << endl;
-  vector<int>ans = solu.lexicalOrder(n);
-  te.outputVector(ans);
+  //vector<int>ans = solu.lexicalOrder(n);
+  //te.outputVector(ans);
   return 0; 
 }

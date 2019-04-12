@@ -533,6 +533,28 @@ public:
   bool isSubsequence(string s, string t);
   //Given a string s and a string t, check if s is subsequence of t.  You may assume that there is only lower case English letters in both s and t.t is potentially a very long(length ~= 500, 000) string, and s is a short string(<= 100).
 
+  string decodeString(string s);
+  //394. Decode String: Given an encoded string, return it's decoded string. The encoding rule is : k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times.Note that k is guaranteed to be a positive integer.
+  //You may assume that the input string is always valid; No extra white spaces, square brackets are well - formed, etc.
+  //Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k.For example, there won't be input like 3a or 2[4]. 
+
+  int longestSubstring(string s, int k);
+  //395. Longest Substring with At Least K Repeating Characters: Find the length of the longest substring T of a given string (consists of lowercase letters only) such that every character in T appears no less than k times. 
+
+  bool validUtf8(vector<int>& data);
+  //393. UTF-8 Validation: A character in UTF8 can be from 1 to 4 bytes long, subjected to the following rules:
+  //For 1 - byte character, the first bit is a 0, followed by its unicode code. For n - bytes character, the first n - bits are all one's, the n+1 bit is 0, followed by n-1 bytes with most significant 2 bits being 10.
+  //Given an array of integers representing the data, return whether it is a valid utf-8 encoding. 
+
+  int maxRotateFunction(vector<int>& A);
+  //396. Rotate Function: iven an array of integers A and let n to be its length. 
+  //Assume Bk to be an array obtained by rotating the array A k positions clock - wise, we define a "rotation function" F on A as follow :
+  //F(k) = 0 * Bk[0] + 1 * Bk[1] + ... + (n - 1) * Bk[n - 1]. Calculate the maximum value of F(0), F(1), ..., F(n - 1).
+
+  int integerReplacement(int n);
+  //397. Integer Replacement: Given a positive integer n and you can do operations as follow: If n is even, replace n with n / 2. If n is odd, you can replace n with either n + 1 or n - 1.
+  //What is the minimum number of replacements needed for n to become 1 ?
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
