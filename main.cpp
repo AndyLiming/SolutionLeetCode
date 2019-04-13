@@ -47,7 +47,7 @@ int main() {
   //cout << solu.decodeString(s) << endl;
   int n;
   cin >> n;
-  cout << solu.integerReplacement(n) << endl;
+  cout << solu.findNthDigit(n) << endl;
   //vector<vector<int>>nums;
   //te.inputVectorVec(nums);
   //cout << solu.kthSmallest(nums,k) << endl;

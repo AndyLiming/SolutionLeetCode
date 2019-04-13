@@ -555,6 +555,12 @@ public:
   //397. Integer Replacement: Given a positive integer n and you can do operations as follow: If n is even, replace n with n / 2. If n is odd, you can replace n with either n + 1 or n - 1.
   //What is the minimum number of replacements needed for n to become 1 ?
 
+  int findNthDigit(int n);
+  //400. Nth Digit: Find the nth digit of the infinite integer sequence 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ... 
+
+  vector<double> calcEquation(vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> queries);
+  //399. Evaluate Division: Equations are given in the format A / B = k, where A and B are variables represented as strings, and k is a real number(floating point number).
+  //Given some queries, return the answers.If the answer does not exist, return -1.0.
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -582,6 +588,7 @@ private:
   int powMod(int a, int k,int base);
   int moneyAcountHelper(int start, int end, vector<vector<int>> &dp);
   int helpLastRemaining(int n, bool l2r);
+  double calEquhelper(string up, string down, unordered_set<string>& visited, unordered_map<string, unordered_map<string, double>> &m);
 };
 
 //No 303 Range Sum Query - Immutable

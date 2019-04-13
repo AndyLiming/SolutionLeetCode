@@ -3162,6 +3162,8 @@ int solution::helpLastRemaining(int n, bool l2r)
   }
 }
 
+
+
 //No 392 Is Subsequence
 bool solution::isSubsequence(string s, string t)
 {
@@ -3292,4 +3294,51 @@ int solution::integerReplacement(int n)
     ++cnt;
   }
   return cnt;
+}
+
+//No 400 Nth Digit
+int solution::findNthDigit(int n)
+{
+  long long digit = 1, start = 1;;
+  long long num = 9;
+  while (n > num*digit) {
+    n -= num*digit;
+    ++digit;
+    num *= 10;
+    start *= 10;
+  }
+  //int k = (n-1) / digit;
+  //int m = (n-1) % digit;
+
+  start += (n - 1) / digit;
+  cout << start << endl;
+  return to_string(start)[(n - 1) % digit]-'0';
+}
+
+//No 399 Evaluate Division
+vector<double> solution::calcEquation(vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> queries)
+{
+  unordered_map<string, unordered_map<string, double>> m;
+  vector<double> ans;
+  for (int i = 0;i < equations.size();++i) {
+    m[equations[i].first][equations[i].second] = values[i];
+    m[equations[i].second][equations[i].first] = 1.0 / values[i];
+  }
+  for (auto que : queries) {
+    unordered_set<string> visited;
+    double t = calEquhelper(que.first, que.second, visited, m);
+    ans.push_back((t > 0.0) ? t : -1);
+  }
+  return ans;
+}
+double solution::calEquhelper(string up, string down, unordered_set<string>& visited, unordered_map<string, unordered_map<string, double>> &m)
+{
+  if(m[up].count(down)) return m[up][down];
+  for (auto a : m[up]) {
+    if (visited.count(a.first)) continue;
+    visited.insert(a.first);
+    double t = calEquhelper(a.first, down, visited,m);
+    if (t > 0.0) return t * a.second;
+  }
+  return -1.0;
 }
