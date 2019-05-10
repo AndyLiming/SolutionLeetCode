@@ -3331,6 +3331,7 @@ vector<double> solution::calcEquation(vector<pair<string, string>> equations, ve
   }
   return ans;
 }
+
 double solution::calEquhelper(string up, string down, unordered_set<string>& visited, unordered_map<string, unordered_map<string, double>> &m)
 {
   if(m[up].count(down)) return m[up][down];
@@ -3341,4 +3342,19 @@ double solution::calEquhelper(string up, string down, unordered_set<string>& vis
     if (t > 0.0) return t * a.second;
   }
   return -1.0;
+}
+
+//No 404 Sum of Left Leaves
+int solution::sumOfLeftLeaves(TreeNode * root)
+{
+  if (root == nullptr) return 0;
+  int sum = 0;
+  sumLeftLeavesCore(root, sum);
+  return sum;
+}
+void solution::sumLeftLeavesCore(TreeNode * root, int& sum)
+{
+  if (root->left != nullptr) sumLeftLeavesCore(root->left, sum);
+  if (root->left != nullptr && root->left->left == nullptr && root->left->right == nullptr) sum += root->left->val;
+  if (root->right != nullptr) sumLeftLeavesCore(root->right, sum);
 }

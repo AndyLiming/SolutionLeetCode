@@ -561,6 +561,11 @@ public:
   vector<double> calcEquation(vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> queries);
   //399. Evaluate Division: Equations are given in the format A / B = k, where A and B are variables represented as strings, and k is a real number(floating point number).
   //Given some queries, return the answers.If the answer does not exist, return -1.0.
+
+  int sumOfLeftLeaves(TreeNode* root);
+  //404. Sum of Left Leaves: Find the sum of all left leaves in a given binary tree.
+
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -589,6 +594,7 @@ private:
   int moneyAcountHelper(int start, int end, vector<vector<int>> &dp);
   int helpLastRemaining(int n, bool l2r);
   double calEquhelper(string up, string down, unordered_set<string>& visited, unordered_map<string, unordered_map<string, double>> &m);
+  void sumLeftLeavesCore(TreeNode*root, int& sum);
 };
 
 //No 303 Range Sum Query - Immutable
