@@ -3352,9 +3352,103 @@ int solution::sumOfLeftLeaves(TreeNode * root)
   sumLeftLeavesCore(root, sum);
   return sum;
 }
+
 void solution::sumLeftLeavesCore(TreeNode * root, int& sum)
 {
   if (root->left != nullptr) sumLeftLeavesCore(root->left, sum);
   if (root->left != nullptr && root->left->left == nullptr && root->left->right == nullptr) sum += root->left->val;
   if (root->right != nullptr) sumLeftLeavesCore(root->right, sum);
+}
+
+
+//No 406 Queue Reconstruction by Height
+vector<vector<int>> solution::reconstructQueue(vector<vector<int>>& people)
+{
+  sort(people.begin(), people.end(), [](const vector<int>&v1, const vector<int>&v2) {return v1[0] > v2[0] || v1[0] == v2[0] && v1[1] < v2[1]; });
+  vector<vector<int>>ans;
+  for (int i = 0; i < people.size(); ++i) {
+    if (people[i][1] == ans.size()) {
+      ans.push_back(people[i]);
+    }
+    else {
+      ans.insert(ans.begin() + people[i][1], people[i]);
+    }
+  }
+  return ans;
+}
+//No 403
+bool solution::canCross(vector<int>& stones)
+{
+  map<int, set<int>> dp;
+  dp.clear();
+  int u = 0, v = 0, w = 0;
+  set<int> st;
+  set<int>::iterator it;
+  dp[0].insert(1);//从0号开始可以向前跳的步数
+  for (int i = 0; i < stones.size(); ++i)st.insert(stones[i]);
+  for (int i = 0; i < stones.size(); ++i) {
+    u = stones[i];
+    if (dp.find(u) == dp.end())continue;
+    if (u == stones[stones.size() - 1])break;
+    for (it = dp[u].begin(); it != dp[u].end(); ++it) {
+      w = *it;//当前step
+      v = u + w;//当前到达的石头的Unit
+      if (st.find(v) != st.end() && v > u) {
+        dp[v].insert(w - 1);
+        dp[v].insert(w);
+        dp[v].insert(w + 1);
+      }
+    }
+  }
+  return dp.find(u) != dp.end() && dp[u].size() > 0;
+}
+//No 409
+int solution::longestPalindrome(string s)
+{
+  vector<int> charMap(256, 0);
+  for (auto c : s) {
+    charMap[c]++;
+  }
+  int count = 0;
+  bool hasOdd = false;
+  for (int i = 0; i < 256; ++i) {
+    if (charMap[i] != 0) {
+      if (charMap[i] % 2 == 0) count += charMap[i];
+      else {
+        hasOdd = true;
+        count += charMap[i] - 1;
+      }
+    }
+  }
+  if (hasOdd) count += 1;
+  return count;
+}
+//No 412
+vector<string> solution::fizzBuzz(int n)
+{
+  vector<string> ans;
+  string f = "Fizz", b = "Buzz";
+  for (int i = 1; i <= n; ++i) {
+    string tmp="";
+    if (i % 3 != 0 && i % 5 != 0) tmp = to_string(i);
+    else {
+      if (i % 3 == 0) tmp += f;
+      if (i % 5 == 0) tmp += b;
+    }
+    ans.push_back(tmp);
+  }
+  return ans;
+}
+
+
+
+//No 410
+
+bool solution::cansplit(vector<int>& nums, int value, int m)
+{
+  return false;
+}
+int solution::splitArray(vector<int>& nums, int m)
+{
+  return 0;
 }
