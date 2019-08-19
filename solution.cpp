@@ -3540,9 +3540,60 @@ vector<string> solution::fizzBuzz(int n)
 
 bool solution::cansplit(vector<int>& nums, int value, int m)
 {
-  return false;
+  int len = nums.size();
+  int i = 0;
+  int sum = 0;
+  int split_count = 0;
+  for (i = 0; i < len; i++)
+  {
+    if (sum + nums[i] <= value)
+    {
+      sum += nums[i];
+    }
+    else
+    {
+      split_count++;
+      sum = nums[i];
+    }
+    if (split_count == m)
+    {
+      return false;
+    }
+  }
+
+  return true;
 }
 int solution::splitArray(vector<int>& nums, int m)
 {
-  return 0;
+  int len = nums.size();
+  int i = 0;
+  int max = nums[0];
+  long long sum = 0;
+  for (i = 0; i < len; i++)
+  {
+    if (nums[i] > max)
+    {
+      max = nums[i];
+    }
+    sum += nums[i];
+  }
+
+  int left = max;
+  int right = sum;
+  int mid = 0;
+  while (left < right)
+  {
+    mid = left + (right - left) / 2;
+
+    if (cansplit(nums, mid, m))
+    {
+      right = mid;
+    }
+    else
+    {
+      left = mid + 1;
+    }
+  }
+
+  return left;
 }
