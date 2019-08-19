@@ -575,6 +575,29 @@ public:
   int longestValidParentheses(string s);
   //32. Longest Valid Parentheses
 
+  vector<vector<int>> reconstructQueue(vector<vector<int>>& people);
+  //406. Queue Reconstruction by Height: uppose you have a random list of people standing in a queue. Each person is described by a pair of integers (h, k), 
+  //where h is the height of the person and k is the number of people in front of this person who have a height greater than or equal to h. Write an algorithm to reconstruct the queue. 
+
+  bool canCross(vector<int>& stones);
+  //403. Frog Jump: A frog is crossing a river. The river is divided into x units and at each unit there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.
+  //Given a list of stones' positions (in units) in sorted ascending order, determine if the frog is able to cross the river by landing on the last stone. Initially, the frog is on the first stone and assume the first jump must be 1 unit.
+  //If the frog's last jump was k units, then its next jump must be either k - 1, k, or k + 1 units. Note that the frog can only jump in the forward direction.
+
+  int longestPalindrome(string s);
+  //409. Longest Palindrome: Given a string which consists of lowercase or uppercase letters, find the length of the longest palindromes that can be built with those letters.
+  //This is case sensitive, for example "Aa" is not considered a palindrome here.
+
+  vector<string> fizzBuzz(int n);
+  //412. Fizz Buzz: Write a program that outputs the string representation of numbers from 1 to n.
+  //But for multiples of three it should output ¡°Fizz¡± instead of the number and for the multiples of five output ¡°Buzz¡±.
+  //For numbers which are multiples of both three and five output ¡°FizzBuzz¡±.
+
+  int splitArray(vector<int>& nums, int m);
+  //410. Split Array Largest Sum:
+  //Given an array which consists of non - negative integers and an integer m, you can split the array into m non - empty continuous subarrays.
+  //Write an algorithm to minimize the largest sum among these m subarrays.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -604,8 +627,12 @@ private:
   int helpLastRemaining(int n, bool l2r);
   double calEquhelper(string up, string down, unordered_set<string>& visited, unordered_map<string, unordered_map<string, double>> &m);
   void sumLeftLeavesCore(TreeNode*root, int& sum);
+<<<<<<< HEAD
   ListNode* reverseList(ListNode * start, ListNode * end);
   ListNode* mergeTwoList(ListNode* h1, ListNode * h2);
+=======
+  bool cansplit(vector<int>& nums, int value, int m);
+>>>>>>> 35ce4fba804c4ab411717b12fa72ddeb61db1984
 };
 
 //No 303 Range Sum Query - Immutable
