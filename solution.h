@@ -565,6 +565,15 @@ public:
   int sumOfLeftLeaves(TreeNode* root);
   //404. Sum of Left Leaves: Find the sum of all left leaves in a given binary tree.
 
+  ListNode* reverseKGroup(ListNode* head, int k);
+  //25. Reverse Nodes in k-Group: Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
+  //k is a positive integer and is less than or equal to the length of the linked list.If the number of nodes is not a multiple of k then left - out nodes in the end should remain as it is.
+
+  ListNode* mergeKLists(vector<ListNode*>& lists);
+  //23. Merge k Sorted Lists: Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
+
+  int longestValidParentheses(string s);
+  //32. Longest Valid Parentheses
 
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
@@ -595,6 +604,8 @@ private:
   int helpLastRemaining(int n, bool l2r);
   double calEquhelper(string up, string down, unordered_set<string>& visited, unordered_map<string, unordered_map<string, double>> &m);
   void sumLeftLeavesCore(TreeNode*root, int& sum);
+  ListNode* reverseList(ListNode * start, ListNode * end);
+  ListNode* mergeTwoList(ListNode* h1, ListNode * h2);
 };
 
 //No 303 Range Sum Query - Immutable

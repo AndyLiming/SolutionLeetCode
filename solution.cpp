@@ -3352,9 +3352,107 @@ int solution::sumOfLeftLeaves(TreeNode * root)
   sumLeftLeavesCore(root, sum);
   return sum;
 }
+
 void solution::sumLeftLeavesCore(TreeNode * root, int& sum)
 {
   if (root->left != nullptr) sumLeftLeavesCore(root->left, sum);
   if (root->left != nullptr && root->left->left == nullptr && root->left->right == nullptr) sum += root->left->val;
   if (root->right != nullptr) sumLeftLeavesCore(root->right, sum);
+}
+
+
+
+//No 25 Reverse Nodes in k-Group
+ListNode * solution::reverseKGroup(ListNode * head, int k)
+{
+  ListNode*helper = new ListNode(-1),*curEnd=helper;
+  ListNode* p = head,*kk=p;
+  while (p != nullptr) {
+    kk = p;
+    int i = 1;
+    while (kk != nullptr && i < k) {
+      kk = kk->next;
+      ++i;
+    }
+    if (kk == nullptr) {
+      curEnd->next = p;
+      break;
+    }
+    ListNode *nextStep = kk->next;
+    kk->next = nullptr;
+    
+    curEnd->next = reverseList(p, kk);
+    curEnd = p;
+    p = nextStep;
+  }
+  return helper->next;
+
+}
+
+ListNode* solution::reverseList(ListNode * start, ListNode * end)
+{
+  if (start == end) return end;
+  ListNode * curHead = start, *nextHead = start->next;
+  curHead->next = nullptr;
+  while (nextHead != end) {   
+    ListNode* tmp = nextHead->next;
+    nextHead->next = curHead;
+    curHead = nextHead;
+    nextHead = tmp;
+  }
+  end->next = curHead;
+  return end;
+}
+
+//No 23 Merge k sorted Lists
+ListNode * solution::mergeKLists(vector<ListNode*>& lists)
+{
+  ListNode*helper=nullptr;
+  for (auto list : lists) {
+    helper = mergeTwoList(helper, list);
+  }
+  return helper;
+}
+ListNode * solution::mergeTwoList(ListNode * h1, ListNode * h2)
+{
+  if (h1 == nullptr) return h2;
+  if (h2 == nullptr) return h1;
+  ListNode *newHead;
+  if (h1 -> val < h2->val) {
+    newHead = h1;
+    newHead->next = mergeTwoList(h1->next, h2);
+  }
+  else {
+    newHead = h2;
+    newHead->next = mergeTwoList(h1, h2->next);
+  }
+}
+
+//No 32 Longest Valid Parentheses
+int solution::longestValidParentheses(string s)
+{
+  int len = s.size(),maxNum = 0;
+  vector<int>dp(len,0);
+  for (int i = 1;i < len;++i) {
+    int j = i - 1 - dp[i - 1];
+    if (s[i] == '(' || j < 0 || s[j] == ')') dp[i] = 0;
+    else {
+      dp[i] = dp[i - 1] + 2;
+      if (j > 0) dp[i] += dp[j - 1];
+      maxNum = max(maxNum, dp[i]);
+    }
+  }
+  return maxNum;
+
+  //int len = s.size(), maxNum = 0;
+  //vector<int>dp(len + 1, 0);
+  //for (int i = 1;i <= len;++i) {
+  //  int j = i - 2 - dp[i - 1];
+  //  if (s[i - 1] == '(' || j<0 || s[j] == ')') dp[i] = 0;
+  //  else {
+  //    dp[i] = dp[i - 1] + 2 + dp[j];
+  //    maxNum = max(maxNum, dp[i]);
+  //  }
+  //}
+  //return maxNum;
 }
