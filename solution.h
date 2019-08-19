@@ -627,12 +627,9 @@ private:
   int helpLastRemaining(int n, bool l2r);
   double calEquhelper(string up, string down, unordered_set<string>& visited, unordered_map<string, unordered_map<string, double>> &m);
   void sumLeftLeavesCore(TreeNode*root, int& sum);
-<<<<<<< HEAD
   ListNode* reverseList(ListNode * start, ListNode * end);
   ListNode* mergeTwoList(ListNode* h1, ListNode * h2);
-=======
   bool cansplit(vector<int>& nums, int value, int m);
->>>>>>> 35ce4fba804c4ab411717b12fa72ddeb61db1984
 };
 
 //No 303 Range Sum Query - Immutable

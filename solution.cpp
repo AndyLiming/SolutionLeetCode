@@ -3430,8 +3430,8 @@ ListNode * solution::mergeTwoList(ListNode * h1, ListNode * h2)
 //No 32 Longest Valid Parentheses
 int solution::longestValidParentheses(string s)
 {
-  int len = s.size(),maxNum = 0;
-  vector<int>dp(len,0);
+  int len = s.size(), maxNum = 0;
+  vector<int>dp(len, 0);
   for (int i = 1;i < len;++i) {
     int j = i - 1 - dp[i - 1];
     if (s[i] == '(' || j < 0 || s[j] == ')') dp[i] = 0;
@@ -3454,9 +3454,9 @@ int solution::longestValidParentheses(string s)
   //  }
   //}
   //return maxNum;
-
+}
 //No 406 Queue Reconstruction by Height
-vector<vector<int>> solution::reconstructQueue(vector<vector<int>>& people)
+vector<vector<int>> solution:: reconstructQueue(vector<vector<int>>& people)
 {
   sort(people.begin(), people.end(), [](const vector<int>&v1, const vector<int>&v2) {return v1[0] > v2[0] || v1[0] == v2[0] && v1[1] < v2[1]; });
   vector<vector<int>>ans;
