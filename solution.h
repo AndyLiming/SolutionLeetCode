@@ -598,6 +598,17 @@ public:
   //Given an array which consists of non - negative integers and an integer m, you can split the array into m non - empty continuous subarrays.
   //Write an algorithm to minimize the largest sum among these m subarrays.
 
+  int minDistance(string word1, string word2);
+  //72. Edit Distance: Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2.
+
+  vector<int> maxSlidingWindow(vector<int>& nums, int k);
+  //239. Sliding Window Maximum: Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. 
+  //Each time the sliding window moves right by one position. Return the max sliding window.
+
+  string serialize(TreeNode* root);
+  TreeNode* deserialize(string data);
+  //297. Serialize and Deserialize Binary Tree
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

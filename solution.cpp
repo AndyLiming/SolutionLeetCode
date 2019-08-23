@@ -407,6 +407,8 @@ bool solution::exist(vector<vector<char>>& board, string word)
 
 
 
+
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word)
 {
@@ -3537,7 +3539,6 @@ vector<string> solution::fizzBuzz(int n)
 
 
 //No 410
-
 bool solution::cansplit(vector<int>& nums, int value, int m)
 {
   int len = nums.size();
@@ -3560,7 +3561,6 @@ bool solution::cansplit(vector<int>& nums, int value, int m)
       return false;
     }
   }
-
   return true;
 }
 int solution::splitArray(vector<int>& nums, int m)
@@ -3577,7 +3577,6 @@ int solution::splitArray(vector<int>& nums, int m)
     }
     sum += nums[i];
   }
-
   int left = max;
   int right = sum;
   int mid = 0;
@@ -3594,6 +3593,87 @@ int solution::splitArray(vector<int>& nums, int m)
       left = mid + 1;
     }
   }
-
   return left;
+}
+
+//No 72 Edit Distance
+int solution::minDistance(string word1, string word2)
+{
+  int len1 = word1.size(), len2 = word2.size();
+  vector<vector<int>> distance(len1+1, vector<int>(len2+1, 0));
+  for (int i = 1;i <= len1;++i) distance[i][0] = i;
+  for (int i = 1;i <= len2;++i) distance[0][i] = i;
+  for (int i = 1;i <= len1;++i) {
+    for (int j = 1;j <= len2;++j) {
+      int tmp = distance[i - 1][j - 1];
+      if (word1[i - 1] != word2[j - 1]) tmp += 1;
+      distance[i][j] = min(tmp, min(distance[i - 1][j], distance[i][j - 1]) + 1);
+    }
+  }
+  return distance[len1][len2];
+}
+
+//No 239 Sliding Window Maximum
+vector<int> solution::maxSlidingWindow(vector<int>& nums, int k)
+{
+  vector<int> ans;
+  deque<int> maxIndexq;
+  for (int i = 0;i < nums.size();++i) {
+    if (!maxIndexq.empty() && maxIndexq.front() == i - k)maxIndexq.pop_front();
+    while (!maxIndexq.empty() && nums[i] > nums[maxIndexq.back()]) {
+      maxIndexq.pop_back();
+    }
+    maxIndexq.push_back(i);
+    if (i >= k - 1)ans.push_back(nums[maxIndexq.front()]);
+  }
+  return ans;
+}
+
+
+//No 297 Serialize and Deserialize Binary Tree
+string solution::serialize(TreeNode * root)
+{
+  ostringstream oss;
+  queue<TreeNode*>q;
+  if(root!=nullptr) q.push(root);
+  while (!q.empty()) {
+    TreeNode *cur = q.front();
+    q.pop();
+    if (cur != nullptr) {
+      oss << to_string(cur->val)<<' ';
+      q.push(cur->left);
+      q.push(cur->right);
+    }
+    else oss << '#' << ' ';
+  }
+  return oss.str();
+}
+
+TreeNode * solution::deserialize(string data)
+{
+  if (data.empty()) return nullptr;
+  istringstream iss(data);
+  queue<TreeNode*>q;
+  string val;
+  iss >> val;
+  TreeNode*root = new TreeNode(stoi(val));
+  TreeNode*cur = root;
+  q.push(cur);
+  while (!q.empty()) {
+    TreeNode *tmp = q.front();
+    q.pop();
+    if (!(iss >> val)) break;
+    if (val != "#") {
+      cur = new TreeNode(stoi(val));
+      q.push(cur);
+      tmp->left = cur;
+    }
+    if (!(iss >> val)) break;
+    if (val != "#") {
+      cur = new TreeNode(stoi(val));
+      q.push(cur);
+      tmp->right = cur;
+    }
+  }
+  return root;
 }

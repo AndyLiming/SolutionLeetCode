@@ -20,8 +20,4 @@ int main() {
     p = p->next;
   }
   cout << endl;*/
-  string s;
-  cin >> s;
-  cout << solu.longestValidParentheses(s) << endl;
-  return 0; 
 }
