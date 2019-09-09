@@ -409,6 +409,7 @@ bool solution::exist(vector<vector<char>>& board, string word)
 
 
 
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word)
 {
@@ -3676,4 +3677,167 @@ TreeNode * solution::deserialize(string data)
     }
   }
   return root;
+}
+
+//No 57 Insert Interval
+vector<vector<int>> solution::insertIntervals(vector<vector<int>>& intervals, vector<int>& newInterval)
+{
+  vector<vector<int>> ans;
+  int len = intervals.size(), cur = 0;
+  for (int i = 0;i < len;++i) {
+    if (intervals[i][1]<newInterval[0]) {
+      ans.push_back(intervals[i]);
+      ++cur;
+    }
+    else if (intervals[i][0] > newInterval[1]) {
+      ans.push_back(intervals[i]);
+    }
+    else{
+      newInterval[0] = min(newInterval[0], intervals[i][0]);
+      newInterval[1] = max(newInterval[1], intervals[i][1]);
+    }
+  }
+  ans.insert(ans.begin() + cur, newInterval);
+  return ans;
+}
+
+//No 330 Patching Array
+int solution::minPatches(vector<int>& nums, int n)
+{
+  long miss = 1, res = 0, id = 0;
+  while (miss <= n) {
+    if (id < nums.size() && nums[id] <= miss) {
+      miss += nums[id++];
+    }
+    else {
+      miss += miss;
+      ++res;
+    }
+  }
+  return res;
+}
+
+//No 41 First Missing Positive
+int solution::firstMissingPositive(vector<int>& nums)
+{
+  int len = nums.size();
+  for (int i = 0;i < len;++i) {
+    while (nums[i] > 0 && nums[i] <= len && nums[nums[i] - 1] != nums[i]) {
+      swap(nums[i], nums[nums[i] - 1]);
+    }
+  }
+  for (int i = 0;i < len;++i) {
+    if (nums[i] != i + 1) return i + 1;
+  }
+  return len + 1;
+}
+
+//No 42 Trapping Rain Water
+int solution::trapRainWater(vector<int>& height)
+{
+  int sumWater = 0, left = 0, right = height.size()-1,cur =0;
+  while (left < right) {
+    if (height[left] < height[right]) {
+      cur = left;
+      while (height[left] >= height[cur] && cur < right) {
+        sumWater += height[left] - height[cur];
+        ++cur;
+      }
+      left = cur;
+    }
+    else {
+      cur = right;
+      while (height[right] >= height[cur] && cur > left) {
+        sumWater += height[right] - height[cur];
+        --cur;
+      }
+      right = cur;
+    }
+  }
+  return sumWater;
+}
+
+//No 233 Number of Digit One
+int solution::countDigitOne(int n)
+{
+  int res = 0;
+  for (long m = 1; m <= n; m *= 10) {
+    long a = n / m, b = n%m;
+    res += (a + 8) / 10 * m;
+    if (a % 10 == 1) res += b + 1;
+  }
+  return res;
+}
+
+//No 438 Find All Anagrams in a String
+vector<int> solution::findAnagrams(string s, string p)
+{
+  vector<int> ans;
+  vector<int>ms(256, 0), mp(256, 0);
+  for (int i = 0;i < p.size();++i) {
+    ++ms[s[i]];
+    ++mp[p[i]];
+  }
+  if (ms == mp) ans.push_back(0);
+  for (int i = p.size();i < s.size();++i) {
+    ++ms[s[i]];
+    --ms[s[i - p.size()]];
+    if (ms == mp) ans.push_back(i - p.size() + 1);
+  }
+  return ans;
+}
+
+//No 494 Target Sum
+int solution::findTargetSumWays(vector<int>& nums, int S)
+{
+  int len = nums.size();
+  vector<unordered_map<int,int>>dp(len + 1);//dp[i][j]: nums[0] to nums[i-1] sum is j
+  dp[0][0] = 1;
+  for (int i = 0;i < len;++i) {
+    for (auto a : dp[i]) {
+      int sum = a.first, cnt = a.second;
+      dp[i + 1][sum + nums[i]] += cnt;
+      dp[i + 1][sum - nums[i]] += cnt;
+    }
+  }
+  return dp[len][S];
+}
+
+//No 739 Daily Temperatures
+vector<int> solution::dailyTemperatures(vector<int>& T)
+{
+  vector<int> ans(T.size());
+  stack<int>sId;
+  int i = 0;
+  while (i < T.size()) {
+      while (!sId.empty() && T[i] > T[sId.top()]) {
+        ans[sId.top()] = (i- sId.top());
+        sId.pop();
+      }
+      sId.push(i);
+      ++i;
+  }
+  return ans;
+}
+
+//No 76 Minimum Window Substring
+string solution::minWindow(string s, string t)
+{
+  vector<int> need(128, 0);
+  for (auto c : t) need[c]++;
+  int count = t.size();
+  int begin = 0, end = 0;
+  int head = 0;//start pos
+  int len = INT_MAX;
+  while (end < s.size()) {
+    if (need[s[end++]]-- > 0) --count;
+    while (count == 0) {
+      if (end - begin < len) {
+        len = end - begin;
+        head = begin;//record currrent position and length
+      }
+      if (need[s[begin++]]++ == 0)++count;
+    }
+  }
+  return len == INT_MAX ? "" : s.substr(head, len);
 }

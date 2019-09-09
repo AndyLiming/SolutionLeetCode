@@ -609,6 +609,37 @@ public:
   TreeNode* deserialize(string data);
   //297. Serialize and Deserialize Binary Tree
 
+  vector<vector<int>> insertIntervals(vector<vector<int>>& intervals, vector<int>& newInterval);
+  //57. Insert Interval: Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
+  //You may assume that the intervals were initially sorted according to their start times.
+
+  int minPatches(vector<int>& nums, int n);
+  //330. Patching Array: Given a sorted positive integer array nums and an integer n, add/patch elements to the array such that any number in range [1, n] inclusive can be formed by the sum of some elements in the array.
+  //Return the minimum number of patches required.
+
+  int firstMissingPositive(vector<int>& nums);
+  //41. First Missing Positive: Given an unsorted integer array, find the smallest missing positive integer.
+
+  int trapRainWater(vector<int>& height);
+  //42. Trapping Rain Water: Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+
+  int countDigitOne(int n);
+  //233. Number of Digit One: Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.
+
+  vector<int> findAnagrams(string s, string p);
+  //438. Find All Anagrams in a String: Given a string s and a non-empty string p, find all the start indices of p's anagrams in s.
+  //Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20, 100. The order of output does not matter.
+
+  int findTargetSumWays(vector<int>& nums, int S);
+  //494. Target Sum: You are given a list of non-negative integers, a1, a2, ..., an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symbol.
+  //Find out how many ways to assign symbols to make sum of integers equal to target S.
+
+  vector<int> dailyTemperatures(vector<int>& T);
+  //739. Daily Temperatures: Given a list of daily temperatures T, return a list such that, for each day in the input, tells you how many days you would have to wait until a warmer temperature. 
+  //If there is no future day for which this is possible, put 0 instead.
+
+  string minWindow(string s, string t);
+  //76. Minimum Window Substring: Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -679,5 +710,110 @@ public:
   }
 private :
   vector<vector<int>> sumDp;
+};
+
+//No 295 Find Median from Data Stream
+class MedianFinder {
+public:
+  /** initialize your data structure here. */
+  MedianFinder():size(0) {
+ 
+  }
+
+  void addNum(int num) {
+    ++size;
+    l.push(num);
+    g.push(l.top());
+    l.pop();
+    if (l.size() < g.size()) {
+      l.push(g.top());
+      g.pop();
+    }
+  }
+
+  double findMedian() {
+    if (size % 2 == 1) return l.top();
+    else return (l.top() + g.top()) / 2;
+  }
+private:
+  int size;
+  priority_queue<int, vector<int>, greater<int>> g;
+  priority_queue<int, vector<int>, less<int>> l;
+};
+//No 380 Insert Delete GetRandom O(1)
+class RandomizedSet {
+public:
+  /** Initialize your data structure here. */
+  RandomizedSet() {
+
+  }
+
+  /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+  bool insert(int val) {
+    if (hashMap.find(val) != hashMap.end()) return false;
+    else {
+      hashMap.insert({ val,elemNum.size() });
+      elemNum.push_back(val);
+      return true;
+    }
+  }
+
+  /** Removes a value from the set. Returns true if the set contained the specified element. */
+  bool remove(int val) {
+    if (hashMap.find(val) == hashMap.end()) return false;
+    else {
+      auto p = hashMap.find(val);
+      int index = p->second;
+      swap(elemNum[index], elemNum[elemNum.size() - 1]);
+      elemNum.pop_back();
+      hashMap[elemNum[index]] = index;
+      hashMap.erase(val);
+      return true;
+    }
+  }
+
+  /** Get a random element from the set. */
+  int getRandom() {  
+    if (elemNum.size() == 0)return -1;
+    else {
+      uniform_int_distribution<int>distri(0, elemNum.size() - 1);
+      return elemNum[distri(generator)];
+    }
+  }
+private:
+  unordered_map<int, int> hashMap;
+  vector<int>elemNum;
+  default_random_engine generator;
+};
+
+//No 146 LRU Cache
+class LRUCache {
+public:
+  LRUCache(int capacity) {
+    cap = capacity;
+  }
+
+  int get(int key) {
+    auto it = m.find(key);
+    if (it == m.end()) return -1;
+    l.splice(l.begin(), l, it->second);
+    return it->second->second;
+  }
+
+  void put(int key, int value) {
+    auto it = m.find(key);
+    if (it != m.end()) l.erase(it->second);
+    l.push_front({ key,value });
+    m[key] = l.begin();
+    if (m.size() > cap) {
+      int k = l.rbegin()->first;
+      l.pop_back();
+      m.erase(k);
+    }
+  }
+private:
+  int cap;
+  unordered_map<int, list<pair<int, int>>::iterator> m;
+  list<pair<int, int>>l;
 };
 #endif // !_SOLUTION_

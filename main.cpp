@@ -20,4 +20,9 @@ int main() {
     p = p->next;
   }
   cout << endl;*/
+  int n;
+  cin >> n;
+  cout << solu.countDigitOne(n) << endl;
+  
+  return 0;
 }
