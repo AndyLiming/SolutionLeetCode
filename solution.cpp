@@ -410,6 +410,9 @@ bool solution::exist(vector<vector<char>>& board, string word)
 
 
 
+
+
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word)
 {
@@ -3564,6 +3567,7 @@ bool solution::cansplit(vector<int>& nums, int value, int m)
   }
   return true;
 }
+
 int solution::splitArray(vector<int>& nums, int m)
 {
   int len = nums.size();
@@ -3840,4 +3844,293 @@ string solution::minWindow(string s, string t)
     }
   }
   return len == INT_MAX ? "" : s.substr(head, len);
+}
+
+//No 140 Word Break II
+vector<string> solution::wordBreak2(string s, vector<string>& wordDict)
+{
+  unordered_map<string, vector<string>> wordMap;
+  return wordBreak2Rec(s, wordDict, wordMap);
+}
+
+vector<string> solution::wordBreak2Rec(string s, vector<string>& wordDict, unordered_map<string, vector<string>>& wordMap)
+{
+  if (wordMap.count(s)) return wordMap[s];
+  if (s.empty()) return{ "" };
+  vector<string> ans;
+  for (auto w : wordDict) {
+    if (s.substr(0, w.size()) != w) continue;
+    vector<string> tmp = wordBreak2Rec(s.substr(w.size()), wordDict, wordMap);
+    for (auto st : tmp) {
+      ans.push_back(w + (st.empty() ? "" : " ") + st);
+    }
+  }
+  wordMap[s] = ans;
+  return wordMap[s];
+}
+
+
+//No 124 Binary Tree Maximum Path Sum
+int solution::maxPathSum(TreeNode * root)
+{
+  int res = INT_MIN;
+  maxPathSumRec(root, res);
+  return res;
+}
+int solution::maxPathSumRec(TreeNode * node, int & res)
+{
+  if (!node) return 0;
+  int left = max(maxPathSumRec(node->left, res), 0);
+  int right = max(maxPathSumRec(node->right, res), 0);
+  res = max(res, left + right + node->val);
+  return max(left, right) + node->val;
+}
+
+
+
+//No 617 Merge Two Binary Trees
+TreeNode * solution::mergeTrees(TreeNode * t1, TreeNode * t2)
+{
+  if (!t1) return t2;
+  if (!t2) return t1;
+  TreeNode *t = new TreeNode(t1->val + t2->val);
+  t->left = mergeTrees(t1->left, t2->left);
+  t->right = mergeTrees(t1->right, t2->right);
+  return t;
+}
+
+//No 128 Longest Consecutive Sequence
+int solution::longestConsecutive(vector<int>& nums)
+{
+  int ans = 0;
+  unordered_set<int> hash(nums.begin(), nums.end());
+  for (auto n : nums) {
+    if (hash.find(n) != hash.end()) {
+      int pre = n - 1, next = n + 1,tmp=1;
+      hash.erase(n);
+      while (hash.find(pre) != hash.end()) {
+        ++tmp;
+        hash.erase(pre);
+        --pre;
+      }
+      while (hash.find(next) != hash.end()) {
+        ++tmp;
+        hash.erase(next);
+        ++next;
+      }
+      ans = max(ans, next - pre - 1);
+    }
+  }
+  return ans;
+}
+
+//No 437 Path Sum III
+int solution::pathSum3(TreeNode * root, int sum)
+{
+  int nums = 0;
+  vector<TreeNode*> out;
+  pathSum3Dfs(root, 0, sum, nums,out);
+  return nums;
+}
+
+void solution::pathSum3Dfs(TreeNode * node, int curSum, int target, int & nums, vector<TreeNode*>& out)
+{
+  if (!node) return;
+  curSum += node->val;
+  if (curSum == target) ++nums;
+  out.push_back(node);
+  int t = curSum;
+  for (int i = 0; i < out.size() - 1; ++i) {
+    t -= out[i]->val;
+    if (t == target) ++nums;
+  }
+  if (node->left) pathSum3Dfs(node->left, curSum, target, nums,out);
+  if (node->right) pathSum3Dfs(node->right, curSum, target, nums,out);
+  out.pop_back();
+}
+
+
+
+//No 581 Shortest Unsorted Continuous Subarray
+int solution::findUnsortedSubarray(vector<int>& nums)
+{
+  int n = nums.size(), start = -1, end = -2;
+  int mn = nums[n - 1], mx = nums[0];
+  for (int i = 1;i < n;++i) {
+    mx = max(mx, nums[i]);
+    mn = min(mn, nums[n - 1 - i]);
+    if (mx > nums[i])end = i;
+    if (mn < nums[n - 1 - i])start = n - 1 - i;
+  }
+  return end - start + 1;
+}
+
+//No 647 Palindromic Substrings
+int solution::countSubstrings(string s)
+{
+  int n=s.size(), res = 0;
+  vector<vector<bool>> dp(n, vector<bool>(n, false));
+  for (int i = n - 1;i >= 0;--i) {
+    for (int j = i;j < n;++j) {
+      dp[i][j] = (s[i] == s[j]) && (j - i <= 2 || dp[i + 1][j - 1]);
+      if (dp[i][j])++res;
+    }
+  }
+  return res;
+}
+
+//No 329 Longest Increasing Path in a Matrix
+int solution::longestIncreasingPath(vector<vector<int>>& matrix)
+{
+  if (matrix.empty() || matrix[0].empty()) return 0;
+  int rows = matrix.size(), cols = matrix[0].size();
+  vector<vector<int>> dp(rows, vector<int>(cols, 0));
+  vector<vector<int>> dirs{ {1,0},{-1,0},{0,1},{0,-1} };
+  int ans = 0;
+  for (int i = 0;i < rows;++i) {
+    for (int j = 0;j < cols;++j) {
+      ans = max(ans, longestIncPathDfs(matrix, i, j, dirs, dp));
+    }
+  }
+  return ans;
+}
+int solution::longestIncPathDfs(vector<vector<int>>& matrix, int row, int col, vector<vector<int>>& dirs, vector<vector<int>>& dp)
+{
+  if (dp[row][col] > 0) return dp[row][col];
+  else {
+    dp[row][col] = 1;
+    for (int i = 0;i < 4;++i) {
+      int dx = dirs[i][0], dy = dirs[i][1];
+      if (row + dx >= 0 && row + dx < matrix.size() && col + dy >= 0 && col + dy<matrix[0].size() && matrix[row + dx][col + dy]>matrix[row][col]) {
+        dp[row][col] = max(longestIncPathDfs(matrix, row + dx, col + dy, dirs, dp) + 1, dp[row][col]);
+      }
+    }
+  }
+  return dp[row][col];
+}
+
+
+
+//No 51 N-Queens
+vector<vector<string>> solution::solveNQueens(int n)
+{
+  vector<vector<string>> ans;
+  vector<int> colIds(n, 0);
+  for (int j = 0;j < n;++j) {
+    colIds[0] = j;
+    nQueensCore(n, 1, colIds, ans);
+  }
+  return ans;
+}
+
+bool solution::nQueensIsValid(int n, int k, vector<int>& colIds)
+{
+  for (int i = 0;i < k;++i) {
+    if (colIds[i] == colIds[k] || abs(colIds[k] - colIds[i]) == k - i) return false;
+  }
+  return true;
+}
+
+void solution::nQueensCore(int n, int k, vector<int>& colIds, vector<vector<string>>&ans)
+{
+  if (k >= n) {
+    vector<string> oneSolu;
+    for (int i = 0;i < n;++i) {
+      string tmp(n, '.');
+      tmp[colIds[i]] = 'Q';
+      oneSolu.push_back(tmp);
+    }
+    ans.push_back(oneSolu);
+    return;
+  }
+  else {
+    for (int j = 0;j < n;++j) {
+      colIds[k] = j;
+      if (nQueensIsValid(n, k, colIds)) {
+        nQueensCore(n, k + 1, colIds, ans);
+      }
+    }
+  }
+}
+
+//No 543 Diameter of Binary Tree
+int solution::diameterOfBinaryTree(TreeNode * root)
+{
+  int maxDia = 0;
+  diameterOfBinaryTreeCore(root, maxDia);
+  return max(maxDia - 1, 0);
+}
+
+int solution::diameterOfBinaryTreeCore(TreeNode * root, int & maxDia)
+{
+  if (!root) return 0;
+  else {
+    int left = diameterOfBinaryTreeCore(root->left, maxDia);
+    int right = diameterOfBinaryTreeCore(root->right, maxDia);
+
+    maxDia = max(maxDia, left + right + 1);
+    return max(left, right) + 1;
+  }
+}
+
+
+
+//No 621 Task Scheduler
+int solution::leastInterval(vector<char>& tasks, int n)
+{
+  vector<int> numOfTasks(26, 0);
+  for (auto c : tasks) {
+    numOfTasks[c - 'A']++;
+  }
+  sort(numOfTasks.begin(), numOfTasks.end());
+  int mx = numOfTasks[25],i=25,len = tasks.size();
+  while (i >= 0 && numOfTasks[i] == mx) --i;
+  return max(len, (mx - 1)*(n + 1) + 25 - i);
+}
+
+//No 448 Find All Numbers Disappeared in an Array
+vector<int> solution::findDisappearedNumbers(vector<int>& nums)
+{
+  vector<int> ans;
+  for (int i = 0;i < nums.size();++i) {
+    int id = abs(nums[i]) - 1;
+    if (nums[id] > 0) nums[id] = -nums[id];
+  }
+  for (int i = 0;i < nums.size();++i) {
+    if (nums[i] > 0) ans.push_back(i + 1);
+  }
+  return ans;
+}
+
+//No 301 Remove Invalid Parentheses
+vector<string> solution::removeInvalidParentheses(string s)
+{
+  vector<string> ans;
+  char pa[2] = { '(',')' };
+  removeInvPaCore(s, 0, 0, pa, ans);
+  return ans;
+}
+void solution::removeInvPaCore(string s, int lastI, int lastJ, char parentheses[], vector<string>& ans)
+{
+  int cnt = 0;
+  for (int i = lastI;i < s.size();++i) {
+    if (s[i] == parentheses[0]) ++cnt;
+    if (s[i] == parentheses[1]) --cnt;
+    if (cnt >= 0) continue;
+    for (int j = lastJ;j <= i;++j) {
+      if (s[j] == parentheses[1] && (j == lastJ || s[j - 1] != parentheses[1])) {
+        string t = s.substr(0, j) + s.substr(j + 1);
+        //cout << t << endl;
+        removeInvPaCore(t, i, j, parentheses, ans);
+      }
+    }
+    return;
+  }
+  string r;
+  for (int i = s.size() - 1;i >= 0;--i) r.push_back(s[i]);
+  if (parentheses[0] == '(') {
+    char pa2[2] = { ')', '(' };
+    removeInvPaCore(r, 0, 0, pa2 , ans);
+  }
+  else ans.push_back(r);
 }

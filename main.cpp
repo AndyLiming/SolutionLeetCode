@@ -20,9 +20,18 @@ int main() {
     p = p->next;
   }
   cout << endl;*/
-  int n;
-  cin >> n;
-  cout << solu.countDigitOne(n) << endl;
-  
+
+  //int n;
+  //cin >> n;
+  //vector<int>nums(n);
+  //for (int i = 0;i < n;++i) cin >> nums[i];
+  //cout << solu.longestConsecutive(nums) << endl;
+  //TreeNode *root = new TreeNode(10);
+  //root->left = new TreeNode(5);root->right = new TreeNode(-3);
+  //root->left->left = new TreeNode(3);root->left->right = new TreeNode(2);root->right->right = new TreeNode(11);
+
+  string s;
+  cin >> s;
+  te.outputVector(solu.removeInvalidParentheses(s));
   return 0;
 }

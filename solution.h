@@ -640,6 +640,61 @@ public:
 
   string minWindow(string s, string t);
   //76. Minimum Window Substring: Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
+
+  vector<string> wordBreak2(string s, vector<string>& wordDict);
+  //140. Word Break II: Given a non-empty string s and a dictionary wordDict containing a list of non-empty words,
+  //add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.
+
+  int maxPathSum(TreeNode* root);
+  //124. Binary Tree Maximum Path Sum: Given a non-empty binary tree, find the maximum path sum.
+  //For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent - child connections.
+  //The path must contain at least one node and does not need to go through the root.
+
+  TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2);
+  //617. Merge Two Binary Trees: Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.
+  //You need to merge them into a new binary tree.The merge rule is that if two nodes overlap, then sum node values up as the new value of the merged node.Otherwise, the NOT null node will be used as the node of new tree.
+
+  int longestConsecutive(vector<int>& nums);
+  //128. Longest Consecutive Sequence: Given an unsorted array of integers, find the length of the longest consecutive elements sequence. time complexity O(n)
+
+  int pathSum3(TreeNode* root, int sum);
+  //437. Path Sum III: You are given a binary tree in which each node contains an integer value. Find the number of paths that sum to a given value.
+  //The path does not need to start or end at the root or a leaf, but it must go downwards(traveling only from parent nodes to child nodes).
+  //The tree has no more than 1, 000 nodes and the values are in the range - 1, 000, 000 to 1, 000, 000.
+
+  int findUnsortedSubarray(vector<int>& nums);
+  //581. Shortest Unsorted Continuous Subarray: Given an integer array, you need to find one continuous subarray that if you only sort this subarray in ascending order, 
+  //then the whole array will be sorted in ascending order, too.
+  //You need to find the shortest such subarray and output its length.
+
+  int countSubstrings(string s);
+  //647. Palindromic Substrings: Given a string, your task is to count how many palindromic substrings in this string.
+  //The substrings with different start indexes or end indexes are counted as different substrings even they consist of same characters.
+
+  int longestIncreasingPath(vector<vector<int>>& matrix);
+  //329. Longest Increasing Path in a Matrix: Given an integer matrix, find the length of the longest increasing path.
+  //From each cell, you can either move to four directions : left, right, up or down.You may NOT move diagonally or move outside of the boundary(i.e.wrap - around is not allowed).
+
+  vector<vector<string>> solveNQueens(int n);
+  //51. N-Queens: The n-queens puzzle is the problem of placing n queens on an n¡Án chessboard such that no two queens attack each other.
+
+  int diameterOfBinaryTree(TreeNode* root);
+  //543. Diameter of Binary Tree: Given a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+
+  int leastInterval(vector<char>& tasks, int n);
+  //621. Task Scheduler: Given a char array representing tasks CPU need to do. It contains capital letters A to Z where different letters represent different tasks. 
+  //Tasks could be done without original order. Each task could be done in one interval. For each interval, CPU could finish one task or just be idle.
+  //However, there is a non - negative cooling interval n that means between two same tasks, there must be at least n intervals that CPU are doing different tasks or just be idle.
+  //You need to return the least number of intervals the CPU will take to finish all the given tasks.
+
+  vector<int> findDisappearedNumbers(vector<int>& nums);
+  //448. Find All Numbers Disappeared in an Array: Given an array of integers where 1 ¡Ü a[i] ¡Ü n (n = size of array), some elements appear twice and others appear once.
+  //Find all the elements of[1, n] inclusive that do not appear in this array.
+  //Could you do it without extra space and in O(n) runtime ? You may assume the returned list does not count as extra space.
+
+  vector<string> removeInvalidParentheses(string s);
+  //301. Remove Invalid Parentheses: Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -672,6 +727,14 @@ private:
   ListNode* reverseList(ListNode * start, ListNode * end);
   ListNode* mergeTwoList(ListNode* h1, ListNode * h2);
   bool cansplit(vector<int>& nums, int value, int m);
+  vector<string> wordBreak2Rec(string s, vector<string>& wordDict, unordered_map<string, vector<string>>&wordMap);
+  int maxPathSumRec(TreeNode* node, int& res);
+  void pathSum3Dfs(TreeNode * node,int curSum,int target,int &nums, vector<TreeNode*>& out);
+  int longestIncPathDfs(vector<vector<int>>& matrix, int row, int col, vector<vector<int>>&dirs, vector<vector<int>>&dp);
+  bool nQueensIsValid(int n, int k, vector<int>&colIds);
+  void nQueensCore(int n, int k, vector<int>&colIds, vector<vector<string>>&ans);
+  int diameterOfBinaryTreeCore(TreeNode* root,int & maxDia);
+  void removeInvPaCore(string s, int lastI, int lastJ, char parentheses[], vector<string>&ans);
 };
 
 //No 303 Range Sum Query - Immutable
@@ -816,4 +879,98 @@ private:
   unordered_map<int, list<pair<int, int>>::iterator> m;
   list<pair<int, int>>l;
 };
+
+class MinStack {
+public:
+  /** initialize your data structure here. */
+  MinStack() {
+    size = 0;
+  }
+  void push(int x) {
+    data.push(x);
+    if (minD.empty()) {
+      minD.push(x);
+    }
+    else {
+      int curMin = minD.top();
+      minD.push(min(curMin, x));
+    }
+  }
+
+  void pop() {
+    if (!data.empty()) {
+      data.pop();
+      minD.pop();
+    }
+  }
+
+  int top() {
+    if (data.empty()) return -1;
+    return data.top();
+  }
+
+  int getMin() {
+    if (minD.empty()) return -1;
+    return minD.top();
+  }
+  bool isEmpty() {
+    return data.empty();
+  }
+private:
+  stack<int> data, minD;
+  int size;
+};
+
+//No 208 Implement Trie (Prefix Tree)
+class Trie {
+public:
+  class TrieNode {
+  public:
+    TrieNode *children[26];
+    bool isword;
+    TrieNode(): isword(false) {
+      for (auto &c : children) c = nullptr;
+    }
+  };
+  /** Initialize your data structure here. */
+  Trie() {
+    root = new TrieNode();
+  }
+
+  /** Inserts a word into the trie. */
+  void insert(string word) {
+    TrieNode *p = root;
+    for (auto w : word) {
+      int i = w - 'a';
+      if (!p->children[i])p->children[i] = new TrieNode();
+      p = p->children[i];
+    }
+    p->isword = true;
+  }
+
+  /** Returns if the word is in the trie. */
+  bool search(string word) {
+    TrieNode *p = root;
+    for (auto w : word) {
+      int i = w - 'a';
+      if (!p->children[i]) return false;
+      p = p->children[i];
+    }
+    return p->isword;
+  }
+
+  /** Returns if there is any word in the trie that starts with the given prefix. */
+  bool startsWith(string prefix) {
+    TrieNode *p = root;
+    for (auto w : prefix) {
+      int i = w - 'a';
+      if (!p->children[i]) return false;
+      p = p->children[i];
+    }
+    return true;
+  }
+private:
+  TrieNode *root;
+};
+
 #endif // !_SOLUTION_
