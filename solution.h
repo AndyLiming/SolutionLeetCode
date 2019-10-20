@@ -695,6 +695,12 @@ public:
   vector<string> removeInvalidParentheses(string s);
   //301. Remove Invalid Parentheses: Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results.
 
+  int maxCoins(vector<int>& nums);
+  //312. Burst Balloons: Given n balloons, indexed from 0 to n-1. Each balloon is painted with a number on it represented by array nums. 
+  //You are asked to burst all the balloons. If the you burst balloon i you will get nums[left] * nums[i] * nums[right] coins. 
+  //Here left and right are adjacent indices of i. After the burst, the left and right then becomes adjacent.
+  //Find the maximum coins you can collect by bursting the balloons wisely.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

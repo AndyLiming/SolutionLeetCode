@@ -413,6 +413,8 @@ bool solution::exist(vector<vector<char>>& board, string word)
 
 
 
+
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word)
 {
@@ -4110,6 +4112,7 @@ vector<string> solution::removeInvalidParentheses(string s)
   removeInvPaCore(s, 0, 0, pa, ans);
   return ans;
 }
+
 void solution::removeInvPaCore(string s, int lastI, int lastJ, char parentheses[], vector<string>& ans)
 {
   int cnt = 0;
@@ -4120,7 +4123,6 @@ void solution::removeInvPaCore(string s, int lastI, int lastJ, char parentheses[
     for (int j = lastJ;j <= i;++j) {
       if (s[j] == parentheses[1] && (j == lastJ || s[j - 1] != parentheses[1])) {
         string t = s.substr(0, j) + s.substr(j + 1);
-        //cout << t << endl;
         removeInvPaCore(t, i, j, parentheses, ans);
       }
     }
@@ -4133,4 +4135,49 @@ void solution::removeInvPaCore(string s, int lastI, int lastJ, char parentheses[
     removeInvPaCore(r, 0, 0, pa2 , ans);
   }
   else ans.push_back(r);
+}
+
+//No 312 Burst Balloons
+int solution::maxCoins(vector<int>& nums)
+{
+  int n = nums.size() + 2;
+  vector<int> arr(n);
+  arr[0] = arr[nums.size() + 1] = 1;
+  for (int i = 1;i <= nums.size();++i) arr[i] = nums[i - 1];
+  vector<vector<int>> dp(n, vector<int>(n));
+  for (int k = 2;k < n;++k) {
+    for (int left = 0;left < n - k;++left) {
+      int right = left + k;
+      for (int i = left + 1;i < right;++i) {
+        dp[left][right] = max(dp[left][right], arr[left] * arr[i] * arr[right] + dp[left][i] + dp[i][right]);
+      }
+    }
+  }
+  return dp[0][n - 1];
+}
+
+//No 429 N-ary Tree Level Order Traversal
+vector<vector<int>> solution::levelOrder(Node * root)
+{
+  vector<vector<int>> ans;
+  vector<int> tmp;
+  queue<Node*> q;
+  q.push(root);
+  Node* last = root;
+  Node* nextLast = root;
+  while (!q.empty()) {
+    Node*cur = q.front();
+    q.pop();
+    tmp.push_back(cur->val);
+    if (!cur->children.empty()) {
+      for (auto c : cur->children) q.push(c);
+    }
+    nextLast = q.back();
+    if (cur == last) {
+      ans.push_back(tmp);
+      tmp.clear();
+      last = nextLast;
+    }
+  }
+  return ans;
 }
