@@ -701,6 +701,9 @@ public:
   //Here left and right are adjacent indices of i. After the burst, the left and right then becomes adjacent.
   //Find the maximum coins you can collect by bursting the balloons wisely.
 
+  vector<vector<int>> levelOrder(Node* root);
+  //429. N-ary Tree Level Order Traversal: Given an n-ary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
