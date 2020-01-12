@@ -30,8 +30,8 @@ int main() {
   //root->left = new TreeNode(5);root->right = new TreeNode(-3);
   //root->left->left = new TreeNode(3);root->left->right = new TreeNode(2);root->right->right = new TreeNode(11);
 
-  string s;
-  cin >> s;
-  te.outputVector(solu.removeInvalidParentheses(s));
+  vector<int>nums;
+  te.inputVector(nums);
+  te.outputVector(solu.findDuplicates(nums));
   return 0;
 }

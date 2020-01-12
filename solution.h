@@ -704,6 +704,11 @@ public:
   vector<vector<int>> levelOrder(Node* root);
   //429. N-ary Tree Level Order Traversal: Given an n-ary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
 
+  vector<int> findDuplicates(vector<int>& nums);
+  //442. Find All Duplicates in an Array: Given an array of integers, 1 ¡Ü a[i] ¡Ü n (n = size of array), some elements appear twice and others appear once.
+  //Find all the elements that appear twice in this array.
+  //Could you do it without extra spaceand in O(n) runtime ?
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
