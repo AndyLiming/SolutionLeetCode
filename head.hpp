@@ -78,7 +78,7 @@ public:
   int val;
   vector<Node*> children;
 
-  Node() {}
+  Node() { val = 0; }
 
   Node(int _val, vector<Node*> _children) {
     val = _val;
