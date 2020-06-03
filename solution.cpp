@@ -415,6 +415,8 @@ bool solution::exist(vector<vector<char>> & board, string word)
 
 
 
+
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>> & enable, int position, const vector<vector<char>> & board, const string word)
 {
@@ -4199,4 +4201,38 @@ vector<int> solution::findDuplicates(vector<int> & nums)
 		}   
 	}
   return vector<int>(ans.begin(),ans.end());
+}
+
+//No 289 Game of Life
+void solution::gameOfLife(vector<vector<int>>& board)
+{
+	// 0 -> 0 : 0
+	// 0 -> 1 : 3
+	// 1 -> 0 : 2
+	// 1 -> 1 : 1
+	//1 & 2 means this is a live cell in current state
+	//0 & 3 means this is a dead cell in current state
+	//0 & 2 means this will be dead in next state
+	//1 & 3 means this will be live in next state
+	int rows = board.size(), cols = board[0].size();
+	vector<int> dr = { -1,-1,-1,0,0,1,1,1 }, dc = { -1,0,1,-1,1,-1,0,1 };
+	for (int i = 0; i < rows; ++i) {
+		for (int j = 0; j < cols; ++j) {
+			int cnt = 0;
+			for (int k = 0; k < 8; ++k) {
+				if (i + dr[k] >= 0 && i + dr[k] < rows && j + dc[k] >= 0 && j + dc[k] < cols && (board[i + dr[k]][j + dc[k]] == 1 || board[i + dr[k]][j + dc[k]] == 2)) ++cnt;
+			}
+			if (board[i][j] == 1) {
+				if (cnt < 2 || cnt>3) board[i][j] = 2;
+			}
+			else {
+				if (cnt == 3) board[i][j] = 3;
+			}
+		}
+	}
+	for (int i = 0; i < rows; ++i) {
+		for (int j = 0; j < cols; ++j) {
+			board[i][j] = board[i][j] % 2;
+		}
+	}
 }
