@@ -712,6 +712,19 @@ public:
   void gameOfLife(vector<vector<int>>& board);
   //289. Game of Life
 
+  vector<int> findSubstring(string s, vector<string>& words);
+  //30. Substring with Concatenation of All Words: You are given a string, s, and a list of words, words, that are all of the same length. 
+  //Find all starting indices of substring(s) in s that is a concatenation of each word in words exactly once and without any intervening characters.
+
+  int numDistinct(string s, string t);
+  //115. Distinct Subsequences
+  //Given a string S and a string T, count the number of distinct subsequences of S which equals T.
+  //A subsequence of a string is a new string which is formed from the original string by deleting some(can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, "ACE" is a subsequence of "ABCDE" while "AEC" is not).
+  //It's guaranteed the answer fits on a 32-bit signed integer.
+
+  int maxPoints(vector<vector<int>>& points);
+  //149. Max Points on a Line
+  //Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

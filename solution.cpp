@@ -417,6 +417,7 @@ bool solution::exist(vector<vector<char>> & board, string word)
 
 
 
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>> & enable, int position, const vector<vector<char>> & board, const string word)
 {
@@ -4235,4 +4236,91 @@ void solution::gameOfLife(vector<vector<int>>& board)
 			board[i][j] = board[i][j] % 2;
 		}
 	}
+}
+
+//No 30
+vector<int> solution::findSubstring(string s, vector<string>& words)
+{
+	if(s.empty()||words.empty()) return vector<int>();
+	int n = s.size(), m = words.size(), wl = words[0].size();
+	unordered_map<string, int>mp;
+	vector<int>ans;
+	for (int i = 0; i < m; ++i) {
+		mp[words[i]]++;
+	}
+	for (int i = 0; i < n - m * wl + 1; ++i) {
+		unordered_map<string, int>seen;
+		int j = 0;
+		for (j = 0; j < m; ++j) {
+			string cur = s.substr(i + j * wl, wl);
+			if (mp.find(cur) == mp.end()) break;
+			else {
+				seen[cur]++;
+				if (seen[cur] > mp[cur]) break;
+			}
+		}
+		if (j == m)ans.push_back(i);
+	}
+	return ans;
+}
+
+//No 115 Distinct Subsequences
+int solution::numDistinct(string s, string t)
+{
+	/*if (t.empty()) return 1;
+	else if (s.empty()) return 0;
+	int m = s.size(), n = t.size();
+	vector<vector<uint64_t>>dp(m + 1, vector<uint64_t>(n + 1, 0));
+	for (int i = 0; i <= m; ++i) dp[i][0] = 1;
+	for (int j = 1; j <= n; ++j)dp[0][j] = 0;
+	for (int i = 1; i <= m; ++i) {
+		for (int j = 1; j <= n; ++j) {
+			if (j > i)dp[i][j] = 0;
+			else {
+				if (s[i-1] == t[j-1])dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
+				else dp[i][j] = dp[i - 1][j];
+			}
+		}
+	}
+	return dp[m][n];*/
+	if (t.empty()) return 1;
+	else if (s.empty()) return 0;
+	int m = s.size(), n = t.size();
+	uint64_t left = 0, cur = 0,last=0;
+	vector<uint64_t>dp(m + 1, 1);
+	for (int j = 1; j <= n; ++j) {
+		for (int i = j; i <= m; ++i) {
+			if (s[i - 1] == t[j - 1]) cur = dp[i - 1] + left;
+			else cur = left;
+			dp[i - 1] = left;
+			left = cur;
+		}
+		dp[m] = left;
+		left = 0;
+	}
+	return dp[m];
+}
+
+//No 149 Max Points on a Line
+int solution::maxPoints(vector<vector<int>>& points)
+{
+	if (points.size() < 3) return points.size();
+	int maxP = 0,num=points.size();
+	for (int i = 0; i < num; ++i) {
+		int same = 1;
+		for (int j = i + 1; j < num; ++j) {
+			int count = 0;
+			if (points[i][0] == points[j][0] && points[i][1] == points[j][1]) ++same;
+			else {
+				++count;
+				int64_t dx = points[i][0] - points[j][0];
+				int64_t dy = points[i][1] - points[j][1];
+				for (int k = j + 1; k < num; ++k) {
+					if(dx*(points[i][1]-points[k][1]) == dy*(points[i][0]-points[k][0])) ++count;
+				}
+				maxP = max(maxP, same + count);
+			}
+		}
+	}
+	return maxP;
 }
