@@ -1,7 +1,6 @@
 #include "head.hpp"
 #include "solution.h"
 #include "test.h"
-
 int main() {
   test te;
   solution solu;
@@ -30,9 +29,10 @@ int main() {
   //root->left = new TreeNode(5);root->right = new TreeNode(-3);
   //root->left->left = new TreeNode(3);root->left->right = new TreeNode(2);root->right->right = new TreeNode(11);
 
-  vector<vector<int>> input;
-  te.inputVectorVec(input);
-  solu.gameOfLife(input);
-  te.outputVectorVec(input);
+  //vector<vector<int>> input;
+  //te.inputVectorVec(input);
+  //solu.gameOfLife(input);
+  //te.outputVectorVec(input);
+
   return 0;
 }

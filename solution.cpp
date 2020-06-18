@@ -4324,3 +4324,140 @@ int solution::maxPoints(vector<vector<int>>& points)
 	}
 	return maxP;
 }
+
+//No 135 Candy
+int solution::candy(vector<int>& ratings)
+{//greedy
+	int sum = 0, len=ratings.size();
+	vector<int> c(len, 0);
+	//left to right, make sure child with higher rating have more candies than child on the left
+	for (int i = 0; i < len-1; ++i) {
+		if (ratings[i + 1] > ratings[i]) c[i+1] = c[i] + 1;
+	}
+	//right to left
+	for (int i = len-1; i >0 ; --i) {
+		if (ratings[i - 1] > ratings[i] && c[i-1]<(c[i]+1)) c[i - 1] = c[i] + 1;
+	}
+	//add all number of candies
+	//the extra 1 -> every one has at least one candy
+	for (auto n : c) sum += n + 1;
+	return sum;
+}
+
+//No 417 Pacific Atlantic Water Flow
+void solution::pacificAtlanticDFS(vector<vector<int>>& matrix, int x, int y, vector<vector<bool>>& visit, int pre) {
+	int n = matrix.size(), m = matrix[0].size();
+	if (x < 0 || x >= n || y < 0 || y >= m || matrix[x][y] < pre) return;
+	visit[x][y] = true;
+	pacificAtlanticDFS(matrix, x - 1, y, visit, matrix[x][y]);
+	pacificAtlanticDFS(matrix, x + 1, y, visit, matrix[x][y]);
+	pacificAtlanticDFS(matrix, x, y - 1, visit, matrix[x][y]);
+	pacificAtlanticDFS(matrix, x, y + 1, visit, matrix[x][y]);
+}
+vector<vector<int>> solution::pacificAtlantic(vector<vector<int>>& matrix)
+{
+	vector<vector<int>> ans;
+	if (matrix.empty() || matrix[0].empty()) return ans;
+	int n = matrix.size(), m = matrix[0].size();
+	vector<vector<bool>> pacific(n, vector<bool>(m, false));
+	vector<vector<bool>> atlantic(n, vector<bool>(m, false));
+	for (int i = 0; i < n; ++i) {
+		pacificAtlanticDFS(matrix, i, 0, pacific, matrix[i][0]);
+		pacificAtlanticDFS(matrix, i, m-1, atlantic, matrix[i][m-1]);
+	}
+	for (int i = 0; i < m; ++i) {
+		pacificAtlanticDFS(matrix, 0, i, pacific, matrix[0][i]);
+		pacificAtlanticDFS(matrix, n-1, i, atlantic, matrix[n-1][i]);
+	}
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j < m; ++j) {
+			if (pacific[i][j] && atlantic[i][j]) ans.push_back({ i,j });
+		}
+	}
+	return ans;
+}
+
+//No 468 Validate IP Address
+bool solution::ifIpv4(string ip) {
+	vector<char>tmp;
+	int i = 0, len = ip.size(), count = 0;
+	for (int i = 0; i < len; ++i) {
+		if (ip[i] == '.') {
+			if (tmp.empty() || tmp.size() > 3) return false;
+			int cur = 0;
+			for (auto t : tmp) {
+				cur = cur * 10 + t - '0';
+			}
+			if (cur >= 0 && cur < 256) {
+				++count;
+				tmp.clear();
+			}
+			else return false;
+		}
+		else if (ip[i] >= '0' && ip[i] <= '9') {
+			tmp.push_back(ip[i]);
+			if (tmp.size() > 1 && tmp[0] == '0') return false;
+		}
+		else return false;
+	}
+	int cur = 0;
+	if (tmp.empty()) return false;
+	for (auto t : tmp) {
+		cur = cur * 10 + t - '0';
+	}
+	if (cur >= 0 && cur < 256) {
+		++count;
+	}
+	else return false;
+	return count == 4;
+}
+bool solution::ifIpv6(string ip) {
+	vector<char>tmp;
+	int i = 0, len = ip.size(), count = 0;
+	for (int i = 0; i < len; ++i) {
+		if (ip[i] == ':') {
+			if (tmp.empty() || tmp.size() > 4) return false;
+			else {
+				++count;
+				tmp.clear();
+			}
+		}
+		else if ((ip[i] >= '0' && ip[i] <= '9') || (ip[i] >= 'a' && ip[i] <= 'f') || (ip[i] >= 'A' && ip[i] <= 'F')) tmp.push_back(ip[i]);
+		else return false;
+	}
+	if (tmp.size() > 4) return false;
+	else ++count;
+	return count == 8;
+}
+
+string solution::validIPAddress(string IP) {
+	int s = -1;
+	for (auto c : IP) {
+		if (c == '.') {
+			s = 4;
+			break;
+		}
+		else if (c == ':') {
+			s = 6;
+			break;
+		}
+	}
+	if (s == 4 && ifIpv4(IP)) return "IPv4";
+	else if (s == 6 && ifIpv6(IP)) return "IPv6";
+	else return "Neither";
+}
+
+//No 275 H-Index II
+int solution::hIndex2(vector<int>& citations)
+{
+	if(citations.empty()) return 0;
+	int n = citations.size();
+	int left = 0, right = n - 1;
+	while (left <= right) {
+		int mid = (right - left) / 2 + left;
+		if (citations[mid] == n - mid) return n - mid;
+		else if (citations[mid] > n - mid) right = mid - 1;
+		else left = mid + 1;
+	}
+	return n - left;
+}

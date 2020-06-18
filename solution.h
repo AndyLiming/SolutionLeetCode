@@ -725,6 +725,25 @@ public:
   int maxPoints(vector<vector<int>>& points);
   //149. Max Points on a Line
   //Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
+
+  int candy(vector<int>& ratings);
+  //135. Candy
+  //There are N children standing in a line. Each child is assigned a rating value. You are giving candies to these children subjected to the following requirements :
+  //  Each child must have at least one candy. Children with a higher rating get more candies than their neighbors. What is the minimum candies you must give ?
+
+  vector<vector<int>> pacificAtlantic(vector<vector<int>>& matrix);
+  
+  //417. Pacific Atlantic Water Flow
+  //Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the "Pacific ocean" touches the left and top edges of the matrix and the "Atlantic ocean" touches the right and bottom edges.
+  //Water can only flow in four directions(up, down, left, or right) from a cell to another one with height equal or lower.
+  //Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.
+
+  string validIPAddress(string IP);
+  //468. Validate IP Address: Write a function to check whether an input string is a valid IPv4 address or IPv6 address or neither.
+
+  int hIndex2(vector<int>& citations);
+  //275. H-Index II: Given an array of citations sorted in ascending order (each citation is a non-negative integer) of a researcher, write a function to compute the researcher's h-index.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -765,6 +784,9 @@ private:
   void nQueensCore(int n, int k, vector<int>&colIds, vector<vector<string>>&ans);
   int diameterOfBinaryTreeCore(TreeNode* root,int & maxDia);
   void removeInvPaCore(string s, int lastI, int lastJ, char parentheses[], vector<string>&ans);
+  void pacificAtlanticDFS(vector<vector<int>>& matrix, int x, int y, vector<vector<bool>>& visit, int pre);
+  bool ifIpv4(string ip);
+  bool ifIpv6(string ip);
 };
 
 //No 303 Range Sum Query - Immutable
