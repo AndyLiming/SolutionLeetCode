@@ -4461,3 +4461,29 @@ int solution::hIndex2(vector<int>& citations)
 	}
 	return n - left;
 }
+
+//No 125
+bool solution::isPalindromeString(string s)
+{
+	if (s.empty()) return true;
+	int len = s.size(), i = 0, j = len - 1;
+	while (i < j) {
+		if (!isalnum(s[i]))++i;
+		else if (!isalnum(s[j]))--j;
+		else {
+			if (s[i] == s[j] || (isalpha(s[i]) && isalpha(s[j]) && (s[i] + 32 == s[j] || s[i] - 32 == s[j]))) {
+				++i;
+				--j;
+			}
+			else return false;
+		}
+	}
+	return true;
+}
+
+//No 1044
+string solution::longestDupSubstring(string S)
+{
+	
+}
+

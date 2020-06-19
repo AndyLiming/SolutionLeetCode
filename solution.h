@@ -744,6 +744,12 @@ public:
   int hIndex2(vector<int>& citations);
   //275. H-Index II: Given an array of citations sorted in ascending order (each citation is a non-negative integer) of a researcher, write a function to compute the researcher's h-index.
 
+  bool isPalindromeString(string s);
+  //125
+
+  string longestDupSubstring(string S);
+  //1044.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
