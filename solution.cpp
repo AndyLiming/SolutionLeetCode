@@ -1141,13 +1141,34 @@ int solution::canCompleteCircuit(vector<int> & gas, vector<int> & cost)
 //No 137 Single Number II
 int solution::singleNumber(vector<int> & nums)
 {
-	sort(nums.begin(), nums.end());
-	if (nums[0] != nums[1]) return nums[0];
-	for (int i = 1; i < nums.size() - 1; ++i) {
-		if (nums[i] != nums[i - 1] && nums[i] != nums[i + 1])
-			return nums[i];
+	/* sort */
+	//sort(nums.begin(), nums.end());
+	//if (nums[0] != nums[1]) return nums[0];
+	//for (int i = 1; i < nums.size() - 1; ++i) {
+	//	if (nums[i] != nums[i - 1] && nums[i] != nums[i + 1])
+	//		return nums[i];
+	//}
+	//return nums.back();
+
+	/* calculate per bit */
+	//int len = nums.size(), ans = 0;
+	//for (int i = 0; i < 32; ++i) {
+	//	int count = 0;
+	//	int mask = 1 << i;
+	//	for (int j = 0; j < len; ++j) {
+	//		if (nums[j] & mask)count++;
+	//	}
+	//	if (count % 3) ans |= mask;
+	//}
+	//return ans;
+
+	/* 2 var xor*/
+	int a = 0, b = 0;
+	for (auto n : nums) {
+		b = (b ^ n) & (~a);
+		a = (a ^ n) & (~b);
 	}
-	return nums.back();
+	return b;
 }
 //No 138 Copy List with Random Pointer
 RandomListNode* solution::copyRandomList(RandomListNode * head)
@@ -4484,6 +4505,27 @@ bool solution::isPalindromeString(string s)
 //No 1044
 string solution::longestDupSubstring(string S)
 {
-	
+	return "";
+}
+
+//No 10. Regular Expression Matching
+bool solution::isMatch(string s, string p)
+{
+	if (s.empty() && p.empty()) return true;
+	vector<vector<bool>> dp(s.size() + 1, vector<bool>(p.size() + 1, false));
+	dp[0][0] = true;
+	for (int j = 1; j <= p.size(); ++j) {
+		if (p[j - 1] == '*') dp[0][j] = dp[0][j - 2];
+	}
+	for (int i = 1; i <= s.size(); ++i) {
+		for (int j = 1; j <= p.size(); ++j) {
+			if (s[i - 1] == p[j - 1] || p[j - 1] == '.') dp[i][j] = dp[i - 1][j - 1];
+			else if (p[j - 1] == '*') {
+				dp[i][j] = dp[i][j - 2];
+				if (p[j - 2] == '.' || p[j - 2] == s[i - 1])dp[i][j] = dp[i][j] || dp[i - 1][j];
+			}
+		}
+	}
+	return dp[s.size()][p.size()];
 }
 

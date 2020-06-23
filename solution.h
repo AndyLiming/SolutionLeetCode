@@ -750,6 +750,12 @@ public:
   string longestDupSubstring(string S);
   //1044.
 
+  bool isMatch(string s, string p);
+  //10. Regular Expression Matching: Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
+  //'.' Matches any single character.
+  //'*' Matches zero or more of the preceding element.
+  //The matching should cover the entire input string(not partial).
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

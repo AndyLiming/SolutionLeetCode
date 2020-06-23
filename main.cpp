@@ -1,6 +1,9 @@
 #include "head.hpp"
 #include "solution.h"
 #include "test.h"
+
+
+
 int main() {
   test te;
   solution solu;
@@ -33,6 +36,10 @@ int main() {
   //te.inputVectorVec(input);
   //solu.gameOfLife(input);
   //te.outputVectorVec(input);
+
+  string s = "mississippi";
+  string p = "mis*is*p*.";
+  cout << isMatch(s, p) << endl;
 
   return 0;
 }
