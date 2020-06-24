@@ -756,6 +756,10 @@ public:
   //'*' Matches zero or more of the preceding element.
   //The matching should cover the entire input string(not partial).
 
+  int threeSumClosest(vector<int>& nums, int target);
+  //Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. 
+  //Return the sum of the three integers. You may assume that each input would have exactly one solution.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

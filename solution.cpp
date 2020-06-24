@@ -418,6 +418,7 @@ bool solution::exist(vector<vector<char>> & board, string word)
 
 
 
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>> & enable, int position, const vector<vector<char>> & board, const string word)
 {
@@ -4528,4 +4529,24 @@ bool solution::isMatch(string s, string p)
 	}
 	return dp[s.size()][p.size()];
 }
-
+//No 16 three sum closest
+int solution::threeSumClosest(vector<int>& nums, int target)
+{
+	if (nums.size() < 3)return 0;
+	sort(nums.begin(), nums.end());
+	int gap = INT_MAX, ans = 0;
+	for (int i = 0; i < nums.size() - 2; ++i) {
+		int j = i + 1, k = nums.size() - 1;
+		while (j < k) {
+			int tmp = nums[i] + nums[j] + nums[k];
+			if (abs(tmp - target) < gap) {
+				gap = abs(tmp - target);
+				ans = tmp;
+			}
+			if (tmp == target)return tmp;
+			else if (tmp < target) ++j;
+			else --k;
+		}
+	}
+	return ans;
+}
