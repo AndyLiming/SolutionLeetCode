@@ -419,6 +419,7 @@ bool solution::exist(vector<vector<char>> & board, string word)
 
 
 
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>> & enable, int position, const vector<vector<char>> & board, const string word)
 {
@@ -4549,4 +4550,50 @@ int solution::threeSumClosest(vector<int>& nums, int target)
 		}
 	}
 	return ans;
+}
+
+//No 332
+vector<string> solution::findItinerary(vector<vector<string>>& tickets)
+{
+	// iterative solution
+	/*vector<string> ans;
+	if (tickets.empty()) return ans;
+	unordered_map<string, multiset<string>> table;
+	for (auto t : tickets) {
+		table[t[0]].insert(t[1]);
+	}
+
+	if (!table.count("JFK")) return ans;
+	stack<string>st;
+	st.push("JFK");
+	while (!st.empty()) {
+		string cur = st.top();
+		if (table[cur].empty()) {
+			ans.insert(ans.begin(), cur);
+			st.pop();
+		}
+		else {
+			st.push(*(table[cur].begin()));
+			table[cur].erase(table[cur].begin());
+		}
+	}
+	return ans;*/
+
+	// recursive solution
+	unordered_map < string, priority_queue<string, vector<string>, greater<string>>> table;
+	vector<string> ans;
+	for (auto t : tickets) {
+		table[t[0]].push(t[1]);
+	}
+	findItineraryDFS("JFK", ans, table);
+	reverse(ans.begin(), ans.end());
+	return ans;
+}
+void solution::findItineraryDFS(string cur, vector<string>& ans, unordered_map < string, priority_queue<string, vector<string>, greater<string>>>& table) {
+	while (!table[cur].empty()) {
+		string tmp = table[cur].top();	
+		table[cur].pop();
+		findItineraryDFS(tmp, ans, table);
+	}
+	ans.push_back(cur);
 }

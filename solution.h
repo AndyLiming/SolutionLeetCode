@@ -760,6 +760,9 @@ public:
   //Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. 
   //Return the sum of the three integers. You may assume that each input would have exactly one solution.
 
+  vector<string> findItinerary(vector<vector<string>>& tickets);
+  //332. Reconstruct Itinerary: Given a list of airline tickets represented by pairs of departure and arrival airports [from, to], 
+  //reconstruct the itinerary in order. All of the tickets belong to a man who departs from JFK. Thus, the itinerary must begin with JFK.
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -803,6 +806,7 @@ private:
   void pacificAtlanticDFS(vector<vector<int>>& matrix, int x, int y, vector<vector<bool>>& visit, int pre);
   bool ifIpv4(string ip);
   bool ifIpv6(string ip);
+  void findItineraryDFS(string cur, vector<string>& ans, unordered_map < string, priority_queue<string, vector<string>, greater<string>>>& table);
 };
 
 //No 303 Range Sum Query - Immutable
