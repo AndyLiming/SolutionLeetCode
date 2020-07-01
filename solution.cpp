@@ -4552,7 +4552,7 @@ int solution::threeSumClosest(vector<int>& nums, int target)
 	return ans;
 }
 
-//No 332
+//No 332 Reconstruct Itinerary
 vector<string> solution::findItinerary(vector<vector<string>>& tickets)
 {
 	// iterative solution
@@ -4589,6 +4589,7 @@ vector<string> solution::findItinerary(vector<vector<string>>& tickets)
 	reverse(ans.begin(), ans.end());
 	return ans;
 }
+
 void solution::findItineraryDFS(string cur, vector<string>& ans, unordered_map < string, priority_queue<string, vector<string>, greater<string>>>& table) {
 	while (!table[cur].empty()) {
 		string tmp = table[cur].top();	
@@ -4596,4 +4597,32 @@ void solution::findItineraryDFS(string cur, vector<string>& ans, unordered_map <
 		findItineraryDFS(tmp, ans, table);
 	}
 	ans.push_back(cur);
+}
+
+//No 718 Maximum Length of Repeated Subarray
+int solution::findLength(vector<int>& A, vector<int>& B)
+{
+	int lenA = A.size(), lenB = B.size();
+	if (lenA == 0 || lenB == 0) return 0;
+	vector<vector<int>> dp(lenA + 1, vector<int>(lenB + 1, 0));
+	//dp[i][j] means the max length of sub array that A end with A[i-1] and B end with B[j-1]
+	int maxL = 0;
+	for (int i = 1; i <= lenA; ++i) {
+		for (int j = 1; j <= lenB; ++j) {
+			if (A[i - 1] == B[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1;
+			maxL = max(maxL, dp[i][j]);
+		}
+	}
+	return maxL;
+}
+
+//No 441 Arrange Coins
+int solution::arrangeCoins(int n)
+{
+	if(n==0) return 0;
+	if (n == 1) return 1;
+	int64_t i = 2;
+	int64_t nn = n;
+	while (i * (i + 1) / 2 <= n) ++i;
+	return i - 1;
 }

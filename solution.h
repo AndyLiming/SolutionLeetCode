@@ -763,6 +763,15 @@ public:
   vector<string> findItinerary(vector<vector<string>>& tickets);
   //332. Reconstruct Itinerary: Given a list of airline tickets represented by pairs of departure and arrival airports [from, to], 
   //reconstruct the itinerary in order. All of the tickets belong to a man who departs from JFK. Thus, the itinerary must begin with JFK.
+
+  int findLength(vector<int>& A, vector<int>& B);
+  //718. Maximum Length of Repeated Subarray: Given two integer arrays A and B, return the maximum length of an subarray that appears in both arrays.
+
+  int arrangeCoins(int n);
+  //441. Arranging Coins:You have a total of n coins that you want to form in a staircase shape, where every k-th row must have exactly k coins.
+  //Given n, find the total number of full staircase rows that can be formed.
+  //n is a non - negative integer and fits within the range of a 32 - bit signed integer.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
