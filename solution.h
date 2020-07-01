@@ -772,6 +772,9 @@ public:
   //Given n, find the total number of full staircase rows that can be formed.
   //n is a non - negative integer and fits within the range of a 32 - bit signed integer.
 
+  bool isInterleave(string s1, string s2, string s3);
+  //97. Interleaving String: Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

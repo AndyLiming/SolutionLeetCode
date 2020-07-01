@@ -420,6 +420,7 @@ bool solution::exist(vector<vector<char>> & board, string word)
 
 
 
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>> & enable, int position, const vector<vector<char>> & board, const string word)
 {
@@ -4625,4 +4626,22 @@ int solution::arrangeCoins(int n)
 	int64_t nn = n;
 	while (i * (i + 1) / 2 <= n) ++i;
 	return i - 1;
+}
+
+//No 97 Interleaving String
+bool solution::isInterleave(string s1, string s2, string s3)
+{
+	int l1 = s1.size(), l2 = s2.size(), l3 = s3.size();
+	if ((l1 + l2) != l3) return false;
+	vector<vector<bool>>dp(l1 + 1, vector<bool>(l2));
+	//dp[i][j] means if s3(0 - i+j-1) is formed by the interleaving of s1(0,i-1) and s2(0,j-1)
+	dp[0][0] = true;
+	for (int i = 1; i <= l1; ++i) dp[i][0] = dp[i - 1][0] && (s1[i - 1] == s3[i - 1]);
+	for (int j = 1; j <= l2; ++j) dp[0][j] = dp[0][j - 1] && (s2[j - 1] == s3[j - 1]);
+	for (int i = 1; i <= l1; ++i) {
+		for (int j = 1; j <= l2; ++j) {
+			dp[i][j] = (dp[i - 1][j] && (s1[i - 1] == s3[i - 1 + j])) || (dp[i][j - 1] && (s2[j - 1] == s3[j - 1 + i]));
+		}
+	}
+	return dp[l1][l2];
 }
