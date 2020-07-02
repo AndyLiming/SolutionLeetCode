@@ -4645,3 +4645,29 @@ bool solution::isInterleave(string s1, string s2, string s3)
 	}
 	return dp[l1][l2];
 }
+
+//No 107 Binary Tree Level Order Traversal II
+vector<vector<int>> solution::levelOrderBottom(TreeNode* root)
+{
+	vector<vector<int>>ans;
+	vector<int>tmp;
+	if (!root) return ans;
+	queue<TreeNode*>q;
+	q.push(root);
+	TreeNode* last = root, *nLast = root;
+	while (!q.empty()) {
+		TreeNode* cur = q.front();
+		q.pop();
+		tmp.push_back(cur->val);
+		if (cur->left)q.push(cur->left);
+		if (cur->right)q.push(cur->right);
+		nLast = q.back();
+		if (cur == last) {
+			ans.push_back(tmp);
+			tmp.clear();
+			last = nLast;
+		}
+	}
+	reverse(ans.begin(), ans.end());
+	return ans;
+}
