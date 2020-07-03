@@ -36,10 +36,11 @@ int main() {
   //te.inputVectorVec(input);
   //solu.gameOfLife(input);
   //te.outputVectorVec(input);
-
-  string s = "mississippi";
-  string p = "mis*is*p*.";
-  cout << isMatch(s, p) << endl;
-
+  
+  int N;
+  cin >> N;
+  vector<int>cells;
+  te.inputVector(cells);
+  vector<int>ans = solu.prisonAfterNDays(cells, N);
   return 0;
 }

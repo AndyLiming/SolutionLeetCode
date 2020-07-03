@@ -405,22 +405,6 @@ bool solution::exist(vector<vector<char>> & board, string word)
 	return false;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>> & enable, int position, const vector<vector<char>> & board, const string word)
 {
@@ -4600,6 +4584,7 @@ void solution::findItineraryDFS(string cur, vector<string>& ans, unordered_map <
 	ans.push_back(cur);
 }
 
+
 //No 718 Maximum Length of Repeated Subarray
 int solution::findLength(vector<int>& A, vector<int>& B)
 {
@@ -4670,4 +4655,51 @@ vector<vector<int>> solution::levelOrderBottom(TreeNode* root)
 	}
 	reverse(ans.begin(), ans.end());
 	return ans;
+}
+
+//No 108 Convert Sorted Array to Binary Search Tree
+TreeNode* solution::sortedArrayToBST(vector<int>& nums)
+{
+	return sortedArrayToBSTCore(nums, 0, nums.size() - 1);
+}
+
+TreeNode* solution::sortedArrayToBSTCore(vector<int>& nums, int l, int r)
+{
+	if (l > r) return nullptr;
+	int mid = (r - l) / 2 + l;
+	TreeNode* root = new TreeNode(nums[mid]);
+	root->left = sortedArrayToBSTCore(nums, l, mid - 1);
+	root->right = sortedArrayToBSTCore(nums, mid + 1, r);
+	return root;
+}
+
+//No 957 Prison Cells After N Days
+vector<int> solution::prisonAfterNDays(vector<int>& cells, int N)
+{
+	vector<int>ans;
+	//period is 14
+	N = N % 14;
+	if (N == 0)N = 14;
+	while (N) {
+		ans = prisonAfterNDaysNext(cells);
+		cells = ans;
+		--N;
+	}
+	return ans;
+}
+vector<int> solution::prisonAfterNDaysNext(vector<int>& cells)
+{
+	int len = cells.size();
+	vector<int>res(8, 0);
+	for (int i = 1; i <= 6; ++i) {
+		if (cells[i - 1] == cells[i + 1]) res[i] = 1;
+	}
+	return res;
+}
+
+
+//No 837 New 21 Game
+double solution::new21Game(int N, int K, int W)
+{
+	return 0.0;
 }

@@ -779,6 +779,22 @@ public:
   //107. Binary Tree Level Order Traversal II: Given a binary tree, return the bottom-up level order traversal of its nodes' values. 
   //(ie, from left to right, level by level from leaf to root).
 
+  double new21Game(int N, int K, int W);
+  //837. New 21 Game: Alice plays the following game, loosely based on the card game "21".
+  //Alice starts with 0 points, and draws numbers while she has less than K points.During each draw, she gains an integer number of points randomly from the range[1, W], 
+  //where W is an integer.Each draw is independentand the outcomes have equal probabilities.
+  //Alice stops drawing numbers when she gets K or more points.What is the probability that she has N or less points ?
+
+  TreeNode* sortedArrayToBST(vector<int>& nums);
+  //108. Convert Sorted Array to Binary Search Tree: Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
+  //For this problem, a height - balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
+
+  vector<int> prisonAfterNDays(vector<int>& cells, int N);
+  //957. Prison Cells After N Days: There are 8 prison cells in a row, and each cell is either occupied or vacant.
+  //Each day, whether the cell is occupied or vacant changes according to the following rules :
+  //If a cell has two adjacent neighbors that are both occupied or both vacant, then the cell becomes occupied.
+  //Otherwise, it becomes vacant. (Note that because the prison is a row, the firstand the last cells in the row can't have two adjacent neighbors.)
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -823,6 +839,8 @@ private:
   bool ifIpv4(string ip);
   bool ifIpv6(string ip);
   void findItineraryDFS(string cur, vector<string>& ans, unordered_map < string, priority_queue<string, vector<string>, greater<string>>>& table);
+  TreeNode* sortedArrayToBSTCore(vector<int>& nums, int l, int r);
+  vector<int> prisonAfterNDaysNext(vector<int>& cells);
 };
 
 //No 303 Range Sum Query - Immutable
