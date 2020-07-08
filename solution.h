@@ -795,6 +795,13 @@ public:
   //If a cell has two adjacent neighbors that are both occupied or both vacant, then the cell becomes occupied.
   //Otherwise, it becomes vacant. (Note that because the prison is a row, the firstand the last cells in the row can't have two adjacent neighbors.)
 
+  int islandPerimeter(vector<vector<int>>& grid);
+  //463. Island Perimeter
+
+  vector<vector<int>> threeSum(vector<int>& nums);
+  //3Sum: Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+  //The solution set must not contain duplicate triplets.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

@@ -4698,6 +4698,7 @@ vector<int> solution::prisonAfterNDaysNext(vector<int>& cells)
 }
 
 //No 837 New 21 Game
+//conditional probablity
 double solution::new21Game(int N, int K, int W)
 {
 	if (K == 0 || N >= K + W) return 1.0;
@@ -4709,4 +4710,53 @@ double solution::new21Game(int N, int K, int W)
 		else sum[i] = sum[i - 1] + (sum[t] - sum[i - W - 1]) / W;
 	}
 	return (sum[N] - sum[K - 1]) / (sum[K + W - 1] - sum[K - 1]);
+}
+
+//No 463
+int solution::islandPerimeter(vector<vector<int>>& grid)
+{
+	int ans = 0;
+	int m = grid.size(), n = grid[0].size();
+	for (int i = 0; i < m; ++i) {
+		for (int j = 0; j < n; ++j) {
+			if (grid[i][j] == 1) {
+				int tmp = 4;
+				if (i > 0 && grid[i - 1][j] == 1)--tmp;
+				if (i < m - 1 && grid[i + 1][j] == 1)--tmp;
+				if (j > 0 && grid[i][j - 1] == 1)--tmp;
+				if (j < n - 1 && grid[i][j + 1] == 1)--tmp;
+				ans += tmp;
+			}
+		}
+	}
+	return ans;
+}
+
+//No 15 3Sum
+vector<vector<int>> solution::threeSum(vector<int>& nums)
+{
+	vector<vector<int>> ans;
+	if (nums.size() < 3) return ans;
+	sort(nums.begin(), nums.end());
+	int i = 0;
+	while (i < nums.size() - 2) {
+		int target = -nums[i];
+		int j = i + 1, k = nums.size() - 1;
+		while (j < k) {
+			if (nums[j] + nums[k] == target) {
+				ans.push_back({ nums[i],nums[j],nums[k] });
+				++j;
+				--k;
+				//avoid duplicate
+				while (j < nums.size() && nums[j] == nums[j - 1])++j;
+				while (k >= 0 && nums[k] == nums[k + 1])--k;
+			}
+			else if (nums[j] + nums[k] < target)++j;
+			else --k;
+		}
+		++i;
+		//avoid duplicate
+		while (i < nums.size() && nums[i] == nums[i - 1])++i;
+	}
+	return ans;
 }
