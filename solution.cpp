@@ -405,6 +405,7 @@ bool solution::exist(vector<vector<char>> & board, string word)
 	return false;
 }
 
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>> & enable, int position, const vector<vector<char>> & board, const string word)
 {
@@ -4759,4 +4760,63 @@ vector<vector<int>> solution::threeSum(vector<int>& nums)
 		while (i < nums.size() && nums[i] == nums[i - 1])++i;
 	}
 	return ans;
+}
+
+//No 662 Maximum Width of Binary Tree
+int solution::widthOfBinaryTree(TreeNode* root)
+{
+	if (!root)return 0;
+	uint64_t ans = 0;
+	queue<pair<TreeNode*, uint64_t>> q;
+	q.push({ root,0 });
+	TreeNode* last = root, * nextL = root;
+	uint64_t left = 0, right = 0;
+	bool newline = true;
+	while (!q.empty()) {
+		TreeNode* cur = q.front().first;
+		uint64_t curNum = q.front().second;
+		if (newline) left = curNum;
+		right = curNum;
+		q.pop();
+		if (cur->left) {
+			q.push({ cur->left,curNum * 2 + 1 });
+		}
+		if (cur->right) {
+			q.push({ cur->right,curNum * 2 + 2 });
+		}
+		nextL = q.back().first;
+		if (cur == last) {
+			last = nextL;
+			newline = true;
+		}
+		else newline = false;
+		ans = max(ans, right - left + 1);
+	}
+	return (int)ans;
+}
+
+//No 430 Flatten a Multilevel Doubly Linked List
+Node* solution::flatten(Node* head)
+{
+	if (!head || (!head->child && !head->next)) return head;
+	Node* c = nullptr, * n = nullptr;
+	if (head->child) {
+		c = flatten(head->child);
+		head->child = nullptr;
+	}
+	if (head->next) {
+		n = flatten(head->next);
+		head->next = nullptr;
+	}
+	if (c) {
+		head->next = c;
+		c->prev = head;
+	}
+	if (n) {
+		Node* p = head;
+		while (p->next != nullptr)p = p->next;
+		p->next = n;
+		n->prev = p;
+	}
+	return head;
 }

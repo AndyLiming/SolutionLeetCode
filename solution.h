@@ -801,6 +801,11 @@ public:
   vector<vector<int>> threeSum(vector<int>& nums);
   //3Sum: Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
   //The solution set must not contain duplicate triplets.
+  
+  int widthOfBinaryTree(TreeNode* root);
+  //662. Maximum Width of Binary Tree: Given a binary tree, write a function to get the maximum width of the given tree. The width of a tree is the maximum width among all levels. 
+  //The binary tree has the same structure as a full binary tree, but some nodes are null.
+  //The width of one level is defined as the length between the end - nodes(the leftmost and right most non - null nodes in the level, where the null nodes between the end - nodes are also counted into the length calculation.
 
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
