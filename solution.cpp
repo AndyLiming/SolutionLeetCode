@@ -1627,6 +1627,15 @@ uint32_t solution::reverseBits(uint32_t n)
 		count++;
 	}
 	return ans;
+	//another solution inplace
+	//for (int i = 0; i <= 15; ++i) {
+	//	int flag1 = 1 << i, flag2 = 1 << (31 - i);
+	//	if (((n & flag1) >> i) != ((n & flag2) >> (31 - i))) {
+	//		n = n ^ flag1;
+	//		n = n ^ flag2;
+	//	}
+	//}
+	//return n;
 }
 
 //No 191 Number of 1 Bits

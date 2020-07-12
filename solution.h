@@ -807,6 +807,8 @@ public:
   //The binary tree has the same structure as a full binary tree, but some nodes are null.
   //The width of one level is defined as the length between the end - nodes(the leftmost and right most non - null nodes in the level, where the null nodes between the end - nodes are also counted into the length calculation.
 
+  Node* flatten(Node* head);
+  //430. Flatten a Multilevel Doubly Linked List
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
