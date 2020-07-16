@@ -4178,16 +4178,16 @@ int solution::maxCoins(vector<int> & nums)
 }
 
 //No 429 N-ary Tree Level Order Traversal
-vector<vector<int>> solution::levelOrder(Node * root)
+vector<vector<int>> solution::levelOrder(MultiTreeNode* root)
 {
 	vector<vector<int>> ans;
 	vector<int> tmp;
-	queue<Node*> q;
+	queue<MultiTreeNode*> q;
 	q.push(root);
-	Node* last = root;
-	Node* nextLast = root;
+	MultiTreeNode* last = root;
+	MultiTreeNode* nextLast = root;
 	while (!q.empty()) {
-		Node* cur = q.front();
+		MultiTreeNode* cur = q.front();
 		q.pop();
 		tmp.push_back(cur->val);
 		if (!cur->children.empty()) {
@@ -4829,3 +4829,26 @@ Node* solution::flatten(Node* head)
 	}
 	return head;
 }
+
+//No 785
+bool solution::isBipartite(vector<vector<int>>& graph)
+{
+	int len = graph.size();
+	vector<int>color(len, 0);
+	for (int i = 0; i < len; ++i) {
+		if (color[i] == 0) {
+			if (!isBipartiteDfs(graph, color, i, 1)) return false;
+		}
+	}
+	return true;
+}
+bool solution::isBipartiteDfs(vector<vector<int>>& graph, vector<int>& color, int v, int c)
+{
+	color[v] = c;
+	for (int i = 0; i < graph[v].size(); ++i) {
+		if (color[graph[v][i]] == c) return false;
+		if (color[graph[v][i]] == 0 && !isBipartiteDfs(graph, color, graph[v][i], -c)) return false;
+	}
+	return true;
+}
+

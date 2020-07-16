@@ -701,7 +701,7 @@ public:
   //Here left and right are adjacent indices of i. After the burst, the left and right then becomes adjacent.
   //Find the maximum coins you can collect by bursting the balloons wisely.
 
-  vector<vector<int>> levelOrder(Node* root);
+  vector<vector<int>> levelOrder(MultiTreeNode* root);
   //429. N-ary Tree Level Order Traversal: Given an n-ary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
 
   vector<int> findDuplicates(vector<int>& nums);
@@ -809,6 +809,10 @@ public:
 
   Node* flatten(Node* head);
   //430. Flatten a Multilevel Doubly Linked List
+
+  bool isBipartite(vector<vector<int>>& graph);
+  //785 
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -855,6 +859,7 @@ private:
   void findItineraryDFS(string cur, vector<string>& ans, unordered_map < string, priority_queue<string, vector<string>, greater<string>>>& table);
   TreeNode* sortedArrayToBSTCore(vector<int>& nums, int l, int r);
   vector<int> prisonAfterNDaysNext(vector<int>& cells);
+  bool isBipartiteDfs(vector<vector<int>>& graph, vector<int>& color, int v, int c);
 };
 
 //No 303 Range Sum Query - Immutable

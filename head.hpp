@@ -73,14 +73,14 @@ struct RandomListNode {
   RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
 };
 /*Definition for a multiway tree Node.*/
-class Node {
+class MultiTreeNode {
 public:
   int val;
-  vector<Node*> children;
+  vector<MultiTreeNode*> children;
 
-  Node() { val = 0; }
+  MultiTreeNode() { val = 0; }
 
-  Node(int _val, vector<Node*> _children) {
+  MultiTreeNode(int _val, vector<MultiTreeNode*> _children) {
     val = _val;
     children = _children;
   }
