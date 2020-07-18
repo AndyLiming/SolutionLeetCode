@@ -1870,7 +1870,7 @@ int solution::minSubArrayLen(int s, vector<int> & nums)
 //No 210 Course Schedule II
 vector<int> solution::findOrder(int numCourses, vector<pair<int, int>> & prerequisites)
 {
-	vector<int> heads(numCourses, -1);
+	/*vector<int> heads(numCourses, -1);
 	vector<int> enDegree(numCourses, 0);
 	vector<int> points, args, ans;
 	pair<int, int> p;
@@ -1901,7 +1901,30 @@ vector<int> solution::findOrder(int numCourses, vector<pair<int, int>> & prerequ
 	for (int i = 0; i < numCourses; ++i) {
 		if (enDegree[i] > 0) return vector<int>();
 	}
-	return ans;
+	return ans;*/
+	//simply solution bfs topological order
+	unordered_map<int, vector<int>>pre;
+	vector<int>in(numCourses, 0);
+	vector<int>ans;
+	for (auto p : prerequisites) {
+		pre[p[1]].push_back(p[0]);
+		in[p[0]]++;
+	}
+	queue<int>q;
+	for (int i = 0; i < numCourses; ++i) {
+		if (in[i] == 0)q.push(i);
+	}
+	while (!q.empty()) {
+		int cur = q.front();
+		q.pop();
+		in[cur] = -1;
+		for (auto n : pre[cur]) {
+			in[n]--;
+			if (in[n] == 0) q.push(n);
+		}
+		ans.push_back(cur);
+	}
+	return ans.size() == numCourses ? ans : vector<int>();
 }
 
 //No 213 House Robber II
