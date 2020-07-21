@@ -404,13 +404,11 @@ bool solution::exist(vector<vector<char>> & board, string word)
 	}
 	return false;
 }
-
-
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>> & enable, int position, const vector<vector<char>> & board, const string word)
 {
 	if (position == word.length() - 1) return true;
-	enable[row][col] = 1;
+	enable[row][col] = 0;
 	bool res = false;
 	if (row > 0 && enable[row - 1][col] == 1 && board[row - 1][col] == word[position + 1]) {
 		res = res || exploreWordSearch(row - 1, col, enable, position + 1, board, word);
@@ -424,7 +422,7 @@ bool solution::exploreWordSearch(int row, int col, vector<vector<bool>> & enable
 	if (col < board[0].size() - 1 && enable[row][col + 1] == 1 && board[row][col + 1] == word[position + 1]) {
 		res = res || exploreWordSearch(row, col + 1, enable, position + 1, board, word);
 	}
-	enable[row][col] = 0;
+	enable[row][col] = 1;
 	return res;
 }
 
@@ -1870,7 +1868,7 @@ int solution::minSubArrayLen(int s, vector<int> & nums)
 //No 210 Course Schedule II
 vector<int> solution::findOrder(int numCourses, vector<pair<int, int>> & prerequisites)
 {
-	/*vector<int> heads(numCourses, -1);
+	vector<int> heads(numCourses, -1);
 	vector<int> enDegree(numCourses, 0);
 	vector<int> points, args, ans;
 	pair<int, int> p;
@@ -1901,9 +1899,9 @@ vector<int> solution::findOrder(int numCourses, vector<pair<int, int>> & prerequ
 	for (int i = 0; i < numCourses; ++i) {
 		if (enDegree[i] > 0) return vector<int>();
 	}
-	return ans;*/
+	return ans;
 	//simply solution bfs topological order
-	unordered_map<int, vector<int>>pre;
+	/*unordered_map<int, vector<int>>pre;
 	vector<int>in(numCourses, 0);
 	vector<int>ans;
 	for (auto p : prerequisites) {
@@ -1924,7 +1922,7 @@ vector<int> solution::findOrder(int numCourses, vector<pair<int, int>> & prerequ
 		}
 		ans.push_back(cur);
 	}
-	return ans.size() == numCourses ? ans : vector<int>();
+	return ans.size() == numCourses ? ans : vector<int>();*/
 }
 
 //No 213 House Robber II
@@ -4874,4 +4872,3 @@ bool solution::isBipartiteDfs(vector<vector<int>>& graph, vector<int>& color, in
 	}
 	return true;
 }
-
