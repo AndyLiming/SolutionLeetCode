@@ -812,7 +812,8 @@ public:
 
   bool isBipartite(vector<vector<int>>& graph);
   //785 
-
+  void recoverTree(TreeNode* root);
+  //99. Recover Binary Search Tree: Two elements of a binary search tree (BST) are swapped by mistake. Recover the tree without changing its structure.
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -860,6 +861,10 @@ private:
   TreeNode* sortedArrayToBSTCore(vector<int>& nums, int l, int r);
   vector<int> prisonAfterNDaysNext(vector<int>& cells);
   bool isBipartiteDfs(vector<vector<int>>& graph, vector<int>& color, int v, int c);
+  //No 99
+  void recoverBSTinorder(TreeNode* root);
+  TreeNode* pre = nullptr, * first = nullptr, * second = nullptr;
+  /****/
 };
 
 //No 303 Range Sum Query - Immutable

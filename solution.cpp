@@ -4863,6 +4863,7 @@ bool solution::isBipartite(vector<vector<int>>& graph)
 	}
 	return true;
 }
+
 bool solution::isBipartiteDfs(vector<vector<int>>& graph, vector<int>& color, int v, int c)
 {
 	color[v] = c;
@@ -4871,4 +4872,26 @@ bool solution::isBipartiteDfs(vector<vector<int>>& graph, vector<int>& color, in
 		if (color[graph[v][i]] == 0 && !isBipartiteDfs(graph, color, graph[v][i], -c)) return false;
 	}
 	return true;
+}
+
+
+//No 99 Recover Binary Search Tree
+void solution::recoverTree(TreeNode* root)
+{
+	recoverBSTinorder(root);
+	swap(first->val, second->val);
+}
+void solution::recoverBSTinorder(TreeNode* root)
+{
+	if (!root) return;
+	recoverBSTinorder(root->left);
+	if (!pre) pre = root;
+	else {
+		if (pre->val > root->val) {
+			if (!first) first = pre;
+			second = root;
+		}
+		pre = root;
+	}
+	recoverBSTinorder(root->right);
 }
