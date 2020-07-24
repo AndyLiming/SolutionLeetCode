@@ -404,6 +404,7 @@ bool solution::exist(vector<vector<char>> & board, string word)
 	}
 	return false;
 }
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>> & enable, int position, const vector<vector<char>> & board, const string word)
 {
@@ -4927,4 +4928,27 @@ bool solution::divisorGame(int N)
 	//	dp[i] = cur;
 	//}
 	//return dp[N];
+}
+//No 797 All Paths From Source to Target
+vector<vector<int>> solution::allPathsSourceTarget(vector<vector<int>>& graph)
+{
+	vector<vector<int>>ans;
+	vector<int>cur;
+	cur.push_back(0);
+	allPathsSourceTargetDFS(graph, graph.size(), 0, cur, ans);
+	return ans;
+}
+void solution::allPathsSourceTargetDFS(vector<vector<int>>& graph, int n, int k, vector<int>& cur, vector<vector<int>>& ans)
+{
+	if (k == n - 1) {
+		ans.push_back(cur);
+		return;
+	}
+	else {
+		for (auto i : graph[k]) {
+			cur.push_back(i);
+			allPathsSourceTargetDFS(graph, n, i, cur, ans);
+			cur.pop_back();
+		}
+	}
 }

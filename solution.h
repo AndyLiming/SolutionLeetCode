@@ -819,7 +819,9 @@ public:
   //1025. Divisor Game: Alice and Bob take turns playing a game, with Alice starting first. Initially, there is a number N on the chalkboard.On each player's turn, that player makes a move consisting of:
   //Choosing any x with 0 < x < N and N % x == 0. Replacing the number N on the chalkboard with N - x. Also, if a player cannot make a move, they lose the game.
   //Return True ifand only if Alice wins the game, assuming both players play optimally.
-
+  vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph);
+  //797.All Paths From Source to Target:Given a directed, acyclic graph of N nodes.  Find all possible paths from node 0 to node N-1, and return them in any order.
+  //The graph is given as follows : the nodes are 0, 1, ..., graph.length - 1.  graph[i] is a list of all nodes j for which the edge(i, j) exists.
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -871,6 +873,7 @@ private:
   void recoverBSTinorder(TreeNode* root);
   TreeNode* pre = nullptr, * first = nullptr, * second = nullptr;
   /****/
+  void allPathsSourceTargetDFS(vector<vector<int>>& graph,int n,int k,vector<int>&cur,vector<vector<int>>&ans);
 };
 
 //No 303 Range Sum Query - Immutable
