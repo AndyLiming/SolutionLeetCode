@@ -4895,3 +4895,36 @@ void solution::recoverBSTinorder(TreeNode* root)
 	}
 	recoverBSTinorder(root->right);
 }
+
+//No 1025 Divisor Game
+bool solution::divisorGame(int N)
+{
+	//O(1)solution
+	//if N is an odd number, factors of N are all odd numbers, Alice choose any of them (i.e. k), N-k will be an even number
+	//then Bob can pick 1, leave another odd number N-k-1 to Alice
+	//So Alice always gets an odd number while Bob always gets an even number, finally Bob will get 2, and choose 1 to leave 1 to Alice
+	//therefore, Alice will lose the game if N is an odd number. On the other hand, Alice always wins when N is an even number
+	return N % 2 == 0;
+
+	//O(N^2) dp solution
+	//find all k that 0<k<N and N%k==0
+	//if there is a number k that Alice will lose at (N-k), which means Alice can take k first and Bob will lose at N-k, so Alice will win at N
+	//if Alice wins at all the (N-k)s, which means no matter what Alice takes first, Bob always wins. Alice loses at N.
+
+	//vector<bool>dp(N + 1);
+	//dp[1] = false;
+	//dp[2] = true;
+	//for (int i = 3; i <= N; ++i) {
+	//	bool cur = false;
+	//	for (int j = 1; j < i; ++j) {
+	//		if (i % j == 0) {
+	//			if (dp[i - j] == false) {
+	//				cur = true;
+	//				break;
+	//			}
+	//		}
+	//	}
+	//	dp[i] = cur;
+	//}
+	//return dp[N];
+}

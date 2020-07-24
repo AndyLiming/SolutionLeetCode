@@ -814,6 +814,12 @@ public:
   //785 
   void recoverTree(TreeNode* root);
   //99. Recover Binary Search Tree: Two elements of a binary search tree (BST) are swapped by mistake. Recover the tree without changing its structure.
+
+  bool divisorGame(int N);
+  //1025. Divisor Game: Alice and Bob take turns playing a game, with Alice starting first. Initially, there is a number N on the chalkboard.On each player's turn, that player makes a move consisting of:
+  //Choosing any x with 0 < x < N and N % x == 0. Replacing the number N on the chalkboard with N - x. Also, if a player cannot make a move, they lose the game.
+  //Return True ifand only if Alice wins the game, assuming both players play optimally.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
