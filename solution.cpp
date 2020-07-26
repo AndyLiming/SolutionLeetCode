@@ -4041,7 +4041,7 @@ int solution::longestIncreasingPath(vector<vector<int>> & matrix)
 }
 int solution::longestIncPathDfs(vector<vector<int>> & matrix, int row, int col, vector<vector<int>> & dirs, vector<vector<int>> & dp)
 {
-	if (dp[row][col] > 0) return dp[row][col];
+	if (dp[row][col] > 0) return dp[row][col]; 
 	else {
 		dp[row][col] = 1;
 		for (int i = 0; i < 4; ++i) {
@@ -4951,4 +4951,25 @@ void solution::allPathsSourceTargetDFS(vector<vector<int>>& graph, int n, int k,
 			cur.pop_back();
 		}
 	}
+}
+
+//No 1531 String Compression II
+int solution::getLengthOfOptimalCompression(string s, int k)
+{
+	int num = s.size() - k;//pick num charactors
+	vector<vector<int>> dp(s.size() + 1, vector<int>(num + 1, 1e9));
+	dp[s.size()][num] = 0;
+	for (int i = s.size() - 1; i >= 0; --i) {
+		for (int cnt = 0; cnt <= num; ++cnt) {
+			int same = 0;
+			for (int j = i; j < s.size(); ++i) {
+				same += (s[j] == s[i]);
+				if (same + cnt > num) break;
+				int cal = (same <= 1) ? same : (same <= 9) ? 2 : (same <= 99) ? 3 : 4;
+				dp[i][cnt] = min(dp[i][cnt], cal + dp[i + 1][cnt + same]);
+			}
+			dp[i][cnt] = min(dp[i][cnt], dp[i + 1][cnt]);
+		}
+	}
+	return dp[0][0];
 }

@@ -819,9 +819,18 @@ public:
   //1025. Divisor Game: Alice and Bob take turns playing a game, with Alice starting first. Initially, there is a number N on the chalkboard.On each player's turn, that player makes a move consisting of:
   //Choosing any x with 0 < x < N and N % x == 0. Replacing the number N on the chalkboard with N - x. Also, if a player cannot make a move, they lose the game.
   //Return True ifand only if Alice wins the game, assuming both players play optimally.
+  
   vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph);
   //797.All Paths From Source to Target:Given a directed, acyclic graph of N nodes.  Find all possible paths from node 0 to node N-1, and return them in any order.
   //The graph is given as follows : the nodes are 0, 1, ..., graph.length - 1.  graph[i] is a list of all nodes j for which the edge(i, j) exists.
+
+  int getLengthOfOptimalCompression(string s, int k);
+  //1531. String Compression II: Run-length encoding is a string compression method that works by replacing consecutive identical characters (repeated 2 or more times) with the concatenation of the character and the number marking the count of the characters (length of the run). 
+  //For example, to compress the string "aabccc" we replace "aa" by "a2" and replace "ccc" by "c3". Thus the compressed string becomes "a2bc3".
+  //Notice that in this problem, we are not adding '1' after single characters.
+  //Given a string s and an integer k.You need to delete at most k characters from s such that the run - length encoded version of s has minimum length.
+  //Find the minimum length of the run - length encoded version of s after deleting at most k characters.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
