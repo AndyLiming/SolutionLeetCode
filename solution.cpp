@@ -4962,11 +4962,11 @@ int solution::getLengthOfOptimalCompression(string s, int k)
 	for (int i = s.size() - 1; i >= 0; --i) {
 		for (int cnt = 0; cnt <= num; ++cnt) {
 			int same = 0;
-			for (int j = i; j < s.size(); ++i) {
+			for (int j = i; j < s.size(); ++j) {
 				same += (s[j] == s[i]);
 				if (same + cnt > num) break;
 				int cal = (same <= 1) ? same : (same <= 9) ? 2 : (same <= 99) ? 3 : 4;
-				dp[i][cnt] = min(dp[i][cnt], cal + dp[i + 1][cnt + same]);
+				dp[i][cnt] = min(dp[i][cnt], cal + dp[j + 1][cnt + same]);
 			}
 			dp[i][cnt] = min(dp[i][cnt], dp[i + 1][cnt]);
 		}
