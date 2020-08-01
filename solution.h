@@ -835,6 +835,14 @@ public:
   //632. Smallest Range Covering Elements from K Lists: You have k lists of sorted integers in ascending order. Find the smallest range that includes at least one number from each of the k lists.
   //We define the range[a, b] is smaller than range[c, d] if b - a < d - c or a < c if b - a == d - c.
 
+  bool detectCapitalUse(string word);
+  //520. Detect Capital: Given a word, you need to judge whether the usage of capitals in it is right or not.
+  //We define the usage of capitals in a word to be right when one of the following cases holds :
+  //All letters in this word are capitals, like "USA".
+  //All letters in this word are not capitals, like "leetcode".
+  //Only the first letter in this word is capital, like "Google".
+  //Otherwise, we define that this word doesn't use capitals in a right way.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

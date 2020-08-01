@@ -404,7 +404,6 @@ bool solution::exist(vector<vector<char>> & board, string word)
 	}
 	return false;
 }
-
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>> & enable, int position, const vector<vector<char>> & board, const string word)
 {
@@ -5012,4 +5011,23 @@ vector<int> solution::smallestRange(vector<vector<int>>& nums)
 		pq.emplace(row);
 	}
 	return { left,right };
+}
+
+//No 520 Detect Capital
+bool solution::detectCapitalUse(string word)
+{
+	if (word[0] >= 'A' && word[0] <= 'Z') {
+		if (word.size() == 1) return true;
+		bool allCap = (word[1] >= 'A' && word[1] <= 'Z') ? true : false;
+		for (int i = 2; i < word.size(); ++i) {
+			if ((allCap && word[i] >= 'a' && word[i] <= 'z') || (!allCap && word[i] >= 'A' && word[i] <= 'Z')) return false;
+		}
+	}
+	else {
+		for (int i = 1; i < word.size(); ++i) {
+			if (word[i] >= 'a' && word[i] <= 'z') continue;
+			else return false;
+		}
+	}
+	return true;
 }
