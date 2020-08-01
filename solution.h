@@ -831,6 +831,10 @@ public:
   //Given a string s and an integer k.You need to delete at most k characters from s such that the run - length encoded version of s has minimum length.
   //Find the minimum length of the run - length encoded version of s after deleting at most k characters.
   
+  vector<int> smallestRange(vector<vector<int>>& nums);
+  //632. Smallest Range Covering Elements from K Lists: You have k lists of sorted integers in ascending order. Find the smallest range that includes at least one number from each of the k lists.
+  //We define the range[a, b] is smaller than range[c, d] if b - a < d - c or a < c if b - a == d - c.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

@@ -4985,3 +4985,31 @@ int solution::getLengthOfOptimalCompression(string s, int k)
 	}
 	return dp[0][0];
 }
+
+//No 632 Smallest Range Covering Elements from K Lists
+vector<int> solution::smallestRange(vector<vector<int>>& nums)
+{
+	int left = 0, right = INT_MAX,len = nums.size();
+	vector<int>next(len);
+	auto cmp = [&](const int& u, const int& v) {return nums[u][next[u]] > nums[v][next[v]]; };
+	priority_queue<int, vector<int>, decltype(cmp)> pq(cmp);
+	int minV = 0, maxV = INT_MIN;
+	for (int i = 0; i < len; ++i) {
+		pq.emplace(i);
+		maxV = max(maxV, nums[i][0]);
+	}
+	while (true) {
+		int row = pq.top();
+		pq.pop();
+		minV = nums[row][next[row]];
+		if (maxV - minV < right - left) {
+			left = minV;
+			right = maxV;
+		}
+		if (next[row] == nums[row].size() - 1) break;
+		++next[row];
+		maxV = max(maxV, nums[row][next[row]]);
+		pq.emplace(row);
+	}
+	return { left,right };
+}
