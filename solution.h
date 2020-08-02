@@ -1133,6 +1133,34 @@ private:
   TrieNode *root;
 };
 
+//705. Design HashSet 
+//Design a HashSet without using any built - in hash table libraries.
+//To be specific, your design should include these functions :
+//add(value) : Insert a value into the HashSet.
+//contains(value) : Return whether the value exists in the HashSet or not.
+//remove(value) : Remove a value in the HashSet.If the value does not exist in the HashSet, do nothing.
+class MyHashSet {
+public:
+  /** Initialize your data structure here. */
+  MyHashSet() {
+    bs.reset();
+  }
+
+  void add(int key) {
+    if (bs[key] == 0) bs.set(key);
+  }
+
+  void remove(int key) {
+    if (bs[key] == 1)bs.reset(key);
+  }
+
+  /** Returns true if this set contains the specified element */
+  bool contains(int key) {
+    return bs[key]==1;
+  }
+private:
+  bitset<1000000>bs;
+};
 
 //LCP 13 xun bao
 //https://leetcode-cn.com/problems/xun-bao/
