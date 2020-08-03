@@ -843,6 +843,14 @@ public:
   //Only the first letter in this word is capital, like "Google".
   //Otherwise, we define that this word doesn't use capitals in a right way.
 
+  string addStrings(string num1, string num2);
+  //415. Add Strings: Given two non-negative integers num1 and num2 represented as string, return the sum of num1 and num2.
+  //Note:
+  //The length of both num1and num2 is < 5100.
+  //Both num1 and num2 contains only digits 0 - 9.
+  //Both num1 and num2 does not contain any leading zero.
+  //You must not use any built - in BigInteger library or convert the inputs to integer directly.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

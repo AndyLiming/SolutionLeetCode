@@ -5031,3 +5031,26 @@ bool solution::detectCapitalUse(string word)
 	}
 	return true;
 }
+
+//No 415 Add Strings
+string solution::addStrings(string num1, string num2)
+{
+	int i = num1.size() - 1, j = num2.size() - 1, c = 0;
+	string ans;
+	while (i >= 0 || j >= 0 || c > 0) {
+		int tmp = c;
+		if (i >= 0) {
+			tmp += num1[i] - '0';
+			--i;
+		}
+		if (j >= 0) {
+			tmp += num2[j] - '0';
+			--j;
+		}
+		c = tmp / 10;
+		tmp = tmp % 10;
+		ans.push_back('0' + tmp);
+	}
+	reverse(ans.begin(), ans.end());
+	return ans;
+}
