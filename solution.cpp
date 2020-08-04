@@ -1815,7 +1815,7 @@ ListNode* solution::reverseList(ListNode * head)
 //No 207 Course Schedule
 bool solution::canFinish(int numCourses, vector<pair<int, int>> & prerequisites)
 {
-	vector<int> heads(numCourses, -1);
+	/*vector<int> heads(numCourses, -1);
 	vector<int> enDegree(numCourses, 0);
 	vector<int> points, args;
 	pair<int, int> p;
@@ -1845,7 +1845,28 @@ bool solution::canFinish(int numCourses, vector<pair<int, int>> & prerequisites)
 	for (int i = 0; i < numCourses; ++i) {
 		if (enDegree[i] > 0) return false;
 	}
-	return true;
+	return true;*/
+	vector<int>ind(numCourses, 0);
+	unordered_map<int, vector<int>>m;
+	for (auto p : prerequisites) {
+		ind[p[0]]++;
+		m[p[1]].push_back(p[0]);
+	}
+	queue<int>q;
+	for (int i = 0; i < numCourses; ++i) {
+		if (ind[i] == 0) q.push(i);
+	}
+	int count = 0;
+	while (!q.empty()) {
+		int cur = q.front();
+		q.pop();
+		++count;
+		for (auto next : m[cur]) {
+			--ind[next];
+			if (ind[next] == 0) q.push(next);
+		}
+	}
+	return count == numCourses;
 }
 
 //No 209 Minimum Size Subarray Sum
