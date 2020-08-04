@@ -2684,14 +2684,15 @@ int solution::coinChange(vector<int> & coins, int amount)
 //No 342 Power of Four
 bool solution::isPowerOfFour(int num)
 {
-	if (num <= 0)return false;
-	while (num > 1) {
-		if (num % 4 != 0) return false;
-		else {
-			num /= 4;
-		}
-	}
-	return true;
+	//if (num <= 0)return false;
+	//while (num > 1) {
+	//	if (num % 4 != 0) return false;
+	//	else {
+	//		num /= 4;
+	//	}
+	//}
+	//return true;
+	return num > 0 && num==pow(4, (int)(log(num) / log(4)));
 }
 
 //No 338 Counting Bits

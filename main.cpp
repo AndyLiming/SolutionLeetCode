@@ -39,8 +39,6 @@ int main() {
   
   int N;
   cin >> N;
-  vector<int>cells;
-  te.inputVector(cells);
-  vector<int>ans = solu.prisonAfterNDays(cells, N);
+  cout << solu.isPowerOfFour(N) << endl;
   return 0;
 }
