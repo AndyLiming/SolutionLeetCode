@@ -1815,7 +1815,7 @@ ListNode* solution::reverseList(ListNode * head)
 //No 207 Course Schedule
 bool solution::canFinish(int numCourses, vector<pair<int, int>> & prerequisites)
 {
-	/*vector<int> heads(numCourses, -1);
+	vector<int> heads(numCourses, -1);
 	vector<int> enDegree(numCourses, 0);
 	vector<int> points, args;
 	pair<int, int> p;
@@ -1845,7 +1845,10 @@ bool solution::canFinish(int numCourses, vector<pair<int, int>> & prerequisites)
 	for (int i = 0; i < numCourses; ++i) {
 		if (enDegree[i] > 0) return false;
 	}
-	return true;*/
+	return true;
+}
+bool solution::canFinish(int numCourses, vector<vector<int>>& prerequisites)
+{
 	vector<int>ind(numCourses, 0);
 	unordered_map<int, vector<int>>m;
 	for (auto p : prerequisites) {
