@@ -404,6 +404,7 @@ bool solution::exist(vector<vector<char>> & board, string word)
 	}
 	return false;
 }
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>> & enable, int position, const vector<vector<char>> & board, const string word)
 {
@@ -4989,6 +4990,7 @@ void solution::allPathsSourceTargetDFS(vector<vector<int>>& graph, int n, int k,
 	}
 }
 
+
 //No 1531 String Compression II
 int solution::getLengthOfOptimalCompression(string s, int k)
 {
@@ -5078,4 +5080,56 @@ string solution::addStrings(string num1, string num2)
 	}
 	reverse(ans.begin(), ans.end());
 	return ans;
+}
+
+//No 336 Palindrome Pairs
+vector<vector<int>> solution::palindromePairs(vector<string>& words)
+{
+	int n = words.size();
+	for (const string& word : words) {
+		wordsRev.push_back(word);
+		reverse(wordsRev.back().begin(), wordsRev.back().end());
+	}
+	for (int i = 0; i < n; ++i) {
+		indices.emplace(wordsRev[i], i);
+	}
+
+	vector<vector<int>> ret;
+	for (int i = 0; i < n; i++) {
+		int m = words[i].size();
+		if (!m) {
+			continue;
+		}
+		string wordView(words[i]);
+		for (int j = 0; j <= m; j++) {
+			if (isPalindrome336(wordView, j, m - 1)) {
+				int left_id = findWord336(wordView, 0, j - 1);
+				if (left_id != -1 && left_id != i) {
+					ret.push_back({ i, left_id });
+				}
+			}
+			if (j && isPalindrome336(wordView, 0, j - 1)) {
+				int right_id = findWord336(wordView, j, m - 1);
+				if (right_id != -1 && right_id != i) {
+					ret.push_back({ right_id, i });
+				}
+			}
+		}
+	}
+	return ret;
+}
+int solution::findWord336(const string& s, int left, int right)
+{
+	auto iter = indices.find(s.substr(left, right - left + 1));
+	return iter == indices.end() ? -1 : iter->second;
+}
+bool solution::isPalindrome336(const string& s, int left, int right)
+{
+	int len = right - left + 1;
+	for (int i = 0; i < len / 2; i++) {
+		if (s[left + i] != s[right - i]) {
+			return false;
+		}
+	}
+	return true;
 }

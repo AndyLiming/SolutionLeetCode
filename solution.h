@@ -307,7 +307,7 @@ public:
 
   vector<vector<int>> combinationSum3(int k, int n);
   //216. Combination Sum III: Find all possible combinations of k numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.
-
+   
   bool containsDuplicate(vector<int>& nums);
   //217. Contains Duplicate:Given an array of integers, find if the array contains any duplicates.¡¡Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
 
@@ -852,6 +852,10 @@ public:
   //Both num1 and num2 does not contain any leading zero.
   //You must not use any built - in BigInteger library or convert the inputs to integer directly.
 
+  vector<vector<int>> palindromePairs(vector<string>& words);
+  //336. Palindrome Pairs: Given a list of unique words, find all pairs of distinct indices (i, j) in the given list, 
+  //so that the concatenation of the two words, i.e. words[i] + words[j] is a palindrome.
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -904,6 +908,13 @@ private:
   TreeNode* pre = nullptr, * first = nullptr, * second = nullptr;
   /****/
   void allPathsSourceTargetDFS(vector<vector<int>>& graph,int n,int k,vector<int>&cur,vector<vector<int>>&ans);
+
+  //No 336
+  vector<string> wordsRev;
+  unordered_map<string, int> indices;
+  int findWord336(const string& s, int left, int right);
+  bool isPalindrome336(const string& s, int left, int right);
+  /****/
 };
 
 //No 303 Range Sum Query - Immutable
