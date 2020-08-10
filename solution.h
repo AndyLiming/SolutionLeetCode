@@ -856,6 +856,9 @@ public:
   //336. Palindrome Pairs: Given a list of unique words, find all pairs of distinct indices (i, j) in the given list, 
   //so that the concatenation of the two words, i.e. words[i] + words[j] is a palindrome.
 
+  int countBinarySubstrings(string s);
+  //696
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

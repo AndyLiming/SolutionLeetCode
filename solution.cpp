@@ -5118,6 +5118,7 @@ vector<vector<int>> solution::palindromePairs(vector<string>& words)
 	}
 	return ret;
 }
+
 int solution::findWord336(const string& s, int left, int right)
 {
 	auto iter = indices.find(s.substr(left, right - left + 1));
@@ -5132,4 +5133,19 @@ bool solution::isPalindrome336(const string& s, int left, int right)
 		}
 	}
 	return true;
+}
+
+//No 696
+int solution::countBinarySubstrings(string s)
+{
+	int last = 0, cur = 1, res = 0;
+	for (int i = 1; i < s.size(); ++i) {
+		if (s[i] == s[i - 1]) ++cur;
+		else {
+			last = cur;
+			cur = 1;
+		}
+		if (last >= cur) res++;
+	}
+	return res;
 }
