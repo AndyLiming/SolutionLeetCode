@@ -405,6 +405,7 @@ bool solution::exist(vector<vector<char>> & board, string word)
 	return false;
 }
 
+
 /* used in No 79 Word Search */
 bool solution::exploreWordSearch(int row, int col, vector<vector<bool>> & enable, int position, const vector<vector<char>> & board, const string word)
 {
@@ -5150,7 +5151,7 @@ int solution::countBinarySubstrings(string s)
 	return res;
 }
 
-//No 994
+//No 994 Rotting Oranges
 int solution::orangesRotting(vector<vector<int>>& grid)
 {
 	if (grid.empty()) return 0;
@@ -5182,4 +5183,17 @@ int solution::orangesRotting(vector<vector<int>>& grid)
 		++time;
 	}
 	return fresh == 0 ? time : -1;
+}
+
+//No 123 Best Time to Buy and Sell Stock III
+int solution::maxProfit3(vector<int>& prices)
+{
+	int buy1 = INT_MAX, buy2 = INT_MAX,pro1=0,pro2=0;
+	for (auto p : prices) {
+		buy1 = min(buy1, p);
+		pro1 = max(pro1, p - buy1);
+		buy2 = min(buy2, p - pro1);
+		pro2 = max(pro2, p - buy2);
+	}
+	return pro2;
 }
