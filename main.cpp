@@ -37,8 +37,9 @@ int main() {
   //solu.gameOfLife(input);
   //te.outputVectorVec(input);
   
-  int N;
-  cin >> N;
-  cout << solu.isPowerOfFour(N) << endl;
+  int c, n;
+  cin >> c >> n;
+  vector<int>ans = solu.distributeCandies(c, n);
+  te.outputVector(ans);
   return 0;
 }

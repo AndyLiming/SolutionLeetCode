@@ -870,6 +870,9 @@ public:
   int maxProfit3(vector<int>& prices);
   //123. Best Time to Buy and Sell Stock III
 
+  vector<int> distributeCandies(int candies, int num_people);
+  //1103. Distribute Candies to People
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

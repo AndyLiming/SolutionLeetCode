@@ -5197,3 +5197,40 @@ int solution::maxProfit3(vector<int>& prices)
 	}
 	return pro2;
 }
+
+//No 1103 Distribute Candies to People
+vector<int> solution::distributeCandies(int candies, int num_people)
+{
+	vector<int>ans(num_people);
+	int k = 0, total = 0, round = (num_people)*(num_people+1)/2;
+	while (total <= candies) {
+		total += (k * num_people* num_people) + round;
+		++k;
+	}
+	k--;
+	int n = (k - 1) * k / 2;
+	total = 0;
+	if (k > 0) {
+		for (int i = 0; i < num_people; ++i) {
+			ans[i] = n * num_people + k*(i + 1);
+			total += ans[i];
+			cout << ans[i] << " ";
+		}
+	}
+	cout << endl;
+	int last = candies - total;
+	int i = 0;
+	while (last) {
+		int tmp = k * num_people + i + 1;
+		if (last >= tmp) {
+			last -= tmp;
+			ans[i] += tmp;
+			++i;
+		}
+		else {
+			ans[i] += last;
+			break;
+		}
+	}
+	return ans;
+}
