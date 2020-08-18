@@ -838,13 +838,26 @@ TreeNode* solution::buildTreeRes_inPos(vector<int> & inorder, int inStart, int i
 //No 109 Convert Sorted List to Binary Search Tree
 TreeNode * solution::sortedListToBST(ListNode * head)
 {
-	int len = 0;
-	ListNode* p = head;
-	while (p) {
-		len++;
-		p = p->next;
+	//int len = 0;
+	//ListNode* p = head;
+	//while (p) {
+	//	len++;
+	//	p = p->next;
+	//}
+	//return buildBST(head, 0, len - 1);
+	if (!head) return nullptr;
+	else if (!head->next) return new TreeNode(head->val);
+	ListNode* pre = head, * p = pre->next, * q = p->next;
+	while (q && q->next) {
+		pre = pre->next;
+		p = pre->next;
+		q = q->next->next;
 	}
-	return buildBST(head, 0, len - 1);
+	pre->next = nullptr;
+	TreeNode* root = new TreeNode(p->val);
+	root->left = sortedListToBST(head);
+	root->right = sortedListToBST(p->next);
+	return root;
 }
 
 TreeNode* solution::buildBST(ListNode * &list, int start, int end)
