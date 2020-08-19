@@ -5247,3 +5247,30 @@ vector<int> solution::distributeCandies(int candies, int num_people)
 	}
 	return ans;
 }
+
+//No 824 Goat Latin
+string solution::toGoatLatin(string S)
+{
+	stringstream ss(S);
+	vector<string>input;
+	string tmp;
+	while (ss >> tmp) input.push_back(tmp);
+	unordered_set<char>v = { 'a','e','i','o','u','A','E','I','O','U' };
+	int len = input.size();
+	for (int i = 0; i < len; ++i) {
+		if (!v.count(input[i][0])) {
+			char f = input[i][0];
+			input[i] = input[i].substr(1);
+			input[i] += f;
+		}
+		input[i] += "ma";
+		for (int j = 0; j < i + 1; ++j) input[i] += 'a';
+	}
+	string ans;
+	for (auto a : input) {
+		ans += a;
+		ans += ' ';
+	}
+	ans.pop_back();
+	return ans;
+}
