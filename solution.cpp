@@ -5149,6 +5149,7 @@ bool solution::isPalindrome336(const string& s, int left, int right)
 	return true;
 }
 
+
 //No 696
 int solution::countBinarySubstrings(string s)
 {
@@ -5273,4 +5274,40 @@ string solution::toGoatLatin(string S)
 	}
 	ans.pop_back();
 	return ans;
+}
+
+//No 529 Minesweeper
+vector<vector<char>> solution::updateBoard(vector<vector<char>>& board, vector<int>& click)
+{
+	vector<int>dirX = { 0, 1, 0, -1, 1, 1, -1, -1 }, dirY = { 1, 0, -1, 0, 1, -1, 1, -1 };
+	int x = click[0], y = click[1];
+	if (board[x][y] == 'M') {
+		board[x][y] = 'X';
+	}
+	else {
+		updateBoardDfs(board, x, y, dirX, dirY);
+	}
+	return board;
+}
+void solution::updateBoardDfs(vector<vector<char>>& board, int x, int y, vector<int>& dirX, vector<int>& dirY)
+{
+	int cnt = 0;
+	for (int i = 0; i < 8; ++i) {
+		int nx = x + dirX[i];
+		int ny = y + dirY[i];
+		if (nx < 0 || nx >= board.size() || ny < 0 || ny >= board[0].size()) { continue; }
+		cnt+=(board[nx][ny]=='M');
+	}
+	if (cnt > 0) {
+		board[x][y] = cnt + '0';
+	}
+	else {
+		board[x][y] = 'B';
+		for (int i = 0; i < 8; ++i) {
+			int nx = x + dirX[i];
+			int ny = y + dirY[i];
+			if (nx < 0 || nx >= board.size() || ny < 0 || ny >= board[0].size()||board[nx][ny]!='E') { continue; }
+			updateBoardDfs(board, nx, ny, dirX, dirY);
+		}
+	}
 }
