@@ -5289,6 +5289,7 @@ vector<vector<char>> solution::updateBoard(vector<vector<char>>& board, vector<i
 	}
 	return board;
 }
+
 void solution::updateBoardDfs(vector<vector<char>>& board, int x, int y, vector<int>& dirX, vector<int>& dirY)
 {
 	int cnt = 0;
@@ -5310,4 +5311,47 @@ void solution::updateBoardDfs(vector<vector<char>>& board, int x, int y, vector<
 			updateBoardDfs(board, nx, ny, dirX, dirY);
 		}
 	}
+}
+
+
+//No 679
+bool solution::judgePoint24(vector<int>& nums)
+{
+	vector<double>numsd;
+	for (auto n : nums) numsd.push_back(static_cast<double>(n));
+	return recJudgePoint24(numsd);
+}
+bool solution::recJudgePoint24(vector<double>& nums)
+{
+	if(nums.empty())return false;
+	if (nums.size() == 1) {
+		return abs(nums[0] - 24.0) < 1e-6;
+	}
+	int len = nums.size();
+	for (int i = 0; i < len; ++i) {
+		for (int j = 0; j < len; ++j) {
+			if (i != j) {
+				vector<double> nums2;
+				for (int k = 0; k < len; ++k) {
+					if (k != i && k != j) nums2.push_back(nums[k]);
+				}
+				for (int k = 0; k < 4; ++k) {
+					//0:+
+					//1:*
+					//2:-
+					//3:/
+					if (k<2 && i>j) continue;//commutative laws of addition and multiplication
+					if (k == 0) nums2.push_back(nums[i] + nums[j]);
+					else if (k == 1) nums2.push_back(nums[i] * nums[j]);
+					else if (k == 2) nums2.push_back(nums[i] - nums[j]);
+					else {
+						if(nums[j]>=1e-6) nums2.push_back(nums[i] / nums[j]);
+					}
+					if (recJudgePoint24(nums2)) return true;
+					nums2.pop_back();
+				}
+			}
+		}
+	}
+	return false;
 }
