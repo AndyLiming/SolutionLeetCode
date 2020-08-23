@@ -1723,13 +1723,17 @@ void solution::DfsNumIslands(vector<vector<char>> & grid, int row, int col)
 //No 201 Bitwise AND of Numbers Range
 int solution::rangeBitwiseAnd(int m, int n)
 {
-	int count = 0;
-	while (n != m) {
-		n >>= 1;
-		m >>= 1;
-		count++;
+	//int count = 0;
+	//while (n != m) {
+	//	n >>= 1;
+	//	m >>= 1;
+	//	count++;
+	//}
+	//return (m << count);
+	while (m < n) {
+		n = n & (n - 1);
 	}
-	return (m << count);
+	return n;
 }
 
 //No 202 Happy Number
