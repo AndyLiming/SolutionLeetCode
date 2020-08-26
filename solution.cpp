@@ -5325,6 +5325,7 @@ bool solution::judgePoint24(vector<int>& nums)
 	for (auto n : nums) numsd.push_back(static_cast<double>(n));
 	return recJudgePoint24(numsd);
 }
+
 bool solution::recJudgePoint24(vector<double>& nums)
 {
 	if(nums.empty())return false;
@@ -5358,4 +5359,40 @@ bool solution::recJudgePoint24(vector<double>& nums)
 		}
 	}
 	return false;
+}
+
+//No 17
+vector<string> solution::letterCombinations(string digits)
+{
+	unordered_map<char, string> m{
+						{'2', "abc"},
+						{'3', "def"},
+						{'4', "ghi"},
+						{'5', "jkl"},
+						{'6', "mno"},
+						{'7', "pqrs"},
+						{'8', "tuv"},
+						{'9', "wxyz"}
+	};
+	vector<string>ans;
+	string cur = "";
+	if (digits.empty()) return ans;
+	backtraceLetterComb(ans, cur, digits, 0, m);
+	return ans;
+}
+void solution::backtraceLetterComb(vector<string>& ans, string cur, string digits, int id, unordered_map<char, string>& m)
+{
+	if (id == digits.size()) {
+		ans.push_back(cur);
+		return;
+	}
+	else {
+		char d = digits[id];
+		string tmp = m[d];
+		for (auto c : tmp) {
+			cur.push_back(c);
+			backtraceLetterComb(ans, cur, digits, id + 1, m);
+			cur.pop_back();
+		}
+	}
 }

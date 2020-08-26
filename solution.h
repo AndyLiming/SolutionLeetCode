@@ -882,6 +882,9 @@ public:
   bool judgePoint24(vector<int>& nums);
   //679. 24 game
 
+  vector<string> letterCombinations(string digits);
+  //17
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -947,6 +950,7 @@ private:
 
   bool recJudgePoint24(vector<double>& nums);
   //No 679
+  void backtraceLetterComb(vector<string>& ans, string cur, string digits, int id, unordered_map<char, string>& m);
 };
 
 //No 303 Range Sum Query - Immutable
