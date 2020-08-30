@@ -5396,3 +5396,18 @@ void solution::backtraceLetterComb(vector<string>& ans, string cur, string digit
 		}
 	}
 }
+
+//No 557
+string solution::reverseWords(string s)
+{
+	int len = s.size();
+	int begin = 0, end;
+	for (int i = 0; i < len + 1; ++i) {
+		if (i == len || s[i] == ' ') {
+			end = i;
+			reverse(s.begin() + begin, s.begin() + end);
+			begin = i + 1;
+		}
+	}
+	return s;
+}

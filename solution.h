@@ -951,6 +951,9 @@ private:
   bool recJudgePoint24(vector<double>& nums);
   //No 679
   void backtraceLetterComb(vector<string>& ans, string cur, string digits, int id, unordered_map<char, string>& m);
+
+  string reverseWords(string s);
+  //No 557
 };
 
 //No 303 Range Sum Query - Immutable
