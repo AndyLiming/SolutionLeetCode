@@ -5433,4 +5433,3 @@ bool solution::canVisitAllRooms(vector<vector<int>>& rooms)
 	}
 	return count == num;
 }
-}
