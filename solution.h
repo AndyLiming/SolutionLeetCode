@@ -954,6 +954,9 @@ private:
 
   string reverseWords(string s);
   //No 557
+
+  bool canVisitAllRooms(vector<vector<int>>& rooms);
+  //No 841
 };
 
 //No 303 Range Sum Query - Immutable

@@ -5411,3 +5411,26 @@ string solution::reverseWords(string s)
 	}
 	return s;
 }
+
+//No 841
+bool solution::canVisitAllRooms(vector<vector<int>>& rooms)
+{
+	int num = rooms.size();
+	vector<bool>visited(num, false);
+	queue<int> q;
+	q.push(0);
+	int count = 0;
+	while (!q.empty()) {
+		int cur = q.front();
+		q.pop();
+		if (!visited[cur]) {
+			visited[cur] = true;
+			++count;
+			for (auto t : rooms[cur]) {
+				if (!visited[t]) q.push(t);
+			}
+		}
+	}
+	return count == num;
+}
+}
