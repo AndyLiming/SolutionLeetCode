@@ -957,6 +957,9 @@ private:
 
   bool canVisitAllRooms(vector<vector<int>>& rooms);
   //No 841
+
+  bool PredictTheWinner(vector<int>& nums);
+  //486.
 };
 
 //No 303 Range Sum Query - Immutable

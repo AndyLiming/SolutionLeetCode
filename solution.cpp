@@ -5433,3 +5433,9 @@ bool solution::canVisitAllRooms(vector<vector<int>>& rooms)
 	}
 	return count == num;
 }
+
+//No 486
+bool solution::PredictTheWinner(vector<int>& nums)
+{
+	return false;
+}
