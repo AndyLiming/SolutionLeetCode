@@ -5437,5 +5437,34 @@ bool solution::canVisitAllRooms(vector<vector<int>>& rooms)
 //No 486
 bool solution::PredictTheWinner(vector<int>& nums)
 {
-	return false;
+	int len = nums.size();
+	vector<vector<int>>dp(len, vector<int>(len));
+	for (int i = 0; i < len; ++i)dp[i][i] = nums[i];
+	for (int i = len - 2; i >= 0; --i) {
+		for (int j = i + 1; j < len; ++j) {
+			dp[i][j] = max(nums[i] - dp[i + 1][j], nums[j] - dp[i][j - 1]);
+		}
+	}
+	return dp[0][len-1]>=0; 
+}
+
+//No 290
+bool solution::wordPattern(string pattern, string str)
+{
+	istringstream in(str);
+	unordered_map<char, string>m;
+	unordered_map<char, string>::iterator it;
+	int i = 0;
+	for (string word; in >> word; ++i) {
+		if (m.find(pattern[i]) != m.end()) {
+			if (m[pattern[i]] != word) return false;
+		}
+		else {
+			for (it = m.begin(); it != m.end(); ++it) {
+				if (it->second == word) return false;
+			}
+			m[pattern[i]] = word;
+		}
+	}
+	return i == pattern.size();
 }

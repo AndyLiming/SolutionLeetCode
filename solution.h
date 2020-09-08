@@ -960,6 +960,9 @@ private:
 
   bool PredictTheWinner(vector<int>& nums);
   //486.
+
+  bool wordPattern(string pattern, string str);
+  //290.Word Pattern
 };
 
 //No 303 Range Sum Query - Immutable
