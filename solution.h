@@ -963,6 +963,9 @@ private:
 
   bool wordPattern(string pattern, string str);
   //290.Word Pattern
+
+  string getHint(string secret, string guess);
+  //299.Bulls and Cows
 };
 
 //No 303 Range Sum Query - Immutable

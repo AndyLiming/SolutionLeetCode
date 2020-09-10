@@ -5468,3 +5468,18 @@ bool solution::wordPattern(string pattern, string str)
 	}
 	return i == pattern.size();
 }
+
+//No 299¡¡Bulls and Cows
+string solution::getHint(string secret, string guess)
+{
+	vector<int>nums(10, 0);
+	int bulls = 0, cows = 0;
+	for (int i = 0; i < secret.size(); ++i) {
+		if (secret[i] == guess[i])++bulls;
+		else {
+			if (nums[(int)(secret[i] - '0')]++ < 0) cows++;
+			if (nums[(int)(guess[i] - '0')]-- > 0) cows++;
+		}
+	}
+	return to_string(bulls) + 'A' + to_string(cows) + 'B';
+}
