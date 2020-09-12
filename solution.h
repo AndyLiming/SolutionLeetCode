@@ -966,6 +966,9 @@ private:
 
   string getHint(string secret, string guess);
   //299.Bulls and Cows
+
+  vector<double> averageOfLevels(TreeNode* root);
+  //637
 };
 
 //No 303 Range Sum Query - Immutable
