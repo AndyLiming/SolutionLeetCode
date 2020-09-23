@@ -2248,7 +2248,7 @@ vector<string> solution::summaryRanges(vector<int> & nums)
 vector<int> solution::majorityElement2(vector<int> & nums)
 {
 	/*used map, not sure if it runs in O(1) space*/
-	vector<int> ans;
+	/*vector<int> ans;
 	map<int, int>countMap;
 	int th = nums.size() / 3;
 	for (int i = 0; i < nums.size(); ++i) {
@@ -2262,8 +2262,34 @@ vector<int> solution::majorityElement2(vector<int> & nums)
 	for (map<int, int>::iterator it = countMap.begin(); it != countMap.end(); ++it) {
 		if (it->second > th) ans.push_back(it->first);
 	}
-	return ans;
+	return ans;*/
 	/********************************************/
+	vector<int>res;
+	int a = 0, b = 0, cnt1 = 0, cnt2 = 0, n = nums.size();
+	for (int num : nums) {
+		if (num == a)++cnt1;
+		else if (num == b)++cnt2;
+		else if (cnt1 == 0) {
+			a = num;
+			++cnt1;
+		}
+		else if (cnt2 == 0) {
+			b = num;
+			++cnt2;
+		}
+		else {
+			--cnt1; 
+			--cnt2;
+		}
+	}
+	cnt1 = cnt2 = 0;
+	for (int num : nums) {
+		if (num == a) ++cnt1;
+		else if (num == b) ++cnt2;
+	}
+	if (cnt1 > n / 3) res.push_back(a);
+	if (cnt2 > n / 3) res.push_back(b);
+	return res;
 }
 
 //No 230 Kth Smallest Element in a BST
