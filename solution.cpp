@@ -5406,6 +5406,7 @@ vector<string> solution::letterCombinations(string digits)
 	backtraceLetterComb(ans, cur, digits, 0, m);
 	return ans;
 }
+
 void solution::backtraceLetterComb(vector<string>& ans, string cur, string digits, int id, unordered_map<char, string>& m)
 {
 	if (id == digits.size()) {
@@ -5532,4 +5533,28 @@ vector<double> solution::averageOfLevels(TreeNode* root)
 		ans.push_back(sum / (double)count);
 	}
 	return ans;
+}
+//No 501
+vector<int> solution::findMode(TreeNode* root)
+{
+	vector<int>res;
+	if (!root) return res;
+	TreeNode* pre = nullptr;
+	int curT = 1, maxT = 0;
+	findModeinorder(root, pre, curT, maxT, res);
+	return res;
+}
+void solution::findModeinorder(TreeNode* root, TreeNode*& pre, int& curT, int& maxT, vector<int>& res)
+{
+	if (!root) return;
+	findModeinorder(root->left, pre, curT, maxT, res);
+	if (pre) curT = (root->val == pre->val) ? curT + 1 : 1;
+	if (curT == maxT) res.push_back(root->val);
+	else if (curT > maxT) {
+		res.clear();
+		res.push_back(root->val);
+		maxT = curT;
+	}
+	pre = root;
+	findModeinorder(root->right, pre, curT, maxT, res);
 }

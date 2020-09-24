@@ -885,6 +885,9 @@ public:
   vector<string> letterCombinations(string digits);
   //17
 
+  vector<int> findMode(TreeNode* root);
+  //501
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -969,6 +972,9 @@ private:
 
   vector<double> averageOfLevels(TreeNode* root);
   //637
+
+  void findModeinorder(TreeNode* root, TreeNode*& pre, int& curT, int& maxT, vector<int>& res);
+  //501
 };
 
 //No 303 Range Sum Query - Immutable
