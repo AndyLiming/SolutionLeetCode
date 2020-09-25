@@ -975,6 +975,9 @@ private:
 
   void findModeinorder(TreeNode* root, TreeNode*& pre, int& curT, int& maxT, vector<int>& res);
   //501
+
+  string largestNumber(vector<int>& nums);
+
 };
 
 //No 303 Range Sum Query - Immutable

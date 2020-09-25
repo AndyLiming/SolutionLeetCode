@@ -5558,3 +5558,20 @@ void solution::findModeinorder(TreeNode* root, TreeNode*& pre, int& curT, int& m
 	pre = root;
 	findModeinorder(root->right, pre, curT, maxT, res);
 }
+
+string solution::largestNumber(vector<int>& nums)
+{
+	vector<string>nums2;
+	for (auto n : nums) {
+		string tmp = to_string(n);
+		nums2.push_back(tmp);
+	}
+	sort(nums2.begin(), nums2.end(), [](string s1, string s2) {return s1 + s2 > s2 + s1; });
+	string ans = "";
+	for (auto s : nums2) {
+		ans += s;
+	}
+	int len = ans.size(), i = 0;
+	while (i < len - 1 && ans[i] == '0') ++i;
+	return ans.substr(i);
+}
