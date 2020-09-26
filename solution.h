@@ -888,6 +888,8 @@ public:
   vector<int> findMode(TreeNode* root);
   //501
 
+  string largestNumber(vector<int>& nums);
+  //179. Largest Number: Given a list of non negative integers, arrange them such that they form the largest number.
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -896,7 +898,7 @@ private:
   TreeNode * buildTreeRes_preIn(vector<int>& preorder, int preStart, int preEnd, vector<int>& inorder, int inStart, int inEnd);
   TreeNode * buildTreeRes_inPos(vector<int>& inorder, int inStart, int inEnd, vector<int>& postorder, int posStart, int posEnd);
   TreeNode * buildBST(ListNode *& list, int start, int end);
-  void pathSumDfs(vector<vector<int>> ans, vector<int> tmp, TreeNode* root, int sum);
+  void pathSumDfs(vector<vector<int>>& ans, vector<int>& tmp, TreeNode* root, int sum);
   int sumNumbersRes(TreeNode* root, int curSum);
   void solveSurrondedDfs(vector<vector<char>>& board, int i, int j);
   bool isValidPali(string s, int start, int end);
@@ -975,8 +977,6 @@ private:
 
   void findModeinorder(TreeNode* root, TreeNode*& pre, int& curT, int& maxT, vector<int>& res);
   //501
-
-  string largestNumber(vector<int>& nums);
 
 };
 

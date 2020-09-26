@@ -882,7 +882,7 @@ vector<vector<int>> solution::pathSum(TreeNode * root, int sum)
 	return ans;
 }
 
-void solution::pathSumDfs(vector<vector<int>> ans, vector<int> tmp, TreeNode * root, int sum)
+void solution::pathSumDfs(vector<vector<int>> &ans, vector<int> &tmp, TreeNode * root, int sum)
 {
 	if (root == NULL) {
 		tmp.push_back(0);
