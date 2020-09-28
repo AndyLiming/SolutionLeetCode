@@ -890,6 +890,9 @@ public:
 
   string largestNumber(vector<int>& nums);
   //179. Largest Number: Given a list of non negative integers, arrange them such that they form the largest number.
+  
+  TreeLinkNode* connect117(TreeLinkNode* root);
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
@@ -977,7 +980,8 @@ private:
 
   void findModeinorder(TreeNode* root, TreeNode*& pre, int& curT, int& maxT, vector<int>& res);
   //501
-
+  TreeLinkNode* getNext(TreeLinkNode* root);
+  //117
 };
 
 //No 303 Range Sum Query - Immutable

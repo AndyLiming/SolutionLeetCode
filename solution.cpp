@@ -5559,6 +5559,8 @@ void solution::findModeinorder(TreeNode* root, TreeNode*& pre, int& curT, int& m
 	findModeinorder(root->right, pre, curT, maxT, res);
 }
 
+
+
 string solution::largestNumber(vector<int>& nums)
 {
 	vector<string>nums2;
@@ -5574,4 +5576,30 @@ string solution::largestNumber(vector<int>& nums)
 	int len = ans.size(), i = 0;
 	while (i < len - 1 && ans[i] == '0') ++i;
 	return ans.substr(i);
+}
+
+
+//No 117
+TreeLinkNode* solution::getNext(TreeLinkNode* root)
+{
+	if (!root) return nullptr;
+	else {
+		if (root->left) return root->left;
+		else if (root->right) return root->right;
+		else if (root->next) return getNext(root->next);
+	}
+	return nullptr;
+}
+
+TreeLinkNode* solution::connect117(TreeLinkNode* root)
+{
+	if (!root) return root;
+	if (root->left) {
+		if (root->right) root->left->next = root->right;
+		else root->left->next = getNext(root->next);
+	}
+	if (root->right) root->right->next = getNext(root->next);
+	connect(root->right);
+	connect(root->left);
+	return root;
 }
