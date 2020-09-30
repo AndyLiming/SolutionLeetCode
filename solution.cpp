@@ -5603,3 +5603,13 @@ TreeLinkNode* solution::connect117(TreeLinkNode* root)
 	connect(root->left);
 	return root;
 }
+
+TreeNode* solution::insertIntoBST(TreeNode* root, int val)
+{
+	if (!root) return new TreeNode(val);
+	if (root->val < val) {
+		root->right = insertIntoBST(root->right, val);
+	}
+	else root->left = insertIntoBST(root->left, val);
+	return root;
+}

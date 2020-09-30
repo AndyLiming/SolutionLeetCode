@@ -893,6 +893,8 @@ public:
   
   TreeLinkNode* connect117(TreeLinkNode* root);
 
+  TreeNode* insertIntoBST(TreeNode* root, int val);
+  //701 insertto binary search tree
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
