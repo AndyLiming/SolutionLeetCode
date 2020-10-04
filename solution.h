@@ -895,6 +895,13 @@ public:
 
   TreeNode* insertIntoBST(TreeNode* root, int val);
   //701 insertto binary search tree
+
+  int maxProfit1(vector<int>& prices);
+  //121.Best Time to Buy and Sell Stock I 
+  int maxProfit2(vector<int>& prices);
+  //122.Best Time to Buy and Sell Stock II
+  int maxProfit4(int k, vector<int>& prices);
+  //188.Best Time to Buy and Sell Stock IV
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);

@@ -5232,6 +5232,21 @@ int solution::orangesRotting(vector<vector<int>>& grid)
 //No 123 Best Time to Buy and Sell Stock III
 int solution::maxProfit3(vector<int>& prices)
 {
+	//int len = prices.size();
+	//vector<vector<int>>dp(len, vector<int>(4, 0));
+	////0:第一次买
+	////1:第一次卖
+	////2:第二次买
+	////3:第二次卖
+	//dp[0][0] = -prices[0];
+	//dp[0][2] = INT_MIN;
+	//for (int i = 1; i < len; ++i) {
+	//	dp[i][0] = max(dp[i - 1][0], -prices[i]);
+	//	dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] + prices[i]);
+	//	dp[i][2] = max(dp[i - 1][2], dp[i - 1][1] - prices[i]);
+	//	dp[i][3] = max(dp[i - 1][3], dp[i - 1][2] + prices[i]);
+	//}
+	//return max(dp[len - 1][1], dp[len - 1][3]);
 	int buy1 = INT_MAX, buy2 = INT_MAX,pro1=0,pro2=0;
 	for (auto p : prices) {
 		buy1 = min(buy1, p);
@@ -5612,4 +5627,53 @@ TreeNode* solution::insertIntoBST(TreeNode* root, int val)
 	}
 	else root->left = insertIntoBST(root->left, val);
 	return root;
+}
+
+//No 121
+int solution::maxProfit1(vector<int>& prices)
+{
+	int buy = INT_MAX, profit = 0;
+	for (auto p : prices) {
+		profit = max(profit, p - buy);
+		buy = min(buy, p);
+	}
+	return profit;
+}
+//No 122
+int solution::maxProfit2(vector<int>& prices)
+{
+	if (prices.size() <= 1) return 0;
+	int max_profit = 0;
+	for (int i = 1; i < prices.size(); ++i) {
+		if (prices[i] > prices[i - 1])
+			max_profit += prices[i] - prices[i - 1];
+	}
+	return max_profit;
+}
+
+int solution::maxProfit4(int k, vector<int>& prices)
+{
+	int len = prices.size();
+	if (k < 1 || len < 2) return 0;
+	if (k >= len / 2) {
+		int max_profit = 0;
+		for (int i = 1; i < prices.size(); ++i) {
+			if (prices[i] > prices[i - 1])
+				max_profit += prices[i] - prices[i - 1];
+		}
+		return max_profit;
+	}
+	else {
+		vector<vector<int>>dp(k, vector<int>(2, 0));
+		for (int i = 0; i < k; ++i) dp[i][0] = INT_MIN;
+		for (auto p : prices) {
+			dp[0][0] = max(dp[0][0], -p);
+			dp[0][1] = max(dp[0][1], dp[0][0] + p);
+			for (int i = 1; i < k; ++i) {
+				dp[i][0] = max(dp[i][0], dp[i - 1][1] - p);
+				dp[i][1] = max(dp[i][1], dp[i][0] + p);
+			}
+		}
+		return dp[k - 1][1];
+	}
 }
