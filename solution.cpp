@@ -5650,7 +5650,7 @@ int solution::maxProfit2(vector<int>& prices)
 	}
 	return max_profit;
 }
-
+//No 188
 int solution::maxProfit4(int k, vector<int>& prices)
 {
 	int len = prices.size();
@@ -5676,4 +5676,15 @@ int solution::maxProfit4(int k, vector<int>& prices)
 		}
 		return dp[k - 1][1];
 	}
+}
+//No 714
+int solution::maxProfitFee(vector<int>& prices, int fee)
+{
+	int cash = 0, hold = INT_MIN;
+	for (auto p : prices) {
+		cash = max(cash, hold + p - fee);
+		hold = max(hold, cash - p);
+	}
+	return cash;
+
 }
