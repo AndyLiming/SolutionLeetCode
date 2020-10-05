@@ -2766,7 +2766,7 @@ int solution::maxProfit(vector<int> & prices)
 	//int f0 = -prices[0],f1=0,f2=0;
 	//for (int i = 1; i < prices.size(); ++i) {
 	//	int newf0 = max(f0, f2 - prices[i]);
-	//	int newf1 = f1 + prices[i];
+	//	int newf1 = f0 + prices[i];
 	//	int newf2 = max(f1, f2);
 	//	f0 = newf0;
 	//	f1 = newf1;
@@ -5687,4 +5687,28 @@ int solution::maxProfitFee(vector<int>& prices, int fee)
 	}
 	return cash;
 
+}
+
+vector<vector<int>> solution::fourSum(vector<int>& nums, int target)
+{
+	set<vector<int>> ans;
+	sort(nums.begin(), nums.end());
+	int len = nums.size();
+	if (len < 4) return {};
+	for (int i = 0; i < len - 3; ++i) {
+		for (int j = i + 1; j < len - 2; ++j) {
+			int tar = target - nums[i] - nums[j];
+			int k = j + 1, l = len - 1;
+			while (k < l) {
+				if (nums[k] + nums[l] == tar) {
+					ans.insert({ nums[i],nums[j],nums[k],nums[l] });
+					++k;
+					--l;
+				}
+				else if (nums[k] + nums[l] < tar)++k;
+				else --l;
+			}
+		}
+	}
+	return vector<vector<int>>(ans.begin(), ans.end());
 }
