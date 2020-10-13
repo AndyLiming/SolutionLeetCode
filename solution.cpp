@@ -5712,3 +5712,20 @@ vector<vector<int>> solution::fourSum(vector<int>& nums, int target)
 	}
 	return vector<vector<int>>(ans.begin(), ans.end());
 }
+
+//No 24 
+ListNode* solution::swapPairs(ListNode* head)
+{
+	ListNode* helper = new ListNode(0);
+	helper->next = head;
+	ListNode* p = head, * pre = helper;
+	while (p && p->next) {
+		ListNode* q = p->next;
+		pre->next = q;
+		p->next = q->next;
+		q->next = p;
+		pre = p;
+		p = p->next;
+	}
+	return helper->next;
+}
