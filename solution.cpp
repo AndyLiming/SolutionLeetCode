@@ -5729,3 +5729,20 @@ ListNode* solution::swapPairs(ListNode* head)
 	}
 	return helper->next;
 }
+
+//No 19
+ListNode* solution::removeNthFromEnd(ListNode* head, int n)
+{
+	ListNode* p = head, * pn = head;
+	ListNode* helper = new ListNode(0), * pp = new ListNode(0);
+	helper->next = head;
+	pp = helper;
+	for (int i = 0; i < n; ++i) pn = pn->next;
+	while (pn) {
+		p = p->next;
+		pp = pp->next;
+		pn = pn->next;
+	}
+	pp->next = p->next;
+	return helper->next;
+}
