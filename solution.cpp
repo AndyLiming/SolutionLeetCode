@@ -5746,3 +5746,21 @@ ListNode* solution::removeNthFromEnd(ListNode* head, int n)
 	pp->next = p->next;
 	return helper->next;
 }
+//763
+vector<int> solution::partitionLabels(string S)
+{
+	vector<int> last(26, 0);
+	for (int i = 0; i < S.size(); ++i) {
+		last[S[i] - 'a'] = i;
+	}
+	vector<int>par;
+	int start = 0, end = 0;
+	for (int i = 0; i < S.size(); ++i) {
+		end = max(end, last[S[i] - 'a']);
+		if (i == end) {
+			par.push_back(end - start + 1);
+			start = end + 1;
+		}
+	}
+	return par;
+}
