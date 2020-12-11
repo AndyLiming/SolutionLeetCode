@@ -920,6 +920,9 @@ public:
   int findMinArrowShots(vector<vector<int>>& points);
   //452
 
+  string predictPartyVictory(string senate);
+  //649
+
 private:
   bool exploreWordSearch(int row,int col, vector<vector<bool>>& enable, int position, const vector<vector<char>>& board, const string word);
   void restoreIpDfs(string s, vector<string>& ans, int dotNum, string partStr);
