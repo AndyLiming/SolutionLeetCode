@@ -2914,6 +2914,29 @@ bool solution::increasingTriplet(vector<int> & nums)
 }
 
 //No 354 Russian Doll Envelopes
+int maxEnvelopes(vector<vector<int>>& envelopes) {
+	if (envelopes.empty()) {
+		return 0;
+	}
+
+	int n = envelopes.size();
+	sort(envelopes.begin(), envelopes.end(), [](const auto& e1, const auto& e2) {
+		return e1[0] < e2[0] || (e1[0] == e2[0] && e1[1] > e2[1]);
+	});
+
+	vector<int> f = { envelopes[0][1] };
+	for (int i = 1; i < n; ++i) {
+		int num = envelopes[i][1];
+		if ( num > f.back()) {
+			f.push_back(num);
+		}
+		else {
+			auto it = lower_bound(f.begin(), f.end(), num);
+			*it = num;
+		}
+	}
+	return f.size();
+}
 //brute force DP
 //int solution::maxEnvelopes(vector<pair<int, int>>& envelopes)
 //{
@@ -5796,4 +5819,26 @@ string solution::predictPartyVictory(string senate)
 		d.pop();
 	}
 	return !r.empty() ? "Radiant" : "Dire";
+}
+
+//No 132
+int solution::minCut(string s)
+{
+	int n = s.size();
+	vector<vector<bool>>g(n, vector<bool>(n, true));
+	for (int i = n - 1; i >= 0; --i) {
+		for (int j = i + 1; j < n; ++j) {
+			g[i][j] = (s[i] == s[j]) && g[i + 1][j - 1];
+		}
+	}
+	vector<int>dp(n, INT_MAX);
+	for (int i = 0; i < n; ++i) {
+		if (g[0][i]) dp[i] = 0;
+		else {
+			for (int j = 0; j < i; ++j) {
+				if (g[j + 1][i]) dp[i] = min(dp[i], dp[j] + 1);
+			}
+		}
+	}
+	return dp[n - 1];
 }
